@@ -572,3 +572,134 @@ function toggleBoxAvatar(type) {
     showBarbieToast('Doll Silhouette Active! 🎨', '✨');
   }
 }
+
+// --- 16. Live Clock on B-Phone ---
+function updateBPhoneClock() {
+  const clockEls = document.querySelectorAll('.bphone-live-clock');
+  const now = new Date();
+  let hours = now.getHours();
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12 || 12;
+  const timeStr = `${hours}:${minutes} ${ampm}`;
+  clockEls.forEach(el => { el.textContent = timeStr; });
+}
+setInterval(updateBPhoneClock, 10000);
+updateBPhoneClock();
+
+// --- 17. Interactive Chat with Ken in B-Phone ---
+const kenDialogues = {
+  'gemini': {
+    user: 'Yes! Multimodal Gemini API is connected 💅',
+    ken: 'OMG Jhalak you are a genius! Now the crops in Barbieland will never get sick! 🌱💖'
+  },
+  'beach': {
+    user: 'Ken, please go do beach. I am coding in Java ☕',
+    ken: 'My job is just beach anyway! Let me know if you need any cheerleading while you solve DSA! 🏄‍♂️✨'
+  },
+  'leetcode': {
+    user: 'Solved 400+ LeetCode problems today! ⚡',
+    ken: '400+?! I tried doing Two Sum and my rollerblade fell off! You are literally unstoppable! 👑💅'
+  }
+};
+
+function sendKenChat(key) {
+  const data = kenDialogues[key];
+  if (!data) return;
+
+  playSparkleSound();
+  const chatContainer = document.getElementById('bphone-chat-messages');
+  if (!chatContainer) return;
+
+  // Add User Bubble
+  const userDiv = document.createElement('div');
+  userDiv.className = 'bg-[#ff007f] text-white p-2.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto shadow-sm text-[11px] animate-bounce';
+  userDiv.textContent = data.user;
+  chatContainer.appendChild(userDiv);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  // Simulate Ken Typing
+  setTimeout(() => {
+    playFanfareSound();
+    const kenDiv = document.createElement('div');
+    kenDiv.className = 'bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm text-[11px]';
+    kenDiv.innerHTML = `<strong>Ken:</strong> ${data.ken}`;
+    chatContainer.appendChild(kenDiv);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    showBarbieToast('New message from Ken! 💬', '💖');
+  }, 700);
+}
+
+// --- 18. Interactive Barbie Job Offer Builder ---
+let selectedRole = 'Full-Stack Software Engineer (Java & React)';
+let selectedPerks = ['High-Impact AI Projects 🚀', '100% Mojo Dojo Free Workplace 💅'];
+
+function selectOfferRole(btn, role) {
+  playSparkleSound();
+  document.querySelectorAll('.role-chip').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedRole = role;
+}
+
+function toggleOfferPerk(btn, perk) {
+  playSparkleSound();
+  btn.classList.toggle('selected');
+  if (selectedPerks.includes(perk)) {
+    selectedPerks = selectedPerks.filter(p => p !== perk);
+  } else {
+    selectedPerks.push(perk);
+  }
+}
+
+function sendDreamOffer() {
+  playFanfareSound();
+  triggerBarbieConfetti(0.5, 0.4);
+
+  const company = document.getElementById('offer-company-name')?.value || 'Our Company';
+  const notes = document.getElementById('offer-custom-notes')?.value || 'We would love to discuss exciting opportunities with you!';
+
+  const subject = encodeURIComponent(`Dreamhouse Job Offer: ${selectedRole} for Jhalak Saini`);
+  const body = encodeURIComponent(
+`Hi Jhalak,
+
+We were blown away by your Barbie Dreamhouse Portfolio, your 400+ LeetCode DSA skills, and your AI projects (Vayalum & RAG Chatbot)!
+
+Company / Team: ${company}
+Proposed Role: ${selectedRole}
+Perks Offered:
+${selectedPerks.map(p => `• ${p}`).join('\n')}
+
+Personal Note:
+${notes}
+
+Let's schedule a chat to discuss bringing your engineering magic to our team!
+
+Best regards,
+${company}`
+  );
+
+  showBarbieToast('Preparing your Dream Offer email to Jhalak! 💌', '💖');
+  setTimeout(() => {
+    window.location.href = `mailto:sainijhalak015@gmail.com?subject=${subject}&body=${body}`;
+  }, 1000);
+}
+
+// --- 19. Funny Barbie Dev Quote Machine ---
+const barbieQuotes = [
+  "In Barbieland, every merge conflict resolves itself without a scratch! 💅",
+  "He's just Ken. She's building autonomous LangChain multi-agent workflows! 🤖✨",
+  "There are no runtime exceptions in the Dreamhouse, only learning opportunities! 🌸",
+  "400+ LeetCode problems down. Ken couldn't even invert a binary tree! ⚡",
+  "Because software engineering looks 100x prettier in hot pink! 💖"
+];
+let quoteIdx = 0;
+
+function nextBarbieQuote() {
+  playSparkleSound();
+  triggerBarbieConfetti(0.5, 0.5);
+  quoteIdx = (quoteIdx + 1) % barbieQuotes.length;
+  const el = document.getElementById('barbie-quote-text');
+  if (el) {
+    el.textContent = `"${barbieQuotes[quoteIdx]}"`;
+  }
+}

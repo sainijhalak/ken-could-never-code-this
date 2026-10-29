@@ -386,18 +386,18 @@
     <div class="text-center mb-14">
       <div class="barbie-ribbon mb-3">📸 FITTING ROOM CHIC • REAL LIFE BARBIE</div>
       <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
-        Mirror Selfie & <span class="font-barbie text-[#ff007f]">Working B-Phone</span>
+        Mirror Selfie & <span class="font-barbie text-[#ff007f]">Working B-Phone 16 Pro</span>
       </h2>
       <p class="text-[#7a2254] max-w-2xl mx-auto mt-3 font-medium">
-        Behind every intelligent line of code is a fashionista in a floral jumpsuit! Tap the glowing phone in the mirror to snap a selfie, trigger the camera flash, and explore Jhalak's interactive Barbie Smartphone!
+        Behind every intelligent line of code is a fashionista in a floral dress! The phone in the photo is connected to an active B-Phone — tap the phone screen on the portrait, or play with the live Barbie Smartphone beside it to text Ken, snap selfies, and play Barbie music!
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       
-      <!-- Left: Hollywood Vanity Mirror with Jhalak's Selfie -->
-      <div class="lg:col-span-6 flex justify-center">
-        <div class="vanity-mirror w-full max-w-[480px]">
+      <!-- Left: Hollywood Vanity Mirror with Jhalak's Portrait -->
+      <div class="lg:col-span-6 flex flex-col items-center justify-center">
+        <div class="vanity-mirror w-full max-w-[440px]">
           
           <!-- Hollywood Vanity Bulbs -->
           <div class="vanity-bulbs">
@@ -414,137 +414,202 @@
           </div>
 
           <!-- Selfie Image Stage -->
-          <div class="selfie-stage">
+          <div class="selfie-stage relative">
             
             <!-- Holographic Stickers on Mirror -->
-            <div class="mirror-sticker top-4 left-4 bg-white/90 text-[#ff007f] font-display font-extrabold text-xs px-3 py-1.5 rounded-full border-2 border-[#ff007f] shadow-lg flex items-center gap-1.5">
+            <div class="mirror-sticker top-3 left-3 bg-white/95 text-[#ff007f] font-display font-extrabold text-[11px] px-3 py-1 rounded-full border-2 border-[#ff007f] shadow-lg flex items-center gap-1.5">
               <span>💖</span> <span>Hi Barbie!</span>
             </div>
             
-            <div class="mirror-sticker top-4 right-4 bg-gradient-to-r from-[#ffd700] to-[#ffae00] text-[#3e2300] font-display font-bold text-[11px] px-3 py-1 rounded-full shadow-lg">
+            <div class="mirror-sticker top-3 right-3 bg-gradient-to-r from-[#ffd700] to-[#ffae00] text-[#3e2300] font-display font-bold text-[10px] px-2.5 py-1 rounded-full shadow-lg">
               ✨ 100% Coder Doll
             </div>
 
-            <div class="mirror-sticker bottom-5 left-4 bg-[#ff007f] text-white font-display font-bold text-[11px] px-3 py-1 rounded-full shadow-lg">
-              🌸 Fitting Room Vibes
+            <div class="mirror-sticker bottom-3 left-3 bg-[#ff007f] text-white font-display font-bold text-[10px] px-2.5 py-1 rounded-full shadow-lg">
+              🌸 Floral Dress Chic
             </div>
 
-            <!-- The Real Photo -->
-            <img id="main-selfie-img" src="assets/jhalak-barbie-selfie.png" alt="Jhalak Saini Floral Dress Fitting Room Selfie" class="selfie-img filter-dreamhouse">
+            <!-- The Real Photo (New Portrait) -->
+            <img id="main-selfie-img" src="assets/jhalak-barbie-selfie.png" alt="Jhalak Saini Floral Dress Mirror Selfie" class="selfie-img filter-dreamhouse">
 
-            <!-- Interactive Glowing Phone Hotspot -->
-            <div class="phone-hotspot" onclick="snapMirrorSelfie(); openBPhone();" title="Click to snap selfie & open B-Phone!">
+            <!-- Interactive Glowing Phone Hotspot (Positioned on the phone in the new portrait) -->
+            <div class="phone-hotspot" onclick="snapMirrorSelfie(); switchBPhoneApp('camera');" title="Click phone to snap mirror selfie!">
               <div class="phone-hotspot-ring"></div>
               <div class="phone-flash-led"></div>
               <div class="phone-tooltip">
-                <span>📸 TAP PHONE!</span>
+                <span>📸 TAP PHONE TO SNAP!</span>
               </div>
             </div>
 
           </div>
 
-          <!-- Bottom Mirror Footer -->
+          <!-- Bottom Mirror Footer Controls -->
           <div class="mt-3 flex items-center justify-between text-xs font-bold text-[#c71585] px-2">
-            <span>BARBIE SMART MIRROR OS v2.0</span>
+            <span>BARBIE SMART MIRROR v2.0</span>
             <button onclick="snapMirrorSelfie()" class="text-[#ff007f] hover:underline flex items-center gap-1">
-              <i class="fa-solid fa-camera"></i> <span>Snap Selfie</span>
+              <i class="fa-solid fa-camera"></i> <span>Snap Mirror Selfie</span>
             </button>
           </div>
 
+        </div>
+
+        <!-- Filter Pills Below Mirror -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-4 max-w-[440px]">
+          <button id="btn-filter-dreamhouse" onclick="setSelfieFilter('dreamhouse')" class="filter-pill-btn active py-1.5 px-3 rounded-full bg-white border border-pink-200 text-[11px] font-bold text-[#4a102e] shadow-sm hover:border-[#ff007f]">
+            💖 Dreamhouse
+          </button>
+          <button id="btn-filter-golden" onclick="setSelfieFilter('golden')" class="filter-pill-btn py-1.5 px-3 rounded-full bg-white border border-pink-200 text-[11px] font-bold text-[#4a102e] shadow-sm hover:border-[#ff007f]">
+            ✨ Golden Hour
+          </button>
+          <button id="btn-filter-y2k" onclick="setSelfieFilter('y2k')" class="filter-pill-btn py-1.5 px-3 rounded-full bg-white border border-pink-200 text-[11px] font-bold text-[#4a102e] shadow-sm hover:border-[#ff007f]">
+            📸 Y2K Cam
+          </button>
+          <button id="btn-filter-original" onclick="setSelfieFilter('original')" class="filter-pill-btn py-1.5 px-3 rounded-full bg-white border border-pink-200 text-[11px] font-bold text-[#4a102e] shadow-sm hover:border-[#ff007f]">
+            🌸 Original
+          </button>
         </div>
       </div>
 
-      <!-- Right: Interactive Controls & B-Phone Launchpad -->
-      <div class="lg:col-span-6 space-y-6">
+      <!-- Right: Real Always-Active On-Screen B-Phone 16 Pro -->
+      <div class="lg:col-span-6 flex flex-col items-center">
         
-        <!-- Filter Studio Card -->
-        <div class="barbie-card p-6">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-10 h-10 rounded-xl bg-pink-100 text-[#ff007f] flex items-center justify-center text-lg">
-              <i class="fa-solid fa-wand-magic-sparkles"></i>
-            </span>
-            <div>
-              <h3 class="font-display font-bold text-lg text-[#3b0d27]">Barbie Filter Studio</h3>
-              <p class="text-xs text-[#8c1c5a]">Live dressing room lighting & aesthetic presets</p>
+        <div class="bphone-embedded">
+          <div class="bphone-screen">
+            
+            <!-- Dynamic Island & Live Clock Status Bar -->
+            <div class="b-phone-notch flex items-center justify-between px-3 text-[10px]">
+              <span class="bphone-live-clock font-bold text-white">11:11 PM</span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span class="text-pink-300 font-bold">100% 💖</span>
             </div>
-          </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4">
-            <button id="btn-filter-dreamhouse" onclick="setSelfieFilter('dreamhouse')" class="filter-pill-btn active py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
-              <span>💖</span>
-              <span>Dreamhouse</span>
-            </button>
+            <!-- APP 1: Interactive Chat with Ken (Default Active) -->
+            <div id="bphone-tab-messages" class="bphone-screen-tab flex-1 p-3 overflow-y-auto flex flex-col justify-between">
+              <div>
+                <!-- Ken Header Profile -->
+                <div class="text-center pb-2 border-b border-pink-200 mb-2">
+                  <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ff007f] to-[#ffd700] mx-auto text-white flex items-center justify-center text-sm font-bold shadow">
+                    K
+                  </div>
+                  <div class="text-[11px] font-bold text-[#3b0d27] mt-0.5">Ken (Tech Lead)</div>
+                  <div class="text-[9px] text-[#ff007f] font-semibold">Active in Barbieland 🏄‍♂️</div>
+                </div>
 
-            <button id="btn-filter-golden" onclick="setSelfieFilter('golden')" class="filter-pill-btn py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
-              <span>✨</span>
-              <span>Golden Hour</span>
-            </button>
+                <!-- Live Chat Message Stream -->
+                <div id="bphone-chat-messages" class="space-y-2 text-[11px] max-h-[220px] overflow-y-auto pr-1">
+                  <div class="bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm">
+                    <strong>Ken:</strong> Jhalak Barbie, is our Vayalum AI farming bot ready for deployment? 🌱
+                  </div>
+                  <div class="bg-[#ff007f] text-white p-2.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto shadow-sm">
+                    Yes! Multimodal Gemini API is connected and Twilio SMS alerts are live! 💅⚡
+                  </div>
+                  <div class="bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm">
+                    <strong>Ken:</strong> You're literally the smartest Software Engineer in Barbieland! What are you working on next? 💖
+                  </div>
+                </div>
+              </div>
 
-            <button id="btn-filter-y2k" onclick="setSelfieFilter('y2k')" class="filter-pill-btn py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
-              <span>📸</span>
-              <span>Y2K Cam</span>
-            </button>
-
-            <button id="btn-filter-original" onclick="setSelfieFilter('original')" class="filter-pill-btn py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
-              <span>🌸</span>
-              <span>Original</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Phone Interactivity Card -->
-        <div class="barbie-card p-6 border-2 border-[#ff007f]">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-white bg-[#ff007f] px-3 py-1 rounded-full">
-                Interactive B-Phone 16 Pro
-              </span>
-              <h3 class="font-display font-black text-xl text-[#3b0d27] mt-2">
-                "The Phone Is Alive!" 📱✨
-              </h3>
-              <p class="text-xs sm:text-sm text-[#661642] leading-relaxed mt-1">
-                Notice the glowing camera hotspot on the phone in the mirror? Tap it directly on the photo, or use the buttons below to interact with Jhalak's customized Barbie Phone!
-              </p>
-            </div>
-            <span class="text-4xl animate-bounce">💅</span>
-          </div>
-
-          <div class="flex flex-wrap gap-3 mt-6">
-            <button onclick="snapMirrorSelfie()" class="btn-barbie-primary text-xs py-3 px-5">
-              <i class="fa-solid fa-camera-retro"></i>
-              <span>Snap Photo (Flash + Shutter!)</span>
-            </button>
-
-            <button onclick="openBPhone()" class="btn-barbie-secondary text-xs py-3 px-5">
-              <i class="fa-solid fa-mobile-screen-button"></i>
-              <span>Open Barbie Phone UI</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Instant Polaroid Result Display -->
-        <div id="mirror-polaroid-result" class="polaroid-card">
-          <div class="flex items-center gap-4">
-            <div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 border border-pink-200">
-              <img src="assets/jhalak-barbie-selfie.png" alt="Polaroid thumbnail" class="w-full h-full object-cover">
-            </div>
-            <div>
-              <div class="font-barbie text-xl text-[#ff007f]">Developer Barbie</div>
-              <p class="text-xs text-[#521334] font-medium mt-0.5">
-                "Floral Jumpsuit + Java Mug + LeetCode Grind = 100% Unstoppable."
-              </p>
-              <div class="text-[10px] text-[#9b1178] font-bold tracking-wider mt-2 uppercase flex items-center gap-2">
-                <span>📍 Fitting Room Barbieland</span> • <span>Jan 2026</span>
+              <!-- Interactive Quick Reply Buttons (User can click these to chat with Ken!) -->
+              <div class="pt-2 border-t border-pink-200">
+                <div class="text-[9px] font-bold text-[#9b1178] uppercase mb-1">Tap a quick reply to Ken:</div>
+                <div class="flex flex-wrap gap-1.5 mb-2">
+                  <button onclick="sendKenChat('gemini')" class="bphone-quick-reply">
+                    💅 Gemini AI is ready
+                  </button>
+                  <button onclick="sendKenChat('beach')" class="bphone-quick-reply">
+                    ☕ Ken, go do beach
+                  </button>
+                  <button onclick="sendKenChat('leetcode')" class="bphone-quick-reply">
+                    ⚡ 400+ LeetCode solved!
+                  </button>
+                </div>
               </div>
             </div>
+
+            <!-- APP 2: Working Camera Viewfinder -->
+            <div id="bphone-tab-camera" class="bphone-screen-tab hidden flex-1 relative bg-black flex flex-col justify-between p-3 text-white">
+              <div class="flex items-center justify-between text-[10px] text-pink-300 font-bold z-10">
+                <span>[ 0.5x • 1x • 2x ]</span>
+                <span class="text-red-500 animate-pulse">● REC 4K 60FPS</span>
+              </div>
+
+              <div class="absolute inset-0 flex items-center justify-center opacity-90 overflow-hidden">
+                <img src="assets/jhalak-barbie-selfie.png" alt="Camera Viewfinder" class="w-full h-full object-cover">
+              </div>
+
+              <div class="z-10 text-center pb-2">
+                <button onclick="snapMirrorSelfie()" class="w-14 h-14 rounded-full border-4 border-white bg-[#ff007f] shadow-lg mx-auto active:scale-90 transition-transform flex items-center justify-center text-white text-lg">
+                  📸
+                </button>
+                <div class="text-[9px] text-white/90 mt-1 font-bold">TAP TO SNAP SELFIE</div>
+              </div>
+            </div>
+
+            <!-- APP 3: Barbie Music Player (Spotify Style) -->
+            <div id="bphone-tab-music" class="bphone-screen-tab hidden flex-1 p-4 flex flex-col items-center justify-center text-center">
+              <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] text-white flex items-center justify-center text-4xl shadow-lg border-2 border-white mb-3">
+                🎵
+              </div>
+              <div class="font-display font-bold text-sm text-[#3b0d27]">Dance The Night</div>
+              <div class="text-[11px] text-[#ff007f] font-semibold">Barbie The Album (Official)</div>
+              
+              <div class="sound-bars my-3">
+                <span class="sound-bar"></span>
+                <span class="sound-bar"></span>
+                <span class="sound-bar"></span>
+                <span class="sound-bar"></span>
+              </div>
+
+              <button onclick="playBarbieBPhoneTune()" class="btn-barbie-primary !text-xs !py-2.5 !px-5 mt-1">
+                <i class="fa-solid fa-play"></i> <span>Play Barbie Synth</span>
+              </button>
+            </div>
+
+            <!-- APP 4: Java Code Terminal -->
+            <div id="bphone-tab-terminal" class="bphone-screen-tab hidden flex-1 bg-[#1a051d] p-3 text-left overflow-y-auto text-[10px] font-mono text-pink-300">
+              <div class="text-emerald-400 font-bold mb-1">// JhalakSaini.java</div>
+              <div class="text-white">public class BarbieDeveloper {</div>
+              <div class="pl-2 text-pink-400">String status = "Building AI";</div>
+              <div class="pl-2 text-yellow-300">int leetcode = 400;</div>
+              <div class="pl-2 text-sky-300">double cgpa = 8.7;</div>
+              <div class="pl-2 text-emerald-300">boolean mojoDojoFree = true;</div>
+              <div class="pl-2 text-white">void code() {</div>
+              <div class="pl-4 text-amber-200">System.out.println("Ready to deploy!");</div>
+              <div class="pl-2 text-white">}</div>
+              <div class="text-white">}</div>
+            </div>
+
+            <!-- B-Phone Bottom Dock Navigation -->
+            <div class="bg-white/95 border-t border-pink-200 py-2 px-3 flex items-center justify-around text-xs">
+              <button id="bphone-nav-messages" onclick="switchBPhoneApp('messages')" class="bphone-nav-btn text-[#ff007f] font-bold flex flex-col items-center">
+                <i class="fa-solid fa-comment-dots text-base"></i>
+                <span class="text-[9px] mt-0.5">Chat</span>
+              </button>
+              <button id="bphone-nav-camera" onclick="switchBPhoneApp('camera')" class="bphone-nav-btn text-stone-400 flex flex-col items-center">
+                <i class="fa-solid fa-camera text-base"></i>
+                <span class="text-[9px] mt-0.5">Camera</span>
+              </button>
+              <button id="bphone-nav-music" onclick="switchBPhoneApp('music')" class="bphone-nav-btn text-stone-400 flex flex-col items-center">
+                <i class="fa-solid fa-music text-base"></i>
+                <span class="text-[9px] mt-0.5">Music</span>
+              </button>
+              <button id="bphone-nav-terminal" onclick="switchBPhoneApp('terminal')" class="bphone-nav-btn text-stone-400 flex flex-col items-center">
+                <i class="fa-solid fa-code text-base"></i>
+                <span class="text-[9px] mt-0.5">Java</span>
+              </button>
+            </div>
+
           </div>
+        </div>
+
+        <div class="text-[11px] text-[#9b1178] font-bold mt-3 text-center">
+          ✨ Tap tabs above to chat with Ken, take photos, or play Barbie songs!
         </div>
 
       </div>
 
     </div>
   </section>
-
 
   <!-- ==================== BARBIE'S TECHNICAL CLOSET (SKILLS) ==================== -->
   <section id="closet" class="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent via-[#ffe8f4]/60 to-transparent relative z-10">
@@ -993,131 +1058,188 @@
     </div>
   </section>
 
-  <!-- ==================== THE DREAMHOUSE MAILBOX (CONTACT) ==================== -->
+  <!-- ==================== THE BARBIE CAREER DREAMHOUSE: JOB OFFER SIMULATOR & VIP HOTLINE ==================== -->
   <section id="contact" class="py-20 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
     <div class="text-center mb-16">
-      <div class="barbie-ribbon mb-3">💌 SEND A DREAM LETTER</div>
+      <div class="barbie-ribbon mb-3">💼 HIRE DEVELOPER BARBIE • 100% KEN-FREE</div>
       <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
-        Let's Connect in <span class="font-barbie text-[#ff007f]">Barbieland</span>
+        The Dreamhouse <span class="font-barbie text-[#ff007f]">Job Offer Simulator</span>
       </h2>
-      <p class="text-[#7a2254] max-w-xl mx-auto mt-3 font-medium">
-        Whether you have an internship opportunity, a project to collaborate on, or just want to say "Hi Barbie!", my inbox is always sparkling.
+      <p class="text-[#7a2254] max-w-2xl mx-auto mt-3 font-medium">
+        Ready to bring 400+ LeetCode DSA mastery, robust Java systems, and GenAI agent pipelines to your engineering team? Build your custom Dreamhouse offer below or connect directly through Barbie's VIP hotline!
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- Contact Info Cards -->
-      <div class="lg:col-span-5 space-y-4">
-        
-        <!-- Email -->
-        <div class="barbie-card p-5 flex items-center justify-between group">
-          <div class="flex items-center gap-3.5">
-            <span class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] text-white flex items-center justify-center text-lg shadow-sm border border-white">
-              <i class="fa-solid fa-envelope"></i>
-            </span>
+      <!-- Left: Interactive Dreamhouse Offer Builder -->
+      <div class="lg:col-span-7">
+        <div class="barbie-card p-6 sm:p-9 border-4 border-white shadow-xl">
+          
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-pink-200">
             <div>
-              <div class="text-[11px] font-bold text-[#c71585] uppercase tracking-wider">Dream Mailbox</div>
-              <div class="text-sm font-bold text-[#3b0d27]">sainijhalak015@gmail.com</div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff007f] bg-pink-100 px-3 py-1 rounded-full">
+                Interactive Contract Builder
+              </span>
+              <h3 class="font-display font-black text-2xl text-[#3b0d27] mt-1.5">
+                Draft a Job Offer for Jhalak 💖
+              </h3>
+            </div>
+            <span class="text-3xl animate-bounce">💅</span>
+          </div>
+
+          <!-- Step 1: Select Proposed Role -->
+          <div class="mb-5">
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-2">
+              Step 1: Select Proposed Role:
+            </label>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="selectOfferRole(this, 'Full-Stack Software Engineer (Java & React)')" class="offer-chip role-chip selected">
+                ☕ Full-Stack Engineer (Java & React)
+              </button>
+              <button type="button" onclick="selectOfferRole(this, 'Generative AI & Agent Integrator')" class="offer-chip role-chip">
+                🤖 AI Agent & LLM Integrator
+              </button>
+              <button type="button" onclick="selectOfferRole(this, 'Frontend UI/UX Engineer')" class="offer-chip role-chip">
+                🌸 Frontend Fashionista (React / UI)
+              </button>
             </div>
           </div>
-          <button onclick="copyText('sainijhalak015@gmail.com', 'Email')" class="btn-barbie-secondary !py-2 !px-3 text-xs" title="Copy Email">
-            <i class="fa-regular fa-copy"></i>
+
+          <!-- Step 2: Choose Perks -->
+          <div class="mb-5">
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-2">
+              Step 2: Choose Dreamhouse Perks:
+            </label>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" onclick="toggleOfferPerk(this, 'High-Impact AI Projects 🚀')" class="offer-chip selected">
+                🚀 High-Impact AI Projects
+              </button>
+              <button type="button" onclick="toggleOfferPerk(this, '100% Mojo Dojo Free Workplace 💅')" class="offer-chip selected">
+                💅 100% Mojo Dojo Free
+              </button>
+              <button type="button" onclick="toggleOfferPerk(this, 'Unlimited Boba & Pink Lattes 🧋')" class="offer-chip">
+                🧋 Unlimited Boba & Pink Lattes
+              </button>
+              <button type="button" onclick="toggleOfferPerk(this, 'Top-Tier Competitive Compensation 💰')" class="offer-chip">
+                💰 Top-Tier Compensation
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Company & Message Input -->
+          <div class="space-y-4 mb-6">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1">
+                Your Company / Team Name:
+              </label>
+              <input type="text" id="offer-company-name" placeholder="e.g. Google Barbieland / Tech Startup" class="w-full px-4 py-2.5 rounded-2xl bg-white border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none text-sm font-medium text-[#3b0d27]">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1">
+                Personal Note / Interview Time:
+              </label>
+              <textarea id="offer-custom-notes" rows="2" placeholder="Hi Jhalak! We love your portfolio, your 400+ LeetCode problems, and your Vayalum bot. Let's schedule an interview!" class="w-full px-4 py-2.5 rounded-2xl bg-white border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none text-sm font-medium text-[#3b0d27]"></textarea>
+            </div>
+          </div>
+
+          <!-- Send Offer Button -->
+          <button type="button" onclick="sendDreamOffer()" class="btn-barbie-primary w-full !py-4 text-center">
+            <span>💖</span>
+            <span>Send Dream Offer to Jhalak</span>
+            <span>✨</span>
           </button>
-        </div>
-
-        <!-- Phone -->
-        <div class="barbie-card p-5 flex items-center justify-between group">
-          <div class="flex items-center gap-3.5">
-            <span class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#34d399] text-white flex items-center justify-center text-lg shadow-sm border border-white">
-              <i class="fa-solid fa-phone"></i>
-            </span>
-            <div>
-              <div class="text-[11px] font-bold text-[#c71585] uppercase tracking-wider">Phone Hotline</div>
-              <div class="text-sm font-bold text-[#3b0d27]">+91-6395851946</div>
-            </div>
+          <div class="text-[11px] text-center text-[#9b1178] font-bold mt-2">
+            Auto-formats and opens your default mail app ready to send!
           </div>
-          <a href="tel:+916395851946" class="btn-barbie-secondary !py-2 !px-3 text-xs" title="Call">
-            <i class="fa-solid fa-phone"></i>
-          </a>
-        </div>
 
-        <!-- Location -->
-        <div class="barbie-card p-5 flex items-center gap-3.5">
-          <span class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#f59e0b] to-[#fbbf24] text-white flex items-center justify-center text-lg shadow-sm border border-white">
-            <i class="fa-solid fa-location-dot"></i>
-          </span>
-          <div>
-            <div class="text-[11px] font-bold text-[#c71585] uppercase tracking-wider">Location</div>
-            <div class="text-sm font-bold text-[#3b0d27]">Greater Noida, Uttar Pradesh, India</div>
+        </div>
+      </div>
+
+      <!-- Right: Barbie's VIP Hotline & Quote Machine -->
+      <div class="lg:col-span-5 space-y-5">
+        
+        <!-- Direct VIP Contacts -->
+        <div class="barbie-card p-6 space-y-3.5">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#9b1178] mb-2 flex items-center gap-1.5">
+            <span>🎀</span> <span>Direct Barbie VIP Hotline</span>
+          </div>
+
+          <!-- Email Copy -->
+          <div class="flex items-center justify-between p-3 rounded-2xl bg-white border border-pink-200">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-pink-100 text-[#ff007f] flex items-center justify-center text-sm shadow-sm">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <div>
+                <div class="text-[10px] font-bold text-[#c71585] uppercase">Email Barbie</div>
+                <div class="text-xs font-bold text-[#3b0d27]">sainijhalak015@gmail.com</div>
+              </div>
+            </div>
+            <button onclick="copyText('sainijhalak015@gmail.com', 'Email')" class="btn-barbie-secondary !py-1.5 !px-3 text-xs" title="Copy Email">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+
+          <!-- Phone Call -->
+          <div class="flex items-center justify-between p-3 rounded-2xl bg-white border border-pink-200">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm shadow-sm">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <div>
+                <div class="text-[10px] font-bold text-emerald-700 uppercase">Phone Call</div>
+                <div class="text-xs font-bold text-[#3b0d27]">+91-6395851946</div>
+              </div>
+            </div>
+            <a href="tel:+916395851946" class="btn-barbie-secondary !py-1.5 !px-3 text-xs" title="Call">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+          </div>
+
+          <!-- Resume Download Button -->
+          <div class="pt-2">
+            <a href="Jhalak_Saini_CV.pdf" download="Jhalak_Saini_CV.pdf" class="btn-barbie-primary w-full !py-3 !text-xs" onclick="triggerBarbieConfetti(0.5, 0.5)">
+              <i class="fa-solid fa-file-arrow-down"></i>
+              <span>Download Official Barbie CV (PDF)</span>
+            </a>
           </div>
         </div>
 
         <!-- Social Channels -->
-        <div class="barbie-card p-6 text-center">
-          <div class="text-xs font-bold uppercase tracking-wider text-[#8c1c5a] mb-4">
-            ★ Follow Barbie Across The Web ★
+        <div class="barbie-card p-5 text-center">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#8c1c5a] mb-3">
+            ★ Barbie Around The Web ★
           </div>
-          <div class="flex items-center justify-center gap-4">
-            <a href="https://github.com/sainijhalak" target="_blank" class="w-12 h-12 rounded-full bg-white text-[#333] hover:text-[#ff007f] hover:scale-110 flex items-center justify-center text-xl shadow-md border-2 border-pink-200 transition-all">
+          <div class="flex items-center justify-center gap-3">
+            <a href="https://github.com/sainijhalak" target="_blank" class="w-11 h-11 rounded-full bg-white text-[#333] hover:text-[#ff007f] hover:scale-110 flex items-center justify-center text-lg shadow-sm border border-pink-200 transition-all">
               <i class="fa-brands fa-github"></i>
             </a>
-            <a href="https://linkedin.com/in/sainijhalak" target="_blank" class="w-12 h-12 rounded-full bg-white text-[#0077b5] hover:text-[#ff007f] hover:scale-110 flex items-center justify-center text-xl shadow-md border-2 border-pink-200 transition-all">
+            <a href="https://linkedin.com/in/sainijhalak" target="_blank" class="w-11 h-11 rounded-full bg-white text-[#0077b5] hover:text-[#ff007f] hover:scale-110 flex items-center justify-center text-lg shadow-sm border border-pink-200 transition-all">
               <i class="fa-brands fa-linkedin-in"></i>
             </a>
-            <a href="mailto:sainijhalak015@gmail.com" class="w-12 h-12 rounded-full bg-white text-[#ff007f] hover:scale-110 flex items-center justify-center text-xl shadow-md border-2 border-pink-200 transition-all">
-              <i class="fa-solid fa-envelope"></i>
+            <a href="https://github.com/sainijhalak/ken-could-never-code-this" target="_blank" class="w-11 h-11 rounded-full bg-white text-[#ff007f] hover:scale-110 flex items-center justify-center text-lg shadow-sm border border-pink-200 transition-all" title="View Source on GitHub">
+              <i class="fa-solid fa-code-fork"></i>
             </a>
           </div>
         </div>
 
-      </div>
-
-      <!-- Interactive Dream Letter Form -->
-      <div class="lg:col-span-7">
-        <div class="barbie-card p-8 sm:p-10 border-4 border-white">
-          
-          <div class="flex items-center justify-between mb-6 pb-4 border-b border-pink-200">
-            <div>
-              <h3 class="font-display font-black text-2xl text-[#3b0d27]">Drop a Note in the Vanity Box</h3>
-              <p class="text-xs text-[#8c1c5a]">Simulated instant delivery with sparkle magic! 💌</p>
+        <!-- Funny Mojo-Dojo Free Barbie Dev Quote Machine -->
+        <div class="barbie-card p-5">
+          <div class="quote-box text-center">
+            <div class="text-[10px] font-extrabold uppercase tracking-widest text-[#ff007f] mb-2">
+              ★ BARBIE DEV QUOTE OF THE DAY ★
             </div>
-            <span class="text-3xl animate-bounce">🎀</span>
-          </div>
-
-          <form id="barbie-contact-form" class="space-y-5">
-            <div>
-              <label for="sender-name" class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1.5">
-                Your Name (or Barbie / Ken Alias) *
-              </label>
-              <input type="text" id="sender-name" required placeholder="e.g. Ken / Tech Recruiter / Barbie" 
-                class="w-full px-4 py-3 rounded-2xl bg-white/90 border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none focus:ring-4 focus:ring-pink-200 text-sm font-medium text-[#3b0d27]">
-            </div>
-
-            <div>
-              <label for="sender-email" class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1.5">
-                Your Email Address *
-              </label>
-              <input type="email" id="sender-email" required placeholder="your.name@company.com" 
-                class="w-full px-4 py-3 rounded-2xl bg-white/90 border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none focus:ring-4 focus:ring-pink-200 text-sm font-medium text-[#3b0d27]">
-            </div>
-
-            <div>
-              <label for="sender-message" class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1.5">
-                Your Message / Opportunity *
-              </label>
-              <textarea id="sender-message" rows="4" required placeholder="Hi Jhalak! We love your Barbie theme and want to discuss an AI/Frontend role..." 
-                class="w-full px-4 py-3 rounded-2xl bg-white/90 border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none focus:ring-4 focus:ring-pink-200 text-sm font-medium text-[#3b0d27]"></textarea>
-            </div>
-
-            <button type="submit" class="btn-barbie-primary w-full !py-4 text-center">
-              <span>💖</span>
-              <span>Send Dream Letter to Jhalak</span>
-              <span>✨</span>
+            <p id="barbie-quote-text" class="text-xs sm:text-sm font-semibold text-[#521334] italic min-h-[44px] flex items-center justify-center">
+              "He's just Ken. She's building autonomous LangChain multi-agent workflows! 🤖✨"
+            </p>
+            <button onclick="nextBarbieQuote()" class="mt-3 btn-barbie-secondary !py-1.5 !px-4 text-[11px]">
+              <span>✨</span> <span>Next Barbie Quote</span>
             </button>
-          </form>
-
+          </div>
         </div>
+
       </div>
 
     </div>
