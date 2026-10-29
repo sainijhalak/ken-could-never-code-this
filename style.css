@@ -76,19 +76,9 @@ body.theme-dark .barbie-card {
 }
 
 body.theme-dark .barbie-nav {
-  background: rgba(14, 0, 18, 0.94) !important;
-  border-bottom: 2px solid #ff007f !important;
-  box-shadow: 0 4px 25px rgba(255, 0, 127, 0.3) !important;
-}
-
-body.theme-dark .nav-link {
-  color: #ffb3d9 !important;
-}
-
-body.theme-dark .nav-link:hover, body.theme-dark .nav-link.active {
-  color: #ffffff !important;
-  background: #ff007f !important;
-  box-shadow: 0 0 15px rgba(255, 0, 127, 0.6) !important;
+  background: rgba(14, 0, 18, 0.92) !important;
+  border-bottom: 1px solid rgba(255, 0, 127, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
 }
 
 body.theme-dark .btn-barbie-secondary {
@@ -464,80 +454,94 @@ a, button {
 
 /* Navigation Bar */
 .barbie-nav {
-  background: rgba(255, 240, 248, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 2px solid rgba(255, 105, 180, 0.35);
-  box-shadow: 0 4px 25px rgba(255, 0, 127, 0.1);
+  background: rgba(255, 240, 248, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 105, 180, 0.22);
+  box-shadow: 0 2px 15px rgba(255, 0, 127, 0.05);
   position: sticky;
   top: 0;
   z-index: 50;
   transition: all 0.3s ease;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* Glass Pill Dock for Nav Links */
+.nav-links-container {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 105, 180, 0.25);
+  border-radius: 999px;
+  padding: 3px 5px;
+  box-shadow: 0 2px 8px rgba(255, 0, 127, 0.04);
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+
+body.theme-dark .nav-links-container {
+  background: rgba(25, 0, 32, 0.6) !important;
+  border-color: rgba(255, 0, 127, 0.25) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
 }
 
 .nav-link {
   color: #5c183a;
-  font-weight: 700;
-  padding: 8px 14px;
+  font-weight: 600;
+  padding: 5px 11px;
   border-radius: 999px;
-  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.2s ease;
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1.5px solid rgba(255, 105, 180, 0.3);
-  backdrop-filter: blur(8px);
-  position: relative;
+  gap: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  white-space: nowrap !important;
   letter-spacing: 0.2px;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover {
+  color: #ff007f !important;
+  background: rgba(255, 0, 127, 0.09) !important;
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
   color: #ffffff !important;
   background: linear-gradient(135deg, #ff007f 0%, #ff1493 100%) !important;
-  border-color: #ffffff !important;
-  box-shadow: 0 4px 18px rgba(255, 0, 127, 0.45);
-  transform: translateY(-2px) scale(1.04);
-}
-
-.nav-link-icon {
-  font-size: 1rem;
-  filter: drop-shadow(0 1px 2px rgba(255, 0, 127, 0.3));
-  transition: transform 0.25s ease;
-}
-
-.nav-link:hover .nav-link-icon {
-  transform: scale(1.25) rotate(10deg);
+  border-color: transparent !important;
+  box-shadow: 0 2px 10px rgba(255, 0, 127, 0.35);
 }
 
 .nav-pill-live {
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 800;
   background: #10b981;
   color: #ffffff;
-  padding: 1px 5px;
+  padding: 1px 4px;
   border-radius: 999px;
-  letter-spacing: 0.5px;
-  animation: pulseLive 1.5s infinite alternate;
-}
-
-@keyframes pulseLive {
-  0% { transform: scale(1); opacity: 0.85; }
-  100% { transform: scale(1.12); opacity: 1; box-shadow: 0 0 8px #10b981; }
+  letter-spacing: 0.4px;
+  line-height: 1;
 }
 
 body.theme-dark .nav-link {
-  color: #ffe0f0 !important;
-  background: rgba(45, 0, 48, 0.7) !important;
-  border-color: rgba(255, 0, 127, 0.45) !important;
+  color: #fce7f3 !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
 }
 
-body.theme-dark .nav-link:hover, body.theme-dark .nav-link.active {
+body.theme-dark .nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 0, 127, 0.22) !important;
+  box-shadow: 0 2px 8px rgba(255, 0, 127, 0.3);
+}
+
+body.theme-dark .nav-link.active {
   color: #ffffff !important;
   background: linear-gradient(135deg, #ff007f 0%, #a0005a 100%) !important;
-  border-color: #ff69b4 !important;
-  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.6);
+  border-color: transparent !important;
+  box-shadow: 0 2px 12px rgba(255, 0, 127, 0.5);
 }
 
 /* Skill Chip / Closet Pill */
@@ -970,7 +974,7 @@ body.theme-dark .nav-link:hover, body.theme-dark .nav-link.active {
 }
 
 /* Responsive tweaks */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .doll-box {
     max-width: 92%;
   }
@@ -978,16 +982,22 @@ body.theme-dark .nav-link:hover, body.theme-dark .nav-link.active {
     display: none;
   }
   .nav-links-container.open {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background: rgba(255, 240, 248, 0.98);
-    padding: 20px;
+    padding: 16px;
+    border-radius: 0 0 24px 24px;
     border-bottom: 2px solid var(--barbie-hot);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    gap: 6px;
+  }
+  body.theme-dark .nav-links-container.open {
+    background: rgba(20, 0, 26, 0.98) !important;
+    border-bottom-color: #ff007f !important;
   }
 }
 

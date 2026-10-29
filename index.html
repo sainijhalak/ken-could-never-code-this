@@ -22,7 +22,7 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <!-- Custom Barbie Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=2.2">
+  <link rel="stylesheet" href="style.css?v=2.3">
 </head>
 <body class="theme-light">
 
@@ -68,53 +68,45 @@
         </div>
       </a>
 
-      <!-- Desktop & Mobile Navigation Links -->
-      <div class="hidden lg:flex items-center gap-1.5 nav-links-container">
+      <!-- Desktop & Mobile Navigation Links (Sleek Barbie Glass Dock) -->
+      <div class="hidden lg:flex items-center gap-1 nav-links-container">
         <a href="#about" class="nav-link" onclick="closeMobileNav()">
-          <span class="nav-link-icon">💖</span>
-          <span>Dream Story</span>
+          <span>💖 Story</span>
         </a>
-        <a href="#b-phone" class="nav-link nav-link-highlight" onclick="closeMobileNav()">
-          <span class="nav-link-icon">📱</span>
-          <span>B-Phone 16</span>
+        <a href="#b-phone" class="nav-link" onclick="closeMobileNav()">
+          <span>📱 B-Phone</span>
           <span class="nav-pill-live">LIVE</span>
         </a>
         <a href="#closet" class="nav-link" onclick="closeMobileNav()">
-          <span class="nav-link-icon">👗</span>
-          <span>Glam Closet</span>
+          <span>👗 Closet</span>
         </a>
         <a href="#projects" class="nav-link" onclick="closeMobileNav()">
-          <span class="nav-link-icon">🚀</span>
-          <span>Dream Projects</span>
+          <span>🚀 Projects</span>
         </a>
         <a href="#trophies" class="nav-link" onclick="closeMobileNav()">
-          <span class="nav-link-icon">👑</span>
-          <span>Hall of Fame</span>
+          <span>👑 Honors</span>
         </a>
         <a href="#education" class="nav-link" onclick="closeMobileNav()">
-          <span class="nav-link-icon">🎓</span>
-          <span>Journey</span>
+          <span>🎓 Journey</span>
         </a>
         <a href="#contact" class="nav-link" onclick="closeMobileNav()">
-          <span class="nav-link-icon">💌</span>
-          <span>VIP Hotline</span>
+          <span>💌 Contact</span>
         </a>
       </div>
 
-      <!-- Action Button & "Hi Barbie!" -->
-      <div class="flex items-center gap-2.5">
+      <!-- Action Button & Theme Toggle -->
+      <div class="flex items-center gap-2">
         <!-- Clean Light / Dark Theme Toggle -->
-        <button onclick="toggleTheme()" class="theme-toggle-btn px-3.5 py-1.5 rounded-full bg-white/90 border border-pink-200 text-xs font-bold text-[#ff007f] shadow-sm hover:scale-105 transition-all flex items-center gap-1.5" title="Switch Light / Dark Theme">
-          🌙 <span class="hidden sm:inline">Dark</span>
+        <button onclick="toggleTheme()" class="theme-toggle-btn px-3 py-1.5 rounded-full bg-white/80 border border-pink-200 text-xs font-bold text-[#ff007f] shadow-sm hover:scale-105 transition-all flex items-center gap-1.5" title="Switch Light / Dark Theme">
+          🌙 <span class="hidden sm:inline">Theme</span>
         </button>
 
-        <button onclick="greetBarbie()" class="btn-barbie-primary text-xs md:text-sm py-2.5 px-5 !shadow-sm">
-          <span>🎀</span>
-          <span>Hi Barbie!</span>
+        <button onclick="greetBarbie()" class="btn-barbie-primary !text-xs !py-1.5 !px-3.5 !shadow-sm">
+          <span>🎀 Hi Barbie!</span>
         </button>
 
         <!-- Mobile Menu Hamburger -->
-        <button id="mobile-menu-btn" class="lg:hidden text-[#ff007f] text-2xl p-2 focus:outline-none" aria-label="Toggle Menu">
+        <button id="mobile-menu-btn" class="lg:hidden text-[#ff007f] text-2xl p-1.5 focus:outline-none" aria-label="Toggle Menu">
           <i class="fa-solid fa-bars-staggered"></i>
         </button>
       </div>
@@ -153,15 +145,15 @@
         </p>
 
         <!-- Call To Actions -->
-        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 mb-10">
           <a href="#projects" class="btn-barbie-primary">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
             <span>Explore Dream Projects</span>
           </a>
 
-          <a href="Jhalak_Saini_CV.pdf" download="Jhalak_Saini_CV.pdf" class="btn-barbie-secondary group" onclick="triggerBarbieConfetti(0.5, 0.5)">
-            <i class="fa-solid fa-file-arrow-down text-[#ff007f] group-hover:animate-bounce"></i>
-            <span>Download Barbie CV</span>
+          <a href="#contact" class="btn-barbie-secondary">
+            <i class="fa-solid fa-paper-plane text-[#ff007f]"></i>
+            <span>Connect in Barbieland</span>
           </a>
 
           <button onclick="copyText('sainijhalak015@gmail.com', 'Email')" class="btn-barbie-secondary !px-4" title="Copy Email">
@@ -1508,7 +1500,7 @@
 
 
   <!-- Custom Barbie Engine Script -->
-  <script src="script.js?v=2.2"></script>
+  <script src="script.js?v=2.3"></script>
 
 </body>
 </html>
