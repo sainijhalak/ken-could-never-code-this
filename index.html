@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jhalak Saini 💖 | Software Engineer Barbie Portfolio</title>
+  <meta name="description" content="Welcome to the Barbie Dreamhouse Portfolio of Jhalak Saini - Computer Science Engineer, Java & Frontend Developer, AI Agent Specialist.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20%220%22%20%22100%22%20%22100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+
+  <!-- Google Fonts: Pacifico (Iconic Barbie Script), Fredoka & Outfit (Playful Chic), Plus Jakarta Sans (Readable) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Pacifico&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Barbie Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-classic">
+
+  <!-- Camera Flash Screen Overlay -->
+  <div id="camera-flash-overlay"></div>
+
+  <!-- Sparkle Particle Canvas -->
+  <canvas id="sparkle-canvas"></canvas>
+
+  <!-- Background Gradient Ambient Glows -->
+  <div class="barbie-bg-pattern"></div>
+
+  <!-- Toast Notification -->
+  <div id="barbie-toast">
+    <span>💖</span> <span>Welcome to Barbieland!</span>
+  </div>
+
+  <!-- Floating Audio & Theme Controls -->
+  <div class="floating-widget">
+    <button id="btn-sound-toggle" class="widget-btn sound-active" onclick="toggleSound()" title="Toggle Sparkle Sound">
+      🎵
+    </button>
+    <button class="widget-btn" onclick="toggleBarbieTheme()" title="Switch Barbie Aesthetic">
+      🎨
+    </button>
+    <button class="widget-btn" onclick="triggerBarbieConfetti(0.9, 0.9)" title="Sparkle Blast!">
+      ✨
+    </button>
+  </div>
+
+  <!-- ==================== TOP BARBIE NAVIGATION ==================== -->
+  <nav class="barbie-nav py-3 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Barbie Script Logo -->
+      <a href="#hero" class="flex items-center gap-2 group text-decoration-none">
+        <span class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] flex items-center justify-center text-white text-lg shadow-md border-2 border-white group-hover:rotate-12 transition-transform">
+          👑
+        </span>
+        <div class="flex flex-col">
+          <span class="font-barbie text-2xl md:text-3xl text-[#ff007f] leading-none drop-shadow-sm">Jhalak Saini</span>
+          <span class="font-display text-[10px] tracking-widest text-[#9b1178] uppercase font-bold">Software Engineer Barbie</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden lg:flex items-center gap-2 nav-links-container">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#fitting-room" class="nav-link">Fitting Room 📸</a>
+        <a href="#closet" class="nav-link">Skills Closet</a>
+        <a href="#projects" class="nav-link">Dream Projects</a>
+        <a href="#trophies" class="nav-link">Hall of Fame</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Dream Mail</a>
+      </div>
+
+      <!-- Action Button & "Hi Barbie!" -->
+      <div class="flex items-center gap-2.5">
+        <!-- Theme Selector Pills -->
+        <div class="hidden md:flex items-center gap-1 bg-white/90 p-1 rounded-full border border-pink-200 shadow-sm">
+          <button onclick="selectBarbieTheme('theme-classic')" class="px-2.5 py-1 text-[11px] font-bold rounded-full hover:bg-pink-100 transition-all" title="Classic Barbie">💖 Classic</button>
+          <button onclick="selectBarbieTheme('theme-sunset')" class="px-2.5 py-1 text-[11px] font-bold rounded-full hover:bg-orange-100 transition-all" title="Sunset Glam">🌅 Sunset</button>
+          <button onclick="selectBarbieTheme('theme-pastel')" class="px-2.5 py-1 text-[11px] font-bold rounded-full hover:bg-purple-100 transition-all" title="Pastel Dreamhouse">🌸 Pastel</button>
+          <button onclick="selectBarbieTheme('theme-cyber')" class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-stone-900 text-[#00f0ff] hover:bg-black transition-all" title="Cyber Barbie">⚡ Cyber</button>
+        </div>
+
+        <button onclick="greetBarbie()" class="btn-barbie-primary text-xs md:text-sm py-2.5 px-5 !shadow-sm">
+          <span>🎀</span>
+          <span>Hi Barbie!</span>
+        </button>
+
+        <!-- Mobile Menu Hamburger -->
+        <button id="mobile-menu-btn" class="lg:hidden text-[#ff007f] text-2xl p-2 focus:outline-none" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION: WELCOME TO BARBIELAND ==================== -->
+  <section id="hero" class="relative pt-12 pb-20 px-4 md:px-8 max-w-7xl mx-auto overflow-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Introduction & Barbie Taglines -->
+      <div class="lg:col-span-7 text-center lg:text-left z-10">
+        
+        <!-- Barbie Special Edition Badge -->
+        <div class="inline-flex items-center gap-2 barbie-ribbon mb-6 animate-float">
+          <span>✨</span>
+          <span>COLLECTOR'S EDITION • CLASS OF 2027</span>
+          <span class="barbie-star">★</span>
+        </div>
+
+        <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-[#3b0d27] leading-[1.15] mb-4">
+          Hi Barbie! I'm <br class="hidden sm:inline">
+          <span class="font-barbie text-5xl sm:text-6xl md:text-7xl text-gradient-barbie">Jhalak Saini</span>
+        </h1>
+
+        <p class="font-display text-lg sm:text-xl text-[#c71585] font-semibold mb-6 flex flex-wrap items-center justify-center lg:justify-start gap-2">
+          <span>☕ Java Architect</span> • 
+          <span>💻 Frontend Glam</span> • 
+          <span>🤖 AI Agent Integrator</span> • 
+          <span>⚡ 400+ LeetCode Power</span>
+        </p>
+
+        <p class="text-base sm:text-lg text-[#5a1c3f] leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0 font-medium">
+          Welcome to my digital Dreamhouse! I am a results-driven Computer Science undergraduate at <strong class="text-[#ff007f]">GL Bajaj</strong> (8.7 CGPA) passionate about bridging the gap between elegant React interfaces, robust Java systems, and cutting-edge GenAI APIs. Because who says high-performance engineering can’t look fabulous?
+        </p>
+
+        <!-- Call To Actions -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
+          <a href="#projects" class="btn-barbie-primary">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Explore Dream Projects</span>
+          </a>
+
+          <a href="Jhalak_Saini_CV.pdf" download="Jhalak_Saini_CV.pdf" class="btn-barbie-secondary group" onclick="triggerBarbieConfetti(0.5, 0.5)">
+            <i class="fa-solid fa-file-arrow-down text-[#ff007f] group-hover:animate-bounce"></i>
+            <span>Download Barbie CV</span>
+          </a>
+
+          <button onclick="copyText('sainijhalak015@gmail.com', 'Email')" class="btn-barbie-secondary !px-4" title="Copy Email">
+            <i class="fa-solid fa-envelope"></i>
+          </button>
+        </div>
+
+        <!-- Mini Info Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto lg:mx-0">
+          <div class="bg-white/80 p-3 rounded-2xl border border-pink-200 text-center shadow-sm">
+            <div class="text-[#ff007f] text-xl font-bold font-display">8.7 / 10</div>
+            <div class="text-[11px] text-[#9b1178] uppercase font-bold">B.Tech CGPA</div>
+          </div>
+          <div class="bg-white/80 p-3 rounded-2xl border border-pink-200 text-center shadow-sm">
+            <div class="text-[#ff007f] text-xl font-bold font-display">400+ Solved</div>
+            <div class="text-[11px] text-[#9b1178] uppercase font-bold">LeetCode DSA</div>
+          </div>
+          <div class="bg-white/80 p-3 rounded-2xl border border-pink-200 text-center shadow-sm col-span-2 sm:col-span-1">
+            <div class="text-[#ff007f] text-xl font-bold font-display">Oracle AI</div>
+            <div class="text-[11px] text-[#9b1178] uppercase font-bold">Agent Certified</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: The 3D Interactive "Barbie Collector Doll Packaging Box" -->
+      <div class="lg:col-span-5 flex justify-center z-10">
+        
+        <div id="doll-box-container" class="doll-box w-full max-w-[420px]">
+          <div class="doll-box-plastic-glare"></div>
+          
+          <div class="doll-box-inner">
+            
+            <!-- Box Header -->
+            <div class="flex items-center justify-between mb-4">
+              <span class="doll-mattel-badge">MATTEL</span>
+              <span class="doll-edition-tag">SPECIAL COLLECTOR EDITION</span>
+            </div>
+
+            <!-- Doll Presentation Window -->
+            <div class="relative bg-gradient-to-b from-white/90 to-[#ffd6eb]/90 rounded-2xl p-6 border-2 border-white text-center shadow-inner overflow-hidden min-h-[380px] flex flex-col items-center justify-between">
+              
+              <!-- Sparkle Accents on Background -->
+              <div class="absolute top-4 left-4 text-[#ff69b4] text-xl animate-sparkle">✦</div>
+              <div class="absolute top-10 right-6 text-[#ffd700] text-2xl animate-sparkle" style="animation-delay: 1s;">✨</div>
+              <div class="absolute bottom-16 left-6 text-[#ff1493] text-lg animate-sparkle" style="animation-delay: 1.5s;">💖</div>
+
+              <!-- Top Barbie Logo Script in Box -->
+              <div class="font-barbie text-4xl text-[#ff007f] drop-shadow-md">
+                Barbie
+              </div>
+              <div class="font-display text-xs tracking-wider font-extrabold text-[#9b1178] uppercase -mt-2">
+                Software Engineer Jhalak
+              </div>
+
+              <!-- Stylized Barbie Developer Graphic / Silhouette -->
+              
+              <!-- Photo Switcher Inside Box -->
+              <div class="flex items-center justify-center gap-2 mb-2">
+                <button id="btn-box-photo" onclick="toggleBoxAvatar('photo')" class="text-[10px] font-bold py-1 px-3 rounded-full bg-[#ff007f] text-white shadow-sm border border-white">
+                  📸 Real Selfie
+                </button>
+                <button id="btn-box-vector" onclick="toggleBoxAvatar('vector')" class="text-[10px] font-bold py-1 px-3 rounded-full bg-white text-[#ff007f] shadow-sm border border-[#ff007f]">
+                  🎨 Doll Avatar
+                </button>
+              </div>
+
+              <div class="my-2 relative">
+                <!-- Real Photo Display in Box -->
+                <div id="box-avatar-photo" class="w-44 h-44 mx-auto rounded-full bg-gradient-to-tr from-[#ff007f] via-[#ff69b4] to-[#ffd700] p-1.5 shadow-xl animate-float overflow-hidden relative group cursor-pointer" onclick="snapMirrorSelfie()" title="Click to snap selfie!">
+                  <img src="assets/jhalak-barbie-selfie.png" alt="Jhalak Saini Barbie Selfie" class="w-full h-full object-cover rounded-full">
+                  <!-- Camera lens icon badge -->
+                  <div class="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-[#ff007f] text-white flex items-center justify-center text-xs shadow-md border-2 border-white">
+                    📸
+                  </div>
+                </div>
+
+                <div id="box-avatar-vector" class="hidden">
+
+                <!-- Glowing Halo -->
+                <div class="w-40 h-40 mx-auto rounded-full bg-gradient-to-tr from-[#ff007f] via-[#ff69b4] to-[#ffd700] p-1.5 shadow-xl animate-float">
+                  <div class="w-full h-full rounded-full bg-[#fff0f7] flex items-center justify-center overflow-hidden border-2 border-white relative">
+                    
+                    <!-- Barbie Girl Developer Illustration (Clean SVG) -->
+                    <svg viewBox="0 0 200 200" class="w-36 h-36 drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <!-- Soft background gradient circle -->
+                      <circle cx="100" cy="100" r="95" fill="url(#avatar-grad)" />
+                      <!-- Hair ponytail flowing -->
+                      <path d="M125 45 C165 45 175 95 160 145 C150 130 145 105 130 90 Z" fill="#4a152d" />
+                      <!-- Barbie Head & Profile -->
+                      <ellipse cx="100" cy="85" rx="36" ry="42" fill="#ffd1b3" />
+                      <!-- Pink Glam Sunglasses -->
+                      <path d="M72 75 Q85 70 98 75 Q98 90 85 92 Q72 90 72 75 Z" fill="#ff007f" stroke="#ffffff" stroke-width="2" />
+                      <path d="M102 75 Q115 70 128 75 Q128 90 115 92 Q102 90 102 75 Z" fill="#ff007f" stroke="#ffffff" stroke-width="2" />
+                      <line x1="98" y1="77" x2="102" y2="77" stroke="#ffffff" stroke-width="2" />
+                      <!-- Sunglasses reflections -->
+                      <line x1="76" y1="78" x2="84" y2="86" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+                      <line x1="106" y1="78" x2="114" y2="86" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+                      <!-- Chic smile & lipstick -->
+                      <path d="M94 105 Q100 112 108 105" stroke="#ff007f" stroke-width="3" stroke-linecap="round" fill="none" />
+                      <!-- Tech Headphones (Pink & Gold) -->
+                      <path d="M62 82 C55 35 145 35 138 82" stroke="#ff007f" stroke-width="6" fill="none" stroke-linecap="round" />
+                      <rect x="58" y="75" width="10" height="22" rx="5" fill="#ffd700" stroke="#ff007f" stroke-width="1.5" />
+                      <rect x="132" y="75" width="10" height="22" rx="5" fill="#ffd700" stroke="#ff007f" stroke-width="1.5" />
+                      <!-- Pink Stylish Blazer / Hoodie -->
+                      <path d="M60 145 C70 125 130 125 140 145 L155 195 L45 195 Z" fill="#ff007f" />
+                      <!-- White Inner top -->
+                      <polygon points="100,155 85,128 115,128" fill="#ffffff" />
+                      <!-- Golden Heart Pendant -->
+                      <circle cx="100" cy="146" r="4" fill="#ffd700" />
+                      <!-- Gradients -->
+                      <defs>
+                        <linearGradient id="avatar-grad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#ffe3f0" />
+                          <stop offset="1" stop-color="#ffb3d9" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+
+                  </div>
+                </div>
+                </div>
+
+                <!-- Open For Work Barbie Tag -->
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-[#ff007f] font-display font-bold text-[11px] py-1 px-4 rounded-full border-2 border-[#ff007f] shadow-md flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                  <span>READY FOR NEW ROLES</span>
+                </div>
+              </div>
+
+              <!-- Accessories Packaged Inside Box -->
+              <div class="w-full mt-3">
+                <div class="text-[10px] font-bold text-[#c71585] uppercase tracking-wider mb-2">★ ACCESSORIES INCLUDED:</div>
+                <div class="flex flex-wrap items-center justify-center gap-1.5">
+                  <span class="accessory-badge">☕ Java Mug</span>
+                  <span class="accessory-badge">🤖 Gemini LLM</span>
+                  <span class="accessory-badge">⚡ 400+ DSA</span>
+                  <span class="accessory-badge">🌸 React.js</span>
+                  <span class="accessory-badge">🎀 n8n Flow</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Box Bottom Warning / Details -->
+            <div class="mt-3 flex items-center justify-between text-[10px] text-white font-semibold">
+              <span>AGES 3+ TO 100+</span>
+              <span>100% INSPIRATIONAL ENERGY</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== THE BARBIE DREAM METRICS ==================== -->
+  <section id="barbie-metrics-bar" class="py-8 bg-gradient-to-r from-[#ff007f] via-[#ff2a8d] to-[#c71585] text-white shadow-xl relative z-10 border-y-4 border-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        
+        <div class="p-3">
+          <div class="font-display font-black text-3xl md:text-5xl text-yellow-200 drop-shadow">400+</div>
+          <div class="text-xs md:text-sm font-semibold tracking-wider uppercase mt-1">LeetCode Problems Solved</div>
+        </div>
+
+        <div class="p-3">
+          <div class="font-display font-black text-3xl md:text-5xl text-white drop-shadow">8.7</div>
+          <div class="text-xs md:text-sm font-semibold tracking-wider uppercase mt-1">B.Tech CSE CGPA</div>
+        </div>
+
+        <div class="p-3">
+          <div class="font-display font-black text-3xl md:text-5xl text-yellow-200 drop-shadow">95% & 92%</div>
+          <div class="text-xs md:text-sm font-semibold tracking-wider uppercase mt-1">Class X & XII Board Scores</div>
+        </div>
+
+        <div class="p-3">
+          <div class="font-display font-black text-3xl md:text-5xl text-white drop-shadow">4+</div>
+          <div class="text-xs md:text-sm font-semibold tracking-wider uppercase mt-1">Industry Certifications</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT JHALAK: THE STORY OF BARBIELAND ==================== -->
+  <section id="about" class="py-20 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <div class="barbie-ribbon mb-3">💖 THE STORY BEHIND THE CODE</div>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
+        Every Day is the <span class="font-barbie text-[#ff007f]">Best Day</span> in Barbieland
+      </h2>
+      <p class="text-[#7a2254] max-w-2xl mx-auto mt-3 font-medium">
+        Bridging the analytical logic of Java algorithms with the creative sparkle of modern frontend and artificial intelligence.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Card 1: Core Problem Solver -->
+      <div class="barbie-card p-8 text-center flex flex-col items-center">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ff80bf] text-white flex items-center justify-center text-2xl shadow-lg mb-6 border-2 border-white">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-[#3b0d27] mb-3">DSA & Problem Solving</h3>
+        <p class="text-[#691845] text-sm leading-relaxed">
+          With over <strong>400+ problems cracked on LeetCode</strong>, I have developed deep intuition for Data Structures, Algorithms, time-complexity optimization, and object-oriented architectures.
+        </p>
+      </div>
+
+      <!-- Card 2: AI & LLM Integrations -->
+      <div class="barbie-card p-8 text-center flex flex-col items-center">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#ffd700] to-[#ff007f] text-white flex items-center justify-center text-2xl shadow-lg mb-6 border-2 border-white">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-[#3b0d27] mb-3">AI Agents & RAG Workflows</h3>
+        <p class="text-[#691845] text-sm leading-relaxed">
+          Certified in <strong>Oracle Agentic AI</strong>, I build practical intelligent pipelines utilizing <strong>Gemini API</strong>, <strong>LangChain</strong>, and <strong>FAISS</strong> vector stores to convert raw documents into conversational agents.
+        </p>
+      </div>
+
+      <!-- Card 3: Automation & Full-Stack -->
+      <div class="barbie-card p-8 text-center flex flex-col items-center">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#c71585] to-[#ff1493] text-white flex items-center justify-center text-2xl shadow-lg mb-6 border-2 border-white">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-[#3b0d27] mb-3">Full-Stack & Automation</h3>
+        <p class="text-[#691845] text-sm leading-relaxed">
+          From <strong>React.js</strong> and responsive styling to <strong>n8n automation</strong>, <strong>Twilio SMS</strong>, and RESTful backends, I bring ideas to life rapidly with seamless end-to-end user experiences.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <!-- ==================== THE BARBIE FITTING ROOM: REAL SELFIE & WORKING B-PHONE ==================== -->
+  <section id="fitting-room" class="py-20 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-14">
+      <div class="barbie-ribbon mb-3">📸 FITTING ROOM CHIC • REAL LIFE BARBIE</div>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
+        Mirror Selfie & <span class="font-barbie text-[#ff007f]">Working B-Phone</span>
+      </h2>
+      <p class="text-[#7a2254] max-w-2xl mx-auto mt-3 font-medium">
+        Behind every intelligent line of code is a fashionista in a floral jumpsuit! Tap the glowing phone in the mirror to snap a selfie, trigger the camera flash, and explore Jhalak's interactive Barbie Smartphone!
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      
+      <!-- Left: Hollywood Vanity Mirror with Jhalak's Selfie -->
+      <div class="lg:col-span-6 flex justify-center">
+        <div class="vanity-mirror w-full max-w-[480px]">
+          
+          <!-- Hollywood Vanity Bulbs -->
+          <div class="vanity-bulbs">
+            <span class="vanity-bulb" style="top: 10px; left: 10px;"></span>
+            <span class="vanity-bulb" style="top: 10px; left: 50%; transform: translateX(-50%);"></span>
+            <span class="vanity-bulb" style="top: 10px; right: 10px;"></span>
+            <span class="vanity-bulb" style="top: 35%; left: 10px;"></span>
+            <span class="vanity-bulb" style="top: 35%; right: 10px;"></span>
+            <span class="vanity-bulb" style="top: 65%; left: 10px;"></span>
+            <span class="vanity-bulb" style="top: 65%; right: 10px;"></span>
+            <span class="vanity-bulb" style="bottom: 10px; left: 10px;"></span>
+            <span class="vanity-bulb" style="bottom: 10px; left: 50%; transform: translateX(-50%);"></span>
+            <span class="vanity-bulb" style="bottom: 10px; right: 10px;"></span>
+          </div>
+
+          <!-- Selfie Image Stage -->
+          <div class="selfie-stage">
+            
+            <!-- Holographic Stickers on Mirror -->
+            <div class="mirror-sticker top-4 left-4 bg-white/90 text-[#ff007f] font-display font-extrabold text-xs px-3 py-1.5 rounded-full border-2 border-[#ff007f] shadow-lg flex items-center gap-1.5">
+              <span>💖</span> <span>Hi Barbie!</span>
+            </div>
+            
+            <div class="mirror-sticker top-4 right-4 bg-gradient-to-r from-[#ffd700] to-[#ffae00] text-[#3e2300] font-display font-bold text-[11px] px-3 py-1 rounded-full shadow-lg">
+              ✨ 100% Coder Doll
+            </div>
+
+            <div class="mirror-sticker bottom-5 left-4 bg-[#ff007f] text-white font-display font-bold text-[11px] px-3 py-1 rounded-full shadow-lg">
+              🌸 Fitting Room Vibes
+            </div>
+
+            <!-- The Real Photo -->
+            <img id="main-selfie-img" src="assets/jhalak-barbie-selfie.png" alt="Jhalak Saini Floral Dress Fitting Room Selfie" class="selfie-img filter-dreamhouse">
+
+            <!-- Interactive Glowing Phone Hotspot -->
+            <div class="phone-hotspot" onclick="snapMirrorSelfie(); openBPhone();" title="Click to snap selfie & open B-Phone!">
+              <div class="phone-hotspot-ring"></div>
+              <div class="phone-flash-led"></div>
+              <div class="phone-tooltip">
+                <span>📸 TAP PHONE!</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Mirror Footer -->
+          <div class="mt-3 flex items-center justify-between text-xs font-bold text-[#c71585] px-2">
+            <span>BARBIE SMART MIRROR OS v2.0</span>
+            <button onclick="snapMirrorSelfie()" class="text-[#ff007f] hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-camera"></i> <span>Snap Selfie</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Interactive Controls & B-Phone Launchpad -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <!-- Filter Studio Card -->
+        <div class="barbie-card p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-10 h-10 rounded-xl bg-pink-100 text-[#ff007f] flex items-center justify-center text-lg">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </span>
+            <div>
+              <h3 class="font-display font-bold text-lg text-[#3b0d27]">Barbie Filter Studio</h3>
+              <p class="text-xs text-[#8c1c5a]">Live dressing room lighting & aesthetic presets</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-4">
+            <button id="btn-filter-dreamhouse" onclick="setSelfieFilter('dreamhouse')" class="filter-pill-btn active py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
+              <span>💖</span>
+              <span>Dreamhouse</span>
+            </button>
+
+            <button id="btn-filter-golden" onclick="setSelfieFilter('golden')" class="filter-pill-btn py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
+              <span>✨</span>
+              <span>Golden Hour</span>
+            </button>
+
+            <button id="btn-filter-y2k" onclick="setSelfieFilter('y2k')" class="filter-pill-btn py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
+              <span>📸</span>
+              <span>Y2K Cam</span>
+            </button>
+
+            <button id="btn-filter-original" onclick="setSelfieFilter('original')" class="filter-pill-btn py-2.5 px-3 rounded-2xl bg-white border-2 border-pink-200 hover:border-[#ff007f] text-xs font-bold text-[#4a102e] text-center transition-all flex flex-col items-center gap-1 shadow-sm">
+              <span>🌸</span>
+              <span>Original</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Phone Interactivity Card -->
+        <div class="barbie-card p-6 border-2 border-[#ff007f]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-white bg-[#ff007f] px-3 py-1 rounded-full">
+                Interactive B-Phone 16 Pro
+              </span>
+              <h3 class="font-display font-black text-xl text-[#3b0d27] mt-2">
+                "The Phone Is Alive!" 📱✨
+              </h3>
+              <p class="text-xs sm:text-sm text-[#661642] leading-relaxed mt-1">
+                Notice the glowing camera hotspot on the phone in the mirror? Tap it directly on the photo, or use the buttons below to interact with Jhalak's customized Barbie Phone!
+              </p>
+            </div>
+            <span class="text-4xl animate-bounce">💅</span>
+          </div>
+
+          <div class="flex flex-wrap gap-3 mt-6">
+            <button onclick="snapMirrorSelfie()" class="btn-barbie-primary text-xs py-3 px-5">
+              <i class="fa-solid fa-camera-retro"></i>
+              <span>Snap Photo (Flash + Shutter!)</span>
+            </button>
+
+            <button onclick="openBPhone()" class="btn-barbie-secondary text-xs py-3 px-5">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              <span>Open Barbie Phone UI</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Instant Polaroid Result Display -->
+        <div id="mirror-polaroid-result" class="polaroid-card">
+          <div class="flex items-center gap-4">
+            <div class="w-24 h-24 rounded-lg overflow-hidden shrink-0 border border-pink-200">
+              <img src="assets/jhalak-barbie-selfie.png" alt="Polaroid thumbnail" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <div class="font-barbie text-xl text-[#ff007f]">Developer Barbie</div>
+              <p class="text-xs text-[#521334] font-medium mt-0.5">
+                "Floral Jumpsuit + Java Mug + LeetCode Grind = 100% Unstoppable."
+              </p>
+              <div class="text-[10px] text-[#9b1178] font-bold tracking-wider mt-2 uppercase flex items-center gap-2">
+                <span>📍 Fitting Room Barbieland</span> • <span>Jan 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ==================== BARBIE'S TECHNICAL CLOSET (SKILLS) ==================== -->
+  <section id="closet" class="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent via-[#ffe8f4]/60 to-transparent relative z-10">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center mb-16">
+        <div class="barbie-ribbon mb-3">👗 THE DREAMHOUSE WARDROBE</div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
+          Barbie’s <span class="font-barbie text-[#ff007f]">Technical Closet</span>
+        </h2>
+        <p class="text-[#7a2254] max-w-xl mx-auto mt-3 font-medium">
+          Dressed to code! Here are the languages, frameworks, AI models, and automation tools in my daily collection.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Rack 1: Generative AI & LLMs -->
+        <div class="barbie-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-10 h-10 rounded-xl bg-pink-100 text-[#ff007f] flex items-center justify-center text-lg shadow-sm">
+                <i class="fa-solid fa-brain"></i>
+              </span>
+              <h3 class="font-display font-bold text-lg text-[#3b0d27]">Generative AI</h3>
+            </div>
+            <p class="text-xs text-[#8c1d5b] mb-4">Autonomous agents, semantic search, and prompt engineering.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-pill"><i class="fa-solid fa-sparkles text-amber-500"></i> Gemini API</span>
+              <span class="skill-pill"><i class="fa-solid fa-link text-indigo-500"></i> LangChain</span>
+              <span class="skill-pill"><i class="fa-solid fa-database text-pink-500"></i> RAG Systems</span>
+              <span class="skill-pill"><i class="fa-solid fa-vector-square text-cyan-500"></i> FAISS</span>
+              <span class="skill-pill"><i class="fa-solid fa-comments text-purple-500"></i> AI Chatbots</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-3 border-t border-pink-100 text-[11px] text-[#ff007f] font-bold">
+            Oracle Agentic AI Certified 🌟
+          </div>
+        </div>
+
+        <!-- Rack 2: Frontend Glam -->
+        <div class="barbie-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-10 h-10 rounded-xl bg-pink-100 text-[#ff007f] flex items-center justify-center text-lg shadow-sm">
+                <i class="fa-brands fa-react"></i>
+              </span>
+              <h3 class="font-display font-bold text-lg text-[#3b0d27]">Frontend Glam</h3>
+            </div>
+            <p class="text-xs text-[#8c1d5b] mb-4">Chic, intuitive, and high-performance interactive interfaces.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-pill"><i class="fa-brands fa-react text-sky-500"></i> React.js</span>
+              <span class="skill-pill"><i class="fa-brands fa-js text-yellow-500"></i> JavaScript</span>
+              <span class="skill-pill"><i class="fa-brands fa-html5 text-orange-500"></i> HTML5</span>
+              <span class="skill-pill"><i class="fa-brands fa-css3-alt text-blue-500"></i> CSS3</span>
+              <span class="skill-pill"><i class="fa-solid fa-palette text-pink-500"></i> Tailwind CSS</span>
+              <span class="skill-pill"><i class="fa-solid fa-mobile-screen text-emerald-500"></i> Responsive UI</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-3 border-t border-pink-100 text-[11px] text-[#ff007f] font-bold">
+            Sheriyans Web Certified 🎨
+          </div>
+        </div>
+
+        <!-- Rack 3: Core Engineering & Backend -->
+        <div class="barbie-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-10 h-10 rounded-xl bg-pink-100 text-[#ff007f] flex items-center justify-center text-lg shadow-sm">
+                <i class="fa-brands fa-java"></i>
+              </span>
+              <h3 class="font-display font-bold text-lg text-[#3b0d27]">Core Backend</h3>
+            </div>
+            <p class="text-xs text-[#8c1d5b] mb-4">Object-oriented architectures and reliable database backends.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-pill"><i class="fa-brands fa-java text-red-500"></i> Java (Core & OOP)</span>
+              <span class="skill-pill"><i class="fa-solid fa-leaf text-emerald-500"></i> SpringBoot</span>
+              <span class="skill-pill"><i class="fa-brands fa-python text-amber-500"></i> Python</span>
+              <span class="skill-pill"><i class="fa-solid fa-cubes text-purple-500"></i> Django</span>
+              <span class="skill-pill"><i class="fa-solid fa-server text-blue-500"></i> REST APIs</span>
+              <span class="skill-pill"><i class="fa-solid fa-database text-indigo-500"></i> SQLite / DBMS</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-3 border-t border-pink-100 text-[11px] text-[#ff007f] font-bold">
+            400+ LeetCode Solved ☕
+          </div>
+        </div>
+
+        <!-- Rack 4: Automation & Tools -->
+        <div class="barbie-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-10 h-10 rounded-xl bg-pink-100 text-[#ff007f] flex items-center justify-center text-lg shadow-sm">
+                <i class="fa-solid fa-gears"></i>
+              </span>
+              <h3 class="font-display font-bold text-lg text-[#3b0d27]">Automation & Tools</h3>
+            </div>
+            <p class="text-xs text-[#8c1d5b] mb-4">Connecting APIs, automated webhooks, and developer tooling.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-pill"><i class="fa-solid fa-network-wired text-pink-500"></i> n8n Automation</span>
+              <span class="skill-pill"><i class="fa-solid fa-comment-sms text-red-500"></i> Twilio SMS</span>
+              <span class="skill-pill"><i class="fa-solid fa-microphone-lines text-purple-500"></i> ElevenLabs</span>
+              <span class="skill-pill"><i class="fa-solid fa-cloud-sun text-amber-500"></i> OpenWeather API</span>
+              <span class="skill-pill"><i class="fa-brands fa-git-alt text-orange-500"></i> Git</span>
+              <span class="skill-pill"><i class="fa-brands fa-github text-stone-700"></i> GitHub</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-3 border-t border-pink-100 text-[11px] text-[#ff007f] font-bold">
+            Cisco CCNA Networks Certified 🌐
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== THE DREAM PROJECTS BOULEVARD ==================== -->
+  <section id="projects" class="py-20 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <div class="barbie-ribbon mb-3">🌟 DREAMHOUSE PRODUCTIONS</div>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
+        Featured <span class="font-barbie text-[#ff007f]">Dream Projects</span>
+      </h2>
+      <p class="text-[#7a2254] max-w-xl mx-auto mt-3 font-medium">
+        Real-world AI systems, full-stack applications, and intelligent assistants engineered with precision and style.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Project 1: Vayalum -->
+      <div class="barbie-card flex flex-col justify-between group">
+        <div>
+          <!-- Project Glam Banner -->
+          <div class="h-48 bg-gradient-to-tr from-[#10b981] via-[#059669] to-[#047857] p-6 relative flex flex-col justify-between text-white overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10 blur-xl"></div>
+            <div class="flex items-center justify-between z-10">
+              <span class="bg-white/90 text-[#047857] font-bold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                Jan 2025 • Full-Stack AI
+              </span>
+              <span class="text-2xl">🌱</span>
+            </div>
+            <div class="z-10">
+              <h3 class="font-display font-black text-2xl text-white drop-shadow-md">Vayalum</h3>
+              <p class="text-xs text-emerald-100 font-medium">AI-Powered Farming Assistant</p>
+            </div>
+          </div>
+
+          <!-- Project Details -->
+          <div class="p-6">
+            <div class="p-2.5 rounded-xl bg-pink-50 border border-pink-100 text-xs text-[#9b1178] italic font-medium mb-4 flex items-center gap-2">
+              <span>💖</span>
+              <span>"Because in Barbieland, even agriculture gets an AI glow-up!"</span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-[#4a102e] leading-relaxed mb-5">
+              Architected a full-stack smart farming assistant enabling farmers to access conversational crop guidance, image-based plant disease detection via <strong>Gemini Multimodal API</strong>, real-time weather analytics, and <strong>Twilio SMS alerts</strong> for offline rural communities.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Python</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Streamlit</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Gemini API</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">SQLite</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Twilio SMS</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">OpenWeather</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 flex items-center justify-between border-t border-pink-100">
+          <a href="https://github.com/sainijhalak/Vayalum" target="_blank" class="text-xs font-bold text-[#ff007f] hover:text-[#9b1178] flex items-center gap-1.5 transition-colors">
+            <i class="fa-brands fa-github text-sm"></i>
+            <span>View Vayalum Code</span>
+          </a>
+          <button onclick="greetBarbie()" class="text-xs font-bold text-[#c71585] hover:underline flex items-center gap-1">
+            <span>Details</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 2: Equity Research Chatbot -->
+      <div class="barbie-card flex flex-col justify-between group">
+        <div>
+          <!-- Project Glam Banner -->
+          <div class="h-48 bg-gradient-to-tr from-[#3b82f6] via-[#6366f1] to-[#8b5cf6] p-6 relative flex flex-col justify-between text-white overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10 blur-xl"></div>
+            <div class="flex items-center justify-between z-10">
+              <span class="bg-white/90 text-[#4338ca] font-bold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                Jul 2026 • LangChain & RAG
+              </span>
+              <span class="text-2xl">📈</span>
+            </div>
+            <div class="z-10">
+              <h3 class="font-display font-black text-2xl text-white drop-shadow-md">Equity Research AI</h3>
+              <p class="text-xs text-indigo-100 font-medium">News Analysis & Intelligence Chatbot</p>
+            </div>
+          </div>
+
+          <!-- Project Details -->
+          <div class="p-6">
+            <div class="p-2.5 rounded-xl bg-pink-50 border border-pink-100 text-xs text-[#9b1178] italic font-medium mb-4 flex items-center gap-2">
+              <span>💖</span>
+              <span>"She’s not just a developer, she’s a Wall Street Intelligence Barbie!"</span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-[#4a102e] leading-relaxed mb-5">
+              Built an AI research assistant to eliminate information overload for financial analysts. Utilizes <strong>Retrieval-Augmented Generation (RAG)</strong> with <strong>LangChain</strong>, OpenAI embeddings, and <strong>FAISS vector search</strong> to ingest financial news URLs and synthesize source-backed intelligence.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Python</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">LangChain</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">OpenAI API</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">FAISS DB</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">RAG Architecture</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Streamlit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 flex items-center justify-between border-t border-pink-100">
+          <a href="https://github.com/sainijhalak/multimodal-rag" target="_blank" class="text-xs font-bold text-[#ff007f] hover:text-[#9b1178] flex items-center gap-1.5 transition-colors">
+            <i class="fa-brands fa-github text-sm"></i>
+            <span>View RAG Code</span>
+          </a>
+          <button onclick="greetBarbie()" class="text-xs font-bold text-[#c71585] hover:underline flex items-center gap-1">
+            <span>Details</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project 3: BookSphere -->
+      <div class="barbie-card flex flex-col justify-between group">
+        <div>
+          <!-- Project Glam Banner -->
+          <div class="h-48 bg-gradient-to-tr from-[#ec4899] via-[#f43f5e] to-[#fb7185] p-6 relative flex flex-col justify-between text-white overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10 blur-xl"></div>
+            <div class="flex items-center justify-between z-10">
+              <span class="bg-white/90 text-[#be123c] font-bold text-[11px] px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                Nov 2024 • Full-Stack Django
+              </span>
+              <span class="text-2xl">📚</span>
+            </div>
+            <div class="z-10">
+              <h3 class="font-display font-black text-2xl text-white drop-shadow-md">BookSphere</h3>
+              <p class="text-xs text-pink-100 font-medium">Curated eBook Web Platform</p>
+            </div>
+          </div>
+
+          <!-- Project Details -->
+          <div class="p-6">
+            <div class="p-2.5 rounded-xl bg-pink-50 border border-pink-100 text-xs text-[#9b1178] italic font-medium mb-4 flex items-center gap-2">
+              <span>💖</span>
+              <span>"A chic, aesthetic digital library for book-loving Barbies."</span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-[#4a102e] leading-relaxed mb-5">
+              Developed an interactive full-stack eBook platform with complete user authentication, resource cataloging, and CRUD operations. Built with a responsive <strong>HTML5/CSS3/JavaScript</strong> frontend backed by a robust <strong>Django REST framework</strong> and SQLite.
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Django</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">Python</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">HTML5 / CSS3</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">JavaScript</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">SQLite</span>
+              <span class="text-[11px] font-semibold bg-pink-100 text-[#ff007f] px-2.5 py-0.5 rounded-full">REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 pt-0 flex items-center justify-between border-t border-pink-100">
+          <a href="https://github.com/sainijhalak/BookSphere" target="_blank" class="text-xs font-bold text-[#ff007f] hover:text-[#9b1178] flex items-center gap-1.5 transition-colors">
+            <i class="fa-brands fa-github text-sm"></i>
+            <span>View BookSphere Code</span>
+          </a>
+          <button onclick="greetBarbie()" class="text-xs font-bold text-[#c71585] hover:underline flex items-center gap-1">
+            <span>Details</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== HALL OF FAME: CERTIFICATIONS & ACHIEVEMENTS ==================== -->
+  <section id="trophies" class="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent via-[#ffd1ea]/40 to-transparent relative z-10">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center mb-16">
+        <div class="barbie-ribbon mb-3">👑 THE TROPHY ROOM</div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
+          Certifications & <span class="font-barbie text-[#ff007f]">Achievements</span>
+        </h2>
+        <p class="text-[#7a2254] max-w-xl mx-auto mt-3 font-medium">
+          Accredited credentials from world-class industry leaders in AI, Networking, and Cybersecurity.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Cert 1: Oracle Agentic AI -->
+        <div class="barbie-card p-6 flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ffd700] text-white flex items-center justify-center text-2xl shadow-md shrink-0 border-2 border-white">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff007f] bg-pink-100 px-2 py-0.5 rounded-full">Oracle University • 2026</span>
+            <h3 class="font-display font-bold text-base text-[#3b0d27] mt-1">Oracle Agentic AI Certified</h3>
+            <p class="text-xs text-[#701c4a] mt-1">Foundations Associate certification validating expertise in autonomous agents, tool orchestration, and LLM reasoning loops.</p>
+          </div>
+        </div>
+
+        <!-- Cert 2: Cisco CCNA -->
+        <div class="barbie-card p-6 flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#0284c7] to-[#38bdf8] text-white flex items-center justify-center text-2xl shadow-md shrink-0 border-2 border-white">
+            <i class="fa-solid fa-network-wired"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#0284c7] bg-sky-100 px-2 py-0.5 rounded-full">Cisco Academy • 2026</span>
+            <h3 class="font-display font-bold text-base text-[#3b0d27] mt-1">CCNA: Introduction to Networks</h3>
+            <p class="text-xs text-[#701c4a] mt-1">Comprehensive mastery of network architecture, IP addressing, routing protocols, subnets, and packet management.</p>
+          </div>
+        </div>
+
+        <!-- Cert 3: Cybersecurity Analyst -->
+        <div class="barbie-card p-6 flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#16a34a] to-[#4ade80] text-white flex items-center justify-center text-2xl shadow-md shrink-0 border-2 border-white">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#16a34a] bg-emerald-100 px-2 py-0.5 rounded-full">Cisco Academy • 2025</span>
+            <h3 class="font-display font-bold text-base text-[#3b0d27] mt-1">Junior Cybersecurity Analyst</h3>
+            <p class="text-xs text-[#701c4a] mt-1">Foundations in security principles, threat mitigation, vulnerability assessment, and defense best practices.</p>
+          </div>
+        </div>
+
+        <!-- Cert 4: Web Development Sheriyans -->
+        <div class="barbie-card p-6 flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#ff69b4] to-[#c71585] text-white flex items-center justify-center text-2xl shadow-md shrink-0 border-2 border-white">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#c71585] bg-pink-100 px-2 py-0.5 rounded-full">Sheriyans Coding School • 2025</span>
+            <h3 class="font-display font-bold text-base text-[#3b0d27] mt-1">Web Development Certification</h3>
+            <p class="text-xs text-[#701c4a] mt-1">Hands-on practical training in responsive web development, DOM manipulation, asynchronous JavaScript, and modern CSS.</p>
+          </div>
+        </div>
+
+        <!-- Achievement: LeetCode 400+ -->
+        <div class="barbie-card p-6 flex items-start gap-4 lg:col-span-2 bg-gradient-to-r from-white/90 via-pink-50/90 to-white/90">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#f59e0b] to-[#d97706] text-white flex items-center justify-center text-2xl shadow-md shrink-0 border-2 border-white">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <div class="w-full">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">LeetCode Milestone</span>
+              <a href="https://github.com/sainijhalak/DSA-Leetcode" target="_blank" class="text-xs font-black text-[#ff007f] hover:underline">★ 400+ Problems (DSA-Leetcode Repo)</a>
+            </div>
+            <h3 class="font-display font-bold text-base text-[#3b0d27] mt-1">Data Structures & Algorithm Mastery</h3>
+            <p class="text-xs text-[#701c4a] mt-1">Solved 400+ coding challenges spanning Binary Trees, Dynamic Programming, Graphs, Two Pointers, and Greedy approaches, demonstrating relentless problem-solving rigor.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== EDUCATION JOURNEY ==================== -->
+  <section id="education" class="py-20 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <div class="barbie-ribbon mb-3">🎓 THE DREAMHOUSE ACADEMY</div>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
+        Academic <span class="font-barbie text-[#ff007f]">Excellence</span>
+      </h2>
+      <p class="text-[#7a2254] max-w-xl mx-auto mt-3 font-medium">
+        A stellar academic track record reflecting dedication, discipline, and consistent top performance.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto space-y-6">
+      
+      <!-- College: B.Tech -->
+      <div class="barbie-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-l-8 border-l-[#ff007f]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#ff007f] bg-pink-100 px-3 py-1 rounded-full">
+            Aug 2023 – May 2027 (Expected)
+          </span>
+          <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#3b0d27] mt-2">
+            Bachelor of Technology (B.Tech) – CSE
+          </h3>
+          <p class="text-sm font-semibold text-[#8c1c5a] mt-1">
+            GL Bajaj Group of Institutions, Greater Noida, Uttar Pradesh, India
+          </p>
+          <p class="text-xs text-[#521334] mt-2">
+            Focus areas: Data Structures & Algorithms, Object-Oriented Programming (Java), Operating Systems, Database Management Systems, and Artificial Intelligence.
+          </p>
+        </div>
+        <div class="shrink-0 bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] text-white p-4 rounded-2xl text-center shadow-lg border-2 border-white min-w-[130px]">
+          <div class="font-display font-black text-2xl sm:text-3xl">8.7</div>
+          <div class="text-[10px] font-bold uppercase tracking-widest text-pink-100">CGPA / 10.0</div>
+        </div>
+      </div>
+
+      <!-- Class XII -->
+      <div class="barbie-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-l-8 border-l-[#ff69b4]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#c71585] bg-pink-100 px-3 py-1 rounded-full">
+            Completed 2023
+          </span>
+          <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#3b0d27] mt-2">
+            Class XII (Senior Secondary – Science PCM)
+          </h3>
+          <p class="text-sm font-semibold text-[#8c1c5a] mt-1">
+            Physics, Chemistry, Mathematics Foundation
+          </p>
+        </div>
+        <div class="shrink-0 bg-white text-[#ff007f] border-2 border-[#ff007f] p-4 rounded-2xl text-center shadow-sm min-w-[130px]">
+          <div class="font-display font-black text-2xl sm:text-3xl">92%</div>
+          <div class="text-[10px] font-bold uppercase tracking-widest text-[#9b1178]">Score Achieved</div>
+        </div>
+      </div>
+
+      <!-- Class X -->
+      <div class="barbie-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-l-8 border-l-[#ffd700]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-3 py-1 rounded-full">
+            Completed 2021
+          </span>
+          <h3 class="font-display font-extrabold text-xl sm:text-2xl text-[#3b0d27] mt-2">
+            Class X (Secondary School Certificate)
+          </h3>
+          <p class="text-sm font-semibold text-[#8c1c5a] mt-1">
+            Outstanding Academic Performance
+          </p>
+        </div>
+        <div class="shrink-0 bg-gradient-to-tr from-[#ffd700] to-[#f59e0b] text-white p-4 rounded-2xl text-center shadow-md border-2 border-white min-w-[130px]">
+          <div class="font-display font-black text-2xl sm:text-3xl">95%</div>
+          <div class="text-[10px] font-bold uppercase tracking-widest text-amber-100">Score Achieved</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== THE DREAMHOUSE MAILBOX (CONTACT) ==================== -->
+  <section id="contact" class="py-20 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <div class="barbie-ribbon mb-3">💌 SEND A DREAM LETTER</div>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-[#3b0d27]">
+        Let's Connect in <span class="font-barbie text-[#ff007f]">Barbieland</span>
+      </h2>
+      <p class="text-[#7a2254] max-w-xl mx-auto mt-3 font-medium">
+        Whether you have an internship opportunity, a project to collaborate on, or just want to say "Hi Barbie!", my inbox is always sparkling.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Contact Info Cards -->
+      <div class="lg:col-span-5 space-y-4">
+        
+        <!-- Email -->
+        <div class="barbie-card p-5 flex items-center justify-between group">
+          <div class="flex items-center gap-3.5">
+            <span class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] text-white flex items-center justify-center text-lg shadow-sm border border-white">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <div>
+              <div class="text-[11px] font-bold text-[#c71585] uppercase tracking-wider">Dream Mailbox</div>
+              <div class="text-sm font-bold text-[#3b0d27]">sainijhalak015@gmail.com</div>
+            </div>
+          </div>
+          <button onclick="copyText('sainijhalak015@gmail.com', 'Email')" class="btn-barbie-secondary !py-2 !px-3 text-xs" title="Copy Email">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+
+        <!-- Phone -->
+        <div class="barbie-card p-5 flex items-center justify-between group">
+          <div class="flex items-center gap-3.5">
+            <span class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#10b981] to-[#34d399] text-white flex items-center justify-center text-lg shadow-sm border border-white">
+              <i class="fa-solid fa-phone"></i>
+            </span>
+            <div>
+              <div class="text-[11px] font-bold text-[#c71585] uppercase tracking-wider">Phone Hotline</div>
+              <div class="text-sm font-bold text-[#3b0d27]">+91-6395851946</div>
+            </div>
+          </div>
+          <a href="tel:+916395851946" class="btn-barbie-secondary !py-2 !px-3 text-xs" title="Call">
+            <i class="fa-solid fa-phone"></i>
+          </a>
+        </div>
+
+        <!-- Location -->
+        <div class="barbie-card p-5 flex items-center gap-3.5">
+          <span class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#f59e0b] to-[#fbbf24] text-white flex items-center justify-center text-lg shadow-sm border border-white">
+            <i class="fa-solid fa-location-dot"></i>
+          </span>
+          <div>
+            <div class="text-[11px] font-bold text-[#c71585] uppercase tracking-wider">Location</div>
+            <div class="text-sm font-bold text-[#3b0d27]">Greater Noida, Uttar Pradesh, India</div>
+          </div>
+        </div>
+
+        <!-- Social Channels -->
+        <div class="barbie-card p-6 text-center">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#8c1c5a] mb-4">
+            ★ Follow Barbie Across The Web ★
+          </div>
+          <div class="flex items-center justify-center gap-4">
+            <a href="https://github.com/sainijhalak" target="_blank" class="w-12 h-12 rounded-full bg-white text-[#333] hover:text-[#ff007f] hover:scale-110 flex items-center justify-center text-xl shadow-md border-2 border-pink-200 transition-all">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/sainijhalak" target="_blank" class="w-12 h-12 rounded-full bg-white text-[#0077b5] hover:text-[#ff007f] hover:scale-110 flex items-center justify-center text-xl shadow-md border-2 border-pink-200 transition-all">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:sainijhalak015@gmail.com" class="w-12 h-12 rounded-full bg-white text-[#ff007f] hover:scale-110 flex items-center justify-center text-xl shadow-md border-2 border-pink-200 transition-all">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Dream Letter Form -->
+      <div class="lg:col-span-7">
+        <div class="barbie-card p-8 sm:p-10 border-4 border-white">
+          
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-pink-200">
+            <div>
+              <h3 class="font-display font-black text-2xl text-[#3b0d27]">Drop a Note in the Vanity Box</h3>
+              <p class="text-xs text-[#8c1c5a]">Simulated instant delivery with sparkle magic! 💌</p>
+            </div>
+            <span class="text-3xl animate-bounce">🎀</span>
+          </div>
+
+          <form id="barbie-contact-form" class="space-y-5">
+            <div>
+              <label for="sender-name" class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1.5">
+                Your Name (or Barbie / Ken Alias) *
+              </label>
+              <input type="text" id="sender-name" required placeholder="e.g. Ken / Tech Recruiter / Barbie" 
+                class="w-full px-4 py-3 rounded-2xl bg-white/90 border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none focus:ring-4 focus:ring-pink-200 text-sm font-medium text-[#3b0d27]">
+            </div>
+
+            <div>
+              <label for="sender-email" class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1.5">
+                Your Email Address *
+              </label>
+              <input type="email" id="sender-email" required placeholder="your.name@company.com" 
+                class="w-full px-4 py-3 rounded-2xl bg-white/90 border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none focus:ring-4 focus:ring-pink-200 text-sm font-medium text-[#3b0d27]">
+            </div>
+
+            <div>
+              <label for="sender-message" class="block text-xs font-bold uppercase tracking-wider text-[#7a1c4d] mb-1.5">
+                Your Message / Opportunity *
+              </label>
+              <textarea id="sender-message" rows="4" required placeholder="Hi Jhalak! We love your Barbie theme and want to discuss an AI/Frontend role..." 
+                class="w-full px-4 py-3 rounded-2xl bg-white/90 border-2 border-pink-200 focus:border-[#ff007f] focus:outline-none focus:ring-4 focus:ring-pink-200 text-sm font-medium text-[#3b0d27]"></textarea>
+            </div>
+
+            <button type="submit" class="btn-barbie-primary w-full !py-4 text-center">
+              <span>💖</span>
+              <span>Send Dream Letter to Jhalak</span>
+              <span>✨</span>
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== BARBIE DREAMHOUSE FOOTER ==================== -->
+  <footer class="py-12 px-4 md:px-8 bg-gradient-to-b from-[#ff80bf]/20 via-[#ff007f]/20 to-[#c71585]/30 border-t-2 border-pink-300 relative z-10 text-center">
+    <div class="max-w-7xl mx-auto space-y-4">
+      
+      <div class="font-barbie text-4xl text-[#ff007f] drop-shadow-sm">
+        Jhalak Saini
+      </div>
+
+      <p class="text-xs sm:text-sm font-semibold text-[#661642] max-w-md mx-auto">
+        Crafted with 💖, Sparkles, Java, React, and Gemini API. <br>
+        Remember: In Barbieland, you can be <em>anything</em> — especially an extraordinary Software Engineer!
+      </p>
+
+      <div class="pt-4 flex items-center justify-center gap-6 text-xs text-[#9b1178] font-bold">
+        <a href="#hero" class="hover:text-[#ff007f] transition-colors">Back to Top ↑</a>
+        <span>•</span>
+        <a href="Jhalak_Saini_CV.pdf" download="Jhalak_Saini_CV.pdf" class="hover:text-[#ff007f] transition-colors">Download CV</a>
+        <span>•</span>
+        <a href="https://linkedin.com/in/sainijhalak" target="_blank" class="hover:text-[#ff007f] transition-colors">LinkedIn</a>
+        <span>•</span>
+        <a href="https://github.com/sainijhalak" target="_blank" class="hover:text-[#ff007f] transition-colors">GitHub</a>
+      </div>
+
+      <div class="text-[11px] text-[#aa2d6b] pt-4">
+        © 2026 Jhalak Saini • All Rights Reserved in Barbieland
+      </div>
+
+    </div>
+  </footer>
+
+  
+  <!-- ==================== B-PHONE MODAL (WORKING BARBIE SMARTPHONE) ==================== -->
+  <div id="b-phone-modal" onclick="if(event.target === this) closeBPhone()">
+    <div class="b-phone-chassis">
+      
+      <!-- B-Phone Screen -->
+      <div class="b-phone-screen">
+        
+        <!-- Dynamic Island / Top Notch -->
+        <div class="b-phone-notch">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>11:11 💖 B-OS</span>
+        </div>
+
+        <!-- App Screen 1: Messages (Active by default) -->
+        <div id="bphone-tab-messages" class="bphone-screen-tab flex-1 p-3 overflow-y-auto flex flex-col justify-between">
+          <div>
+            <div class="text-center pb-2 border-b border-pink-200 mb-2">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ff007f] to-[#ffd700] mx-auto text-white flex items-center justify-center text-sm font-bold shadow">
+                K
+              </div>
+              <div class="text-[11px] font-bold text-[#3b0d27] mt-0.5">Ken (Tech Lead)</div>
+              <div class="text-[9px] text-[#ff007f] font-semibold">Active in Barbieland</div>
+            </div>
+
+            <!-- Chat bubbles -->
+            <div class="space-y-2 text-[11px]">
+              <div class="bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%]">
+                Hey Jhalak Barbie! Did you solve that 400th LeetCode tree problem? 🌴
+              </div>
+              <div class="bg-[#ff007f] text-white p-2.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto shadow-sm">
+                Already pushed! O(N) runtime, 8.7 CGPA efficiency! 💅⚡
+              </div>
+              <div class="bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%]">
+                Also saw your Vayalum AI farming bot with Gemini! Super proud of you! 💖
+              </div>
+              <div class="bg-[#ff007f] text-white p-2.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto shadow-sm">
+                Every day is the best day in tech! ✨
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-pink-200 flex items-center gap-1.5">
+            <input type="text" placeholder="iMessage..." readonly value="Ready to code! 💖" class="text-[11px] bg-white rounded-full px-3 py-1.5 border border-pink-300 flex-1 outline-none text-[#3b0d27]">
+            <button onclick="playFanfareSound(); showBarbieToast('Message sent to Ken! 💌', '💖');" class="w-7 h-7 rounded-full bg-[#ff007f] text-white flex items-center justify-center text-xs">
+              ↑
+            </button>
+          </div>
+        </div>
+
+        <!-- App Screen 2: Camera Viewfinder -->
+        <div id="bphone-tab-camera" class="bphone-screen-tab hidden flex-1 relative bg-black flex flex-col justify-between p-3 text-white">
+          <div class="flex items-center justify-between text-[10px] text-pink-300 font-bold z-10">
+            <span>[ 0.5x • 1x • 3x ]</span>
+            <span class="text-red-500 animate-pulse">● REC 4K 60FPS</span>
+          </div>
+
+          <div class="absolute inset-0 flex items-center justify-center opacity-85">
+            <img src="assets/jhalak-barbie-selfie.png" alt="Camera View" class="w-full h-full object-cover">
+          </div>
+
+          <div class="z-10 text-center pb-2">
+            <button onclick="snapMirrorSelfie()" class="w-12 h-12 rounded-full border-4 border-white bg-[#ff007f] shadow-lg mx-auto active:scale-95 transition-transform flex items-center justify-center text-white text-base">
+              📸
+            </button>
+          </div>
+        </div>
+
+        <!-- App Screen 3: Music (Barbie Tunes) -->
+        <div id="bphone-tab-music" class="bphone-screen-tab hidden flex-1 p-4 flex flex-col items-center justify-center text-center">
+          <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] text-white flex items-center justify-center text-4xl shadow-lg border-2 border-white mb-3">
+            🎵
+          </div>
+          <div class="font-display font-bold text-sm text-[#3b0d27]">Dance The Night</div>
+          <div class="text-[11px] text-[#ff007f] font-semibold">Barbie Official Soundtrack</div>
+          <button onclick="playBarbieBPhoneTune()" class="mt-4 btn-barbie-primary !text-xs !py-2 !px-4">
+            <i class="fa-solid fa-play"></i> <span>Play Barbie Tune</span>
+          </button>
+        </div>
+
+        <!-- B-Phone Bottom Dock Navigation -->
+        <div class="bg-white/95 border-t border-pink-200 py-2 px-3 flex items-center justify-around text-xs">
+          <button id="bphone-nav-messages" onclick="switchBPhoneApp('messages')" class="bphone-nav-btn text-[#ff007f] font-bold flex flex-col items-center">
+            <i class="fa-solid fa-comment-dots text-base"></i>
+            <span class="text-[9px] mt-0.5">Chat</span>
+          </button>
+          <button id="bphone-nav-camera" onclick="switchBPhoneApp('camera')" class="bphone-nav-btn text-stone-400 flex flex-col items-center">
+            <i class="fa-solid fa-camera text-base"></i>
+            <span class="text-[9px] mt-0.5">Camera</span>
+          </button>
+          <button id="bphone-nav-music" onclick="switchBPhoneApp('music')" class="bphone-nav-btn text-stone-400 flex flex-col items-center">
+            <i class="fa-solid fa-music text-base"></i>
+            <span class="text-[9px] mt-0.5">Music</span>
+          </button>
+          <button onclick="closeBPhone()" class="text-rose-500 flex flex-col items-center">
+            <i class="fa-solid fa-circle-xmark text-base"></i>
+            <span class="text-[9px] mt-0.5">Exit</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Custom Barbie Engine Script -->
+  <script src="script.js"></script>
+
+</body>
+</html>
