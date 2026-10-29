@@ -22,7 +22,7 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <!-- Custom Barbie Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=2.3">
+  <link rel="stylesheet" href="style.css?v=2.4">
 </head>
 <body class="theme-light">
 
@@ -179,132 +179,57 @@
 
       </div>
 
-      <!-- Right Column: The 3D Interactive "Barbie Collector Doll Packaging Box" -->
+      <!-- Right Column: Clean & Chic Barbie Developer Showcase Card -->
       <div class="lg:col-span-5 flex justify-center z-10">
         
-        <div id="doll-box-container" class="doll-box w-full max-w-[420px]">
-          <div class="doll-box-plastic-glare"></div>
+        <div class="barbie-hero-card w-full max-w-[380px] p-6 sm:p-7 rounded-[32px] bg-white/85 backdrop-blur-xl border-2 border-pink-200/90 shadow-[0_20px_50px_rgba(255,0,127,0.15)] text-center relative overflow-hidden transition-all duration-300 hover:shadow-[0_25px_60px_rgba(255,0,127,0.25)] hover:-translate-y-1">
           
-          <div class="doll-box-inner">
-            
-            <!-- Box Header -->
-            <div class="flex items-center justify-between mb-4">
-              <span class="doll-mattel-badge">MATTEL</span>
-              <span class="doll-edition-tag">SPECIAL COLLECTOR EDITION</span>
-            </div>
+          <!-- Subtle Pink Gradient Ambient Glow -->
+          <div class="absolute -top-20 -right-20 w-40 h-40 bg-[#ff69b4]/20 rounded-full blur-2xl pointer-events-none"></div>
+          <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-[#ff007f]/15 rounded-full blur-2xl pointer-events-none"></div>
 
-            <!-- Doll Presentation Window -->
-            <div class="relative bg-gradient-to-b from-white/90 to-[#ffd6eb]/90 rounded-2xl p-6 border-2 border-white text-center shadow-inner overflow-hidden min-h-[380px] flex flex-col items-center justify-between">
-              
-              <!-- Sparkle Accents on Background -->
-              <div class="absolute top-4 left-4 text-[#ff69b4] text-xl animate-sparkle">✦</div>
-              <div class="absolute top-10 right-6 text-[#ffd700] text-2xl animate-sparkle" style="animation-delay: 1s;">✨</div>
-              <div class="absolute bottom-16 left-6 text-[#ff1493] text-lg animate-sparkle" style="animation-delay: 1.5s;">💖</div>
-
-              <!-- Top Barbie Logo Script in Box -->
-              <div class="font-barbie text-4xl text-[#ff007f] drop-shadow-md">
-                Barbie
-              </div>
-              <div class="font-display text-xs tracking-wider font-extrabold text-[#9b1178] uppercase -mt-2">
-                Software Engineer Jhalak
-              </div>
-
-              <!-- Stylized Barbie Developer Graphic / Silhouette -->
-              
-              <!-- Photo Switcher Inside Box -->
-              <div class="flex items-center justify-center gap-2 mb-2">
-                <button id="btn-box-photo" onclick="toggleBoxAvatar('photo')" class="text-[10px] font-bold py-1 px-3 rounded-full bg-[#ff007f] text-white shadow-sm border border-white">
-                  📸 Real Selfie
-                </button>
-                <button id="btn-box-vector" onclick="toggleBoxAvatar('vector')" class="text-[10px] font-bold py-1 px-3 rounded-full bg-white text-[#ff007f] shadow-sm border border-[#ff007f]">
-                  🎨 Doll Avatar
-                </button>
-              </div>
-
-              <div class="my-2 relative">
-                <!-- Real Photo Display in Box -->
-                <div id="box-avatar-photo" class="w-44 h-44 mx-auto rounded-full bg-gradient-to-tr from-[#ff007f] via-[#ff69b4] to-[#ffd700] p-1.5 shadow-xl animate-float overflow-hidden relative group cursor-pointer" onclick="snapMirrorSelfie()" title="Click to snap selfie!">
-                  <img src="assets/jhalak-barbie-selfie.png" alt="Jhalak Saini Barbie Avatar" class="w-full h-full object-cover rounded-full">
-                  <!-- Camera lens icon badge -->
-                  <div class="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-[#ff007f] text-white flex items-center justify-center text-xs shadow-md border-2 border-white">
-                    📸
-                  </div>
-                </div>
-
-                <div id="box-avatar-vector" class="hidden">
-
-                <!-- Glowing Halo -->
-                <div class="w-40 h-40 mx-auto rounded-full bg-gradient-to-tr from-[#ff007f] via-[#ff69b4] to-[#ffd700] p-1.5 shadow-xl animate-float">
-                  <div class="w-full h-full rounded-full bg-[#fff0f7] flex items-center justify-center overflow-hidden border-2 border-white relative">
-                    
-                    <!-- Barbie Girl Developer Illustration (Clean SVG) -->
-                    <svg viewBox="0 0 200 200" class="w-36 h-36 drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <!-- Soft background gradient circle -->
-                      <circle cx="100" cy="100" r="95" fill="url(#avatar-grad)" />
-                      <!-- Hair ponytail flowing -->
-                      <path d="M125 45 C165 45 175 95 160 145 C150 130 145 105 130 90 Z" fill="#4a152d" />
-                      <!-- Barbie Head & Profile -->
-                      <ellipse cx="100" cy="85" rx="36" ry="42" fill="#ffd1b3" />
-                      <!-- Pink Glam Sunglasses -->
-                      <path d="M72 75 Q85 70 98 75 Q98 90 85 92 Q72 90 72 75 Z" fill="#ff007f" stroke="#ffffff" stroke-width="2" />
-                      <path d="M102 75 Q115 70 128 75 Q128 90 115 92 Q102 90 102 75 Z" fill="#ff007f" stroke="#ffffff" stroke-width="2" />
-                      <line x1="98" y1="77" x2="102" y2="77" stroke="#ffffff" stroke-width="2" />
-                      <!-- Sunglasses reflections -->
-                      <line x1="76" y1="78" x2="84" y2="86" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-                      <line x1="106" y1="78" x2="114" y2="86" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
-                      <!-- Chic smile & lipstick -->
-                      <path d="M94 105 Q100 112 108 105" stroke="#ff007f" stroke-width="3" stroke-linecap="round" fill="none" />
-                      <!-- Tech Headphones (Pink & Gold) -->
-                      <path d="M62 82 C55 35 145 35 138 82" stroke="#ff007f" stroke-width="6" fill="none" stroke-linecap="round" />
-                      <rect x="58" y="75" width="10" height="22" rx="5" fill="#ffd700" stroke="#ff007f" stroke-width="1.5" />
-                      <rect x="132" y="75" width="10" height="22" rx="5" fill="#ffd700" stroke="#ff007f" stroke-width="1.5" />
-                      <!-- Pink Stylish Blazer / Hoodie -->
-                      <path d="M60 145 C70 125 130 125 140 145 L155 195 L45 195 Z" fill="#ff007f" />
-                      <!-- White Inner top -->
-                      <polygon points="100,155 85,128 115,128" fill="#ffffff" />
-                      <!-- Golden Heart Pendant -->
-                      <circle cx="100" cy="146" r="4" fill="#ffd700" />
-                      <!-- Gradients -->
-                      <defs>
-                        <linearGradient id="avatar-grad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
-                          <stop stop-color="#ffe3f0" />
-                          <stop offset="1" stop-color="#ffb3d9" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-
-                  </div>
-                </div>
-                </div>
-
-                <!-- Open For Work Barbie Tag -->
-                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white text-[#ff007f] font-display font-bold text-[11px] py-1 px-4 rounded-full border-2 border-[#ff007f] shadow-md flex items-center gap-1">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                  <span>READY FOR NEW ROLES</span>
-                </div>
-              </div>
-
-              <!-- Accessories Packaged Inside Box -->
-              <div class="w-full mt-3">
-                <div class="text-[10px] font-bold text-[#c71585] uppercase tracking-wider mb-2">★ ACCESSORIES INCLUDED:</div>
-                <div class="flex flex-wrap items-center justify-center gap-1.5">
-                  <span class="accessory-badge">☕ Java Mug</span>
-                  <span class="accessory-badge">🤖 Gemini LLM</span>
-                  <span class="accessory-badge">⚡ 400+ DSA</span>
-                  <span class="accessory-badge">🌸 React.js</span>
-                  <span class="accessory-badge">🎀 n8n Flow</span>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- Box Bottom Warning / Details -->
-            <div class="mt-3 flex items-center justify-between text-[10px] text-white font-semibold">
-              <span>AGES 3+ TO 100+</span>
-              <span>100% INSPIRATIONAL ENERGY</span>
-            </div>
-
+          <!-- Top Status Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-xs font-bold text-[#ff007f] shadow-sm mb-5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>READY FOR NEW ROLES</span>
+            <span class="text-xs">✨</span>
           </div>
+
+          <!-- Pristine Centered Avatar with Glow Frame -->
+          <div class="relative w-48 h-48 mx-auto mb-4 group cursor-pointer" onclick="triggerBarbieConfetti(0.5, 0.4); playSparkleSound();" title="Tap for sparkles!">
+            <div class="w-full h-full rounded-full p-1.5 bg-gradient-to-tr from-[#ff007f] via-[#ff69b4] to-[#ffd700] shadow-[0_10px_30px_rgba(255,0,127,0.35)] transition-transform duration-300 group-hover:scale-105">
+              <img src="assets/jhalak-barbie-selfie.png" alt="Jhalak Saini" class="w-full h-full object-cover rounded-full border-2 border-white">
+            </div>
+            <!-- Cute Sparkle Badge -->
+            <div class="absolute bottom-1 right-2 w-9 h-9 rounded-full bg-[#ff007f] text-white flex items-center justify-center text-sm shadow-md border-2 border-white group-hover:rotate-12 transition-transform">
+              👑
+            </div>
+          </div>
+
+          <!-- Name & Title -->
+          <div class="font-barbie text-3xl sm:text-4xl text-[#ff007f] drop-shadow-sm leading-tight">
+            Jhalak Saini
+          </div>
+          <p class="font-display text-xs font-extrabold text-[#9b1178] uppercase tracking-wider mt-1 mb-4">
+            Software Engineer Barbie
+          </p>
+
+          <!-- Clean Aligned Skill Chips (4 crisp tags) -->
+          <div class="grid grid-cols-2 gap-2 max-w-[300px] mx-auto text-xs font-bold text-[#4a0d2a]">
+            <div class="py-1.5 px-3 rounded-full bg-pink-50/90 border border-pink-200/80 flex items-center justify-center gap-1.5 shadow-sm">
+              <span>☕</span> <span>Java Systems</span>
+            </div>
+            <div class="py-1.5 px-3 rounded-full bg-pink-50/90 border border-pink-200/80 flex items-center justify-center gap-1.5 shadow-sm">
+              <span>🌸</span> <span>React & UI</span>
+            </div>
+            <div class="py-1.5 px-3 rounded-full bg-pink-50/90 border border-pink-200/80 flex items-center justify-center gap-1.5 shadow-sm">
+              <span>🤖</span> <span>GenAI Agents</span>
+            </div>
+            <div class="py-1.5 px-3 rounded-full bg-pink-50/90 border border-pink-200/80 flex items-center justify-center gap-1.5 shadow-sm">
+              <span>⚡</span> <span>400+ DSA</span>
+            </div>
+          </div>
+
         </div>
 
       </div>
@@ -1500,7 +1425,7 @@
 
 
   <!-- Custom Barbie Engine Script -->
-  <script src="script.js?v=2.3"></script>
+  <script src="script.js?v=2.4"></script>
 
 </body>
 </html>

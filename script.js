@@ -546,35 +546,10 @@ function playBarbieBPhoneTune() {
 }
 
 
-// --- 15. Toggle Box Avatar (Real Selfie vs Vector Doll) ---
-function toggleBoxAvatar(type) {
+// --- 15. Clean Avatar Display ---
+function toggleBoxAvatar() {
   playSparkleSound();
-  const photoEl = document.getElementById('box-avatar-photo');
-  const vectorEl = document.getElementById('box-avatar-vector');
-  const btnPhoto = document.getElementById('btn-box-photo');
-  const btnVector = document.getElementById('btn-box-vector');
-
-  if (type === 'photo') {
-    if (photoEl) photoEl.classList.remove('hidden');
-    if (vectorEl) vectorEl.classList.add('hidden');
-    if (btnPhoto) {
-      btnPhoto.className = 'text-[10px] font-bold py-1 px-3 rounded-full bg-[#ff007f] text-white shadow-sm border border-white';
-    }
-    if (btnVector) {
-      btnVector.className = 'text-[10px] font-bold py-1 px-3 rounded-full bg-white text-[#ff007f] shadow-sm border border-[#ff007f]';
-    }
-    showBarbieToast('Real Barbie Selfie Active! 📸', '💖');
-  } else {
-    if (photoEl) photoEl.classList.add('hidden');
-    if (vectorEl) vectorEl.classList.remove('hidden');
-    if (btnPhoto) {
-      btnPhoto.className = 'text-[10px] font-bold py-1 px-3 rounded-full bg-white text-[#ff007f] shadow-sm border border-[#ff007f]';
-    }
-    if (btnVector) {
-      btnVector.className = 'text-[10px] font-bold py-1 px-3 rounded-full bg-[#ff007f] text-white shadow-sm border border-white';
-    }
-    showBarbieToast('Doll Silhouette Active! 🎨', '✨');
-  }
+  triggerBarbieConfetti(0.5, 0.4);
 }
 
 // --- 16. Live Clock on B-Phone ---
