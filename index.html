@@ -24,7 +24,7 @@
   <!-- Custom Barbie Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-classic">
+<body class="theme-light">
 
   <!-- Camera Flash Screen Overlay -->
   <div id="camera-flash-overlay"></div>
@@ -45,8 +45,8 @@
     <button id="btn-sound-toggle" class="widget-btn sound-active" onclick="toggleSound()" title="Toggle Sparkle Sound">
       🎵
     </button>
-    <button class="widget-btn" onclick="toggleBarbieTheme()" title="Switch Barbie Aesthetic">
-      🎨
+    <button id="btn-floating-theme" class="widget-btn" onclick="toggleTheme()" title="Toggle Light / Dark Mode">
+      🌙
     </button>
     <button class="widget-btn" onclick="triggerBarbieConfetti(0.9, 0.9)" title="Sparkle Blast!">
       ✨
@@ -81,13 +81,10 @@
 
       <!-- Action Button & "Hi Barbie!" -->
       <div class="flex items-center gap-2.5">
-        <!-- Theme Selector Pills -->
-        <div class="hidden md:flex items-center gap-1 bg-white/90 p-1 rounded-full border border-pink-200 shadow-sm">
-          <button onclick="selectBarbieTheme('theme-classic')" class="px-2.5 py-1 text-[11px] font-bold rounded-full hover:bg-pink-100 transition-all" title="Classic Barbie">💖 Classic</button>
-          <button onclick="selectBarbieTheme('theme-sunset')" class="px-2.5 py-1 text-[11px] font-bold rounded-full hover:bg-orange-100 transition-all" title="Sunset Glam">🌅 Sunset</button>
-          <button onclick="selectBarbieTheme('theme-pastel')" class="px-2.5 py-1 text-[11px] font-bold rounded-full hover:bg-purple-100 transition-all" title="Pastel Dreamhouse">🌸 Pastel</button>
-          <button onclick="selectBarbieTheme('theme-cyber')" class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-stone-900 text-[#00f0ff] hover:bg-black transition-all" title="Cyber Barbie">⚡ Cyber</button>
-        </div>
+        <!-- Clean Light / Dark Theme Toggle -->
+        <button onclick="toggleTheme()" class="theme-toggle-btn px-3.5 py-1.5 rounded-full bg-white/90 border border-pink-200 text-xs font-bold text-[#ff007f] shadow-sm hover:scale-105 transition-all flex items-center gap-1.5" title="Switch Light / Dark Theme">
+          🌙 <span class="hidden sm:inline">Dark</span>
+        </button>
 
         <button onclick="greetBarbie()" class="btn-barbie-primary text-xs md:text-sm py-2.5 px-5 !shadow-sm">
           <span>🎀</span>
@@ -130,7 +127,7 @@
         </p>
 
         <p class="text-base sm:text-lg text-[#5a1c3f] leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0 font-medium">
-          Welcome to my digital Dreamhouse! I am a results-driven Computer Science undergraduate at <strong class="text-[#ff007f]">GL Bajaj</strong> (8.7 CGPA) passionate about bridging the gap between elegant React interfaces, robust Java systems, and cutting-edge GenAI APIs. Because who says high-performance engineering can’t look fabulous?
+          Welcome to my digital Dreamhouse! I am a results-driven Computer Science undergraduate <strong class="text-[#ff007f]">(8.7 CGPA • Computer Science)</strong> passionate about bridging the gap between elegant React interfaces, robust Java systems, and cutting-edge GenAI APIs. Because who says high-performance engineering can’t look fabulous?
         </p>
 
         <!-- Call To Actions -->
@@ -1005,7 +1002,7 @@
             Bachelor of Technology (B.Tech) – CSE
           </h3>
           <p class="text-sm font-semibold text-[#8c1c5a] mt-1">
-            GL Bajaj Group of Institutions, Greater Noida, Uttar Pradesh, India
+            Computer Science and Engineering • Class of 2027
           </p>
           <p class="text-xs text-[#521334] mt-2">
             Focus areas: Data Structures & Algorithms, Object-Oriented Programming (Java), Operating Systems, Database Management Systems, and Artificial Intelligence.

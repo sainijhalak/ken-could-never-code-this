@@ -16,7 +16,7 @@ Welcome to the official **Barbie Dreamhouse Portfolio** of **Jhalak Saini**! Bui
   3. 🌸 **Pastel Dreamhouse** (Cotton Candy, Marshmallow & Lilac)
   4. ⚡ **Cyber Barbie 2077** (Dark Mode Neon Magenta & Electric Cyan)
 - 🎵 **Synthesized Web Audio Sparkles:** Harmonic harp arpeggios, celebratory fanfares, and camera shutters created purely with Web Audio API (zero external audio files).
-- ☕ **Core Engineering Masteries:** 400+ LeetCode problems solved, 8.7 B.Tech CGPA at GL Bajaj, Oracle Agentic AI Certified, Cisco CCNA, and Sheriyans Web Development.
+- ☕ **Core Engineering Masteries:** 400+ LeetCode problems solved, 8.7 B.Tech CSE CGPA, Oracle Agentic AI Certified, Cisco CCNA, and Sheriyans Web Development.
 
 ---
 

@@ -263,30 +263,58 @@ function copyText(text, label) {
   });
 }
 
-// --- 7. Theme Selector (Classic Pink vs Sunset Glam vs Pastel vs Cyber) ---
-const themes = ['theme-classic', 'theme-sunset', 'theme-pastel', 'theme-cyber'];
-let currentThemeIdx = 0;
+// --- 7. Theme Selector (Clean Light vs Dark) ---
+let isDarkMode = false;
 
-function selectBarbieTheme(name) {
-  document.body.classList.remove('theme-classic', 'theme-sunset', 'theme-pastel', 'theme-cyber');
-  document.body.classList.add(name);
-  currentThemeIdx = themes.indexOf(name);
-  if (currentThemeIdx === -1) currentThemeIdx = 0;
-
-  const themeNames = {
-    'theme-classic': 'Classic Barbie Pink 💖',
-    'theme-sunset': 'Sunset Glam Coral 🌅',
-    'theme-pastel': 'Pastel Dreamhouse 🌸',
-    'theme-cyber': 'Cyber Barbie 2077 ⚡'
-  };
-  showBarbieToast('Theme: ' + (themeNames[name] || name), '🎀');
+function toggleTheme() {
+  isDarkMode = !isDarkMode;
+  if (isDarkMode) {
+    document.body.classList.remove('theme-light');
+    document.body.classList.add('theme-dark');
+    localStorage.setItem('barbie-theme', 'dark');
+    showBarbieToast('Dark Barbie Mode 🌙⚡', '🖤');
+  } else {
+    document.body.classList.remove('theme-dark');
+    document.body.classList.add('theme-light');
+    localStorage.setItem('barbie-theme', 'light');
+    showBarbieToast('Light Barbie Mode 💖✨', '🌸');
+  }
+  updateThemeUI();
   triggerBarbieConfetti(0.9, 0.9);
 }
 
-function toggleBarbieTheme() {
-  currentThemeIdx = (currentThemeIdx + 1) % themes.length;
-  selectBarbieTheme(themes[currentThemeIdx]);
+function setTheme(mode) {
+  isDarkMode = (mode === 'dark');
+  if (isDarkMode) {
+    document.body.classList.remove('theme-light');
+    document.body.classList.add('theme-dark');
+  } else {
+    document.body.classList.remove('theme-dark');
+    document.body.classList.add('theme-light');
+  }
+  updateThemeUI();
 }
+
+function updateThemeUI() {
+  const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+  toggleBtns.forEach(btn => {
+    btn.innerHTML = isDarkMode ? '☀️ <span class="hidden sm:inline">Light</span>' : '🌙 <span class="hidden sm:inline">Dark</span>';
+  });
+  const floatingBtn = document.getElementById('btn-floating-theme');
+  if (floatingBtn) {
+    floatingBtn.innerHTML = isDarkMode ? '☀️' : '🌙';
+  }
+}
+
+// Check saved theme preference on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('barbie-theme');
+  if (saved === 'dark') {
+    setTheme('dark');
+  } else {
+    setTheme('light');
+  }
+});
 
 // --- 8. Sound Toggle ---
 function toggleSound() {

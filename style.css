@@ -29,157 +29,133 @@
 }
 
 /* ==========================================================================
-   THEME 1: CLASSIC BARBIE (Default)
+   THEME 1: LIGHT THEME (Signature Barbie Dreamhouse Pink)
    ========================================================================== */
-body.theme-classic {
-  background: var(--barbie-bg-gradient) !important;
+body.theme-light, body:not(.theme-dark) {
+  --barbie-hot: #ff007f;
+  --barbie-vibrant: #ff1493;
+  --barbie-deep: #c71585;
+  --barbie-bubblegum: #ff69b4;
+  --barbie-soft: #ffb6c1;
+  --barbie-blush: #fff0f7;
+  --barbie-card-bg: rgba(255, 255, 255, 0.88);
+  --barbie-glass-border: rgba(255, 105, 180, 0.35);
+  --barbie-shadow: 0 12px 35px rgba(216, 27, 96, 0.18);
+  --barbie-text: #3b0d27;
+  background: linear-gradient(135deg, #fff0f7 0%, #ffe4f0 25%, #ffd1e8 50%, #ffeaf4 75%, #fff5fa 100%) !important;
   color: #3b0d27 !important;
 }
 
 /* ==========================================================================
-   THEME 2: SUNSET GLAM (Coral Peach, Sunset Orange & Golden Magenta)
+   THEME 2: DARK THEME (Dark Barbie / Neon Cyber Glam)
    ========================================================================== */
-body.theme-sunset {
-  --barbie-hot: #ff3366;
-  --barbie-vibrant: #ff5e36;
-  --barbie-deep: #8b005d;
-  --barbie-bubblegum: #ff85a1;
-  --barbie-blush: #fff5eb;
-  --barbie-gold: #ffb703;
-  --barbie-card-bg: rgba(255, 250, 245, 0.92);
-  --barbie-glass-border: rgba(255, 94, 54, 0.4);
-  --barbie-shadow: 0 12px 35px rgba(255, 60, 100, 0.22);
-  --barbie-text: #3d1308;
-  background: linear-gradient(135deg, #fff5eb 0%, #ffe0d6 25%, #ffccd5 50%, #ffb3c1 75%, #ffe5ec 100%) !important;
-  color: #3d1308 !important;
-}
-
-body.theme-sunset .btn-barbie-primary,
-body.theme-sunset .doll-box,
-body.theme-sunset .barbie-ribbon,
-body.theme-sunset #barbie-metrics-bar {
-  background: linear-gradient(135deg, #ff5e36 0%, #ff2a6d 50%, #8b005d 100%) !important;
-}
-
-body.theme-sunset .text-gradient-barbie {
-  background: linear-gradient(135deg, #ff5e36 0%, #ff2a6d 50%, #8b005d 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-body.theme-sunset .vanity-mirror {
-  border-color: #ff3366 !important;
-  box-shadow: 0 0 35px rgba(255, 51, 102, 0.5) !important;
-}
-
-/* ==========================================================================
-   THEME 3: PASTEL DREAMHOUSE (Cotton Candy, Lilac & Baby Pink)
-   ========================================================================== */
-body.theme-pastel {
-  --barbie-hot: #d946ef;
-  --barbie-vibrant: #ec4899;
-  --barbie-deep: #7e22ce;
-  --barbie-bubblegum: #f472b6;
-  --barbie-blush: #fdf4ff;
-  --barbie-gold: #fde047;
-  --barbie-card-bg: rgba(255, 255, 255, 0.94);
-  --barbie-glass-border: rgba(217, 70, 239, 0.3);
-  --barbie-shadow: 0 12px 35px rgba(217, 70, 239, 0.15);
-  --barbie-text: #2e1065;
-  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 25%, #fce7f3 50%, #e0e7ff 75%, #f5f3ff 100%) !important;
-  color: #2e1065 !important;
-}
-
-body.theme-pastel .btn-barbie-primary,
-body.theme-pastel .doll-box,
-body.theme-pastel .barbie-ribbon,
-body.theme-pastel #barbie-metrics-bar {
-  background: linear-gradient(135deg, #ec4899 0%, #c084fc 50%, #818cf8 100%) !important;
-}
-
-body.theme-pastel .text-gradient-barbie {
-  background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #6366f1 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-body.theme-pastel .vanity-mirror {
-  border-color: #c084fc !important;
-  box-shadow: 0 0 35px rgba(192, 132, 252, 0.5) !important;
-}
-
-/* ==========================================================================
-   THEME 4: CYBER BARBIE (Dark Neon Magenta, Hot Cyan & Night Glam)
-   ========================================================================== */
-body.theme-cyber {
+body.theme-dark {
   --barbie-hot: #ff007f;
   --barbie-vibrant: #00f0ff;
   --barbie-deep: #b0006d;
   --barbie-bubblegum: #ff69b4;
-  --barbie-blush: #1a001a;
+  --barbie-blush: #120015;
   --barbie-gold: #00f0ff;
-  --barbie-card-bg: rgba(24, 4, 28, 0.88);
+  --barbie-card-bg: rgba(26, 4, 30, 0.9);
   --barbie-glass-border: rgba(255, 0, 127, 0.45);
-  --barbie-shadow: 0 12px 35px rgba(255, 0, 127, 0.35);
+  --barbie-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
   --barbie-text: #ffe6f5;
-  background: linear-gradient(135deg, #120015 0%, #200024 30%, #2d0033 65%, #150019 100%) !important;
+  background: linear-gradient(135deg, #0e0011 0%, #1a001e 30%, #27002e 65%, #100014 100%) !important;
   color: #ffe6f5 !important;
 }
 
-body.theme-cyber h1, body.theme-cyber h2, body.theme-cyber h3,
-body.theme-cyber .font-display, body.theme-cyber p {
+body.theme-dark h1, body.theme-dark h2, body.theme-dark h3,
+body.theme-dark .font-display, body.theme-dark p {
   color: #ffe6f5 !important;
 }
 
-body.theme-cyber .barbie-card {
-  background: rgba(28, 5, 33, 0.85) !important;
-  border-color: rgba(255, 0, 127, 0.5) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 0, 127, 0.25) !important;
+body.theme-dark .barbie-card {
+  background: rgba(26, 4, 30, 0.88) !important;
+  border-color: rgba(255, 0, 127, 0.45) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 0, 127, 0.25) !important;
 }
 
-body.theme-cyber .barbie-nav {
-  background: rgba(18, 0, 22, 0.92) !important;
+body.theme-dark .barbie-nav {
+  background: rgba(14, 0, 18, 0.94) !important;
   border-bottom: 2px solid #ff007f !important;
+  box-shadow: 0 4px 25px rgba(255, 0, 127, 0.3) !important;
 }
 
-body.theme-cyber .nav-link {
+body.theme-dark .nav-link {
   color: #ffb3d9 !important;
 }
 
-body.theme-cyber .nav-link:hover, body.theme-cyber .nav-link.active {
+body.theme-dark .nav-link:hover, body.theme-dark .nav-link.active {
   color: #ffffff !important;
   background: #ff007f !important;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.6) !important;
 }
 
-body.theme-cyber .btn-barbie-secondary {
-  background: #1c0521 !important;
+body.theme-dark .btn-barbie-secondary {
+  background: #1e0524 !important;
   color: #00f0ff !important;
   border-color: #00f0ff !important;
 }
 
-body.theme-cyber .skill-pill {
-  background: #25072b !important;
+body.theme-dark .skill-pill {
+  background: #24072a !important;
   color: #ffb3d9 !important;
   border-color: #ff007f !important;
 }
 
-body.theme-cyber .btn-barbie-primary,
-body.theme-cyber .doll-box,
-body.theme-cyber .barbie-ribbon,
-body.theme-cyber #barbie-metrics-bar {
+body.theme-dark .offer-chip {
+  background: #24072a !important;
+  color: #ffb3d9 !important;
+  border-color: rgba(255, 0, 127, 0.4) !important;
+}
+
+body.theme-dark .offer-chip.selected {
+  background: linear-gradient(135deg, #ff007f 0%, #9900ff 100%) !important;
+  color: #ffffff !important;
+  border-color: #00f0ff !important;
+}
+
+body.theme-dark .quote-box {
+  background: radial-gradient(circle at top left, #28062f 0%, #17001c 100%) !important;
+  border-color: #ff007f !important;
+}
+
+body.theme-dark #barbie-quote-text {
+  color: #ffb3d9 !important;
+}
+
+body.theme-dark input, body.theme-dark textarea {
+  background: #220527 !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 0, 127, 0.4) !important;
+}
+
+body.theme-dark .polaroid-card {
+  background: #1f0424 !important;
+  border-color: #ff007f !important;
+}
+
+body.theme-dark .polaroid-card p {
+  color: #ffb3d9 !important;
+}
+
+body.theme-dark .vanity-mirror {
+  border-color: #00f0ff !important;
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.6), 0 0 60px rgba(255, 0, 127, 0.4) !important;
+  background: #140019 !important;
+}
+
+body.theme-dark .btn-barbie-primary,
+body.theme-dark .doll-box,
+body.theme-dark .barbie-ribbon,
+body.theme-dark #barbie-metrics-bar {
   background: linear-gradient(135deg, #ff007f 0%, #9900ff 50%, #00f0ff 100%) !important;
 }
 
-body.theme-cyber .text-gradient-barbie {
+body.theme-dark .text-gradient-barbie {
   background: linear-gradient(135deg, #ff007f 0%, #ff69b4 50%, #00f0ff 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-}
-
-body.theme-cyber .vanity-mirror {
-  border-color: #00f0ff !important;
-  box-shadow: 0 0 35px rgba(0, 240, 255, 0.6), 0 0 60px rgba(255, 0, 127, 0.4) !important;
-  background: #120015 !important;
 }
 
 /* Base Styles */
@@ -202,7 +178,7 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  transition: background 0.5s ease, color 0.4s ease;
+  transition: background 0.4s ease, color 0.3s ease;
 }
 
 /* Custom Barbie Cursor */
@@ -798,79 +774,6 @@ a, button {
   transform: scale(1.03) rotate(-1deg);
 }
 
-/* Barbie Smart Phone (B-Phone 16 Pro) Modal */
-#b-phone-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(30, 0, 20, 0.65);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  padding: 16px;
-}
-
-#b-phone-modal.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.b-phone-chassis {
-  width: 320px;
-  max-width: 90vw;
-  height: 620px;
-  max-height: 90vh;
-  background: linear-gradient(145deg, #ff1493 0%, #e0218a 40%, #7d004b 100%);
-  border-radius: 46px;
-  padding: 10px;
-  box-shadow: 
-    0 25px 70px rgba(0, 0, 0, 0.6),
-    0 0 0 3px #ffd700,
-    0 0 35px rgba(255, 0, 127, 0.6);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  transform: translateY(40px) scale(0.92);
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-#b-phone-modal.active .b-phone-chassis {
-  transform: translateY(0) scale(1);
-}
-
-.b-phone-screen {
-  background: #fff0f7;
-  border-radius: 38px;
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid #000000;
-}
-
-/* Dynamic Island */
-.b-phone-notch {
-  width: 105px;
-  height: 24px;
-  background: #000000;
-  border-radius: 999px;
-  margin: 8px auto 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #ff69b4;
-  font-size: 10px;
-  font-weight: bold;
-  z-index: 5;
-}
-
 /* Sticker on Mirror */
 .mirror-sticker {
   position: absolute;
@@ -883,28 +786,6 @@ a, button {
 
 .mirror-sticker:hover {
   transform: scale(1.15) rotate(5deg);
-}
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .doll-box {
-    max-width: 92%;
-  }
-  .nav-links-container {
-    display: none;
-  }
-  .nav-links-container.open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 240, 248, 0.98);
-    padding: 20px;
-    border-bottom: 2px solid var(--barbie-hot);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
 }
 
 /* ==========================================================================
@@ -943,6 +824,23 @@ a, button {
   display: flex;
   flex-direction: column;
   border: 2px solid #220516;
+}
+
+/* Dynamic Island */
+.b-phone-notch {
+  width: 110px;
+  height: 24px;
+  background: #000000;
+  border-radius: 999px;
+  margin: 8px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ff69b4;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 5;
 }
 
 /* Sound frequency visualizer bars */
@@ -1023,3 +921,24 @@ a, button {
   position: relative;
 }
 
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .doll-box {
+    max-width: 92%;
+  }
+  .nav-links-container {
+    display: none;
+  }
+  .nav-links-container.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 240, 248, 0.98);
+    padding: 20px;
+    border-bottom: 2px solid var(--barbie-hot);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+}
