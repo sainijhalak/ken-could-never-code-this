@@ -68,15 +68,37 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <div class="hidden lg:flex items-center gap-2 nav-links-container">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#b-phone" class="nav-link">Barbie Phone 📱</a>
-        <a href="#closet" class="nav-link">Skills Closet</a>
-        <a href="#projects" class="nav-link">Dream Projects</a>
-        <a href="#trophies" class="nav-link">Hall of Fame</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#contact" class="nav-link">Dream Mail</a>
+      <!-- Desktop & Mobile Navigation Links -->
+      <div class="hidden lg:flex items-center gap-1.5 nav-links-container">
+        <a href="#about" class="nav-link" onclick="closeMobileNav()">
+          <span class="nav-link-icon">💖</span>
+          <span>Dream Story</span>
+        </a>
+        <a href="#b-phone" class="nav-link nav-link-highlight" onclick="closeMobileNav()">
+          <span class="nav-link-icon">📱</span>
+          <span>B-Phone 16</span>
+          <span class="nav-pill-live">LIVE</span>
+        </a>
+        <a href="#closet" class="nav-link" onclick="closeMobileNav()">
+          <span class="nav-link-icon">👗</span>
+          <span>Glam Closet</span>
+        </a>
+        <a href="#projects" class="nav-link" onclick="closeMobileNav()">
+          <span class="nav-link-icon">🚀</span>
+          <span>Dream Projects</span>
+        </a>
+        <a href="#trophies" class="nav-link" onclick="closeMobileNav()">
+          <span class="nav-link-icon">👑</span>
+          <span>Hall of Fame</span>
+        </a>
+        <a href="#education" class="nav-link" onclick="closeMobileNav()">
+          <span class="nav-link-icon">🎓</span>
+          <span>Journey</span>
+        </a>
+        <a href="#contact" class="nav-link" onclick="closeMobileNav()">
+          <span class="nav-link-icon">💌</span>
+          <span>VIP Hotline</span>
+        </a>
       </div>
 
       <!-- Action Button & "Hi Barbie!" -->
@@ -386,44 +408,77 @@
         Jhalak's Interactive <span class="font-barbie text-[#ff007f]">Barbie B-Phone 16 Pro Max</span>
       </h2>
       <p class="text-[#7a2254] max-w-2xl mx-auto mt-3 font-medium">
-        Not your average portfolio widget! This is a real interactive Barbie smartphone. Tap the app icons on the screen, text Ken, play a bug-squashing mini-game, spin the pink vinyl record, or customize the phone's wallpaper!
+        Touch the glass, text Ken in real-time, play 8-bit Barbie hits, squash code bugs in arcade mode, or try out the Barbie soundboard! 100% interactive.
       </p>
     </div>
 
-    <!-- 3-Column Layout: Left Quick Triggers + Center B-Phone + Right Quick Triggers -->
+    <!-- 3-Column Layout: Left Controls + Center B-Phone + Right Controls -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
       
-      <!-- Left Side Interactive Launchers -->
+      <!-- Left Column: Case Studio & Live Alerts -->
       <div class="lg:col-span-3 space-y-4 order-2 lg:order-1 text-center lg:text-right">
         
-        <div onclick="openBPhoneApp('chat')" class="barbie-card p-4 cursor-pointer hover:border-[#ff007f] transition-all group">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">💬</div>
-          <h4 class="font-display font-bold text-sm text-[#3b0d27]">Chat with Ken</h4>
-          <p class="text-[11px] text-[#8c1c5a] mt-0.5">Interactive iMessage with live typing and movie banter.</p>
-          <span class="inline-block mt-2 text-[10px] font-bold text-[#ff007f] group-hover:underline">Tap to Chat →</span>
+        <!-- Case Finish Selector -->
+        <div class="barbie-card p-4 transition-all">
+          <div class="text-xl mb-1">🎨</div>
+          <h4 class="font-display font-bold text-sm text-[#3b0d27]">B-Phone Case Studio</h4>
+          <p class="text-[11px] text-[#8c1c5a] mt-0.5">Change the phone's metallic finish:</p>
+          <div class="flex items-center justify-center lg:justify-end gap-2 mt-3">
+            <button onclick="setBPhoneCaseColor('hotpink')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] border-2 border-white shadow hover:scale-110 transition-transform" title="Hot Pink Titanium"></button>
+            <button onclick="setBPhoneCaseColor('lavender')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#a855f7] to-[#d946ef] border-2 border-white shadow hover:scale-110 transition-transform" title="Neon Lavender"></button>
+            <button onclick="setBPhoneCaseColor('gold')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#f59e0b] to-[#fde047] border-2 border-white shadow hover:scale-110 transition-transform" title="Golden Glam"></button>
+            <button onclick="setBPhoneCaseColor('midnight')" class="w-7 h-7 rounded-full bg-gradient-to-tr from-[#1f0029] to-[#ff007f] border-2 border-white shadow hover:scale-110 transition-transform" title="Cyber Midnight"></button>
+          </div>
         </div>
 
-        <div onclick="openBPhoneApp('music')" class="barbie-card p-4 cursor-pointer hover:border-[#ff007f] transition-all group">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🎵</div>
-          <h4 class="font-display font-bold text-sm text-[#3b0d27]">Pink Vinyl Turntable</h4>
-          <p class="text-[11px] text-[#8c1c5a] mt-0.5">Spinning vinyl record player with synthesized audio.</p>
-          <span class="inline-block mt-2 text-[10px] font-bold text-[#ff007f] group-hover:underline">Play Music →</span>
+        <!-- Live Barbieland Alerts -->
+        <div class="barbie-card p-4 transition-all text-left">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold text-[#ff007f] uppercase tracking-wider">🔔 Live Alerts</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          </div>
+          <div class="space-y-2 text-[11px]">
+            <div onclick="openBPhoneApp('chat')" class="p-2 rounded-xl bg-pink-50 hover:bg-pink-100 cursor-pointer border border-pink-200 transition-all flex items-center gap-2">
+              <span>💬</span>
+              <div>
+                <strong class="text-[#3b0d27]">Ken:</strong> "Did you push to GitHub?"
+              </div>
+            </div>
+            <div onclick="openBPhoneApp('leetcode')" class="p-2 rounded-xl bg-amber-50 hover:bg-amber-100 cursor-pointer border border-amber-200 transition-all flex items-center gap-2">
+              <span>⚡</span>
+              <div>
+                <strong class="text-[#3b0d27]">LeetCode:</strong> 400+ problems streak!
+              </div>
+            </div>
+            <div onclick="openBPhoneApp('music')" class="p-2 rounded-xl bg-purple-50 hover:bg-purple-100 cursor-pointer border border-purple-200 transition-all flex items-center gap-2">
+              <span>🎵</span>
+              <div>
+                <strong class="text-[#3b0d27]">Barbie Tunes:</strong> Ready to play
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <!-- Center Column: The Flagship Playable B-Phone -->
+      <!-- Center Column: The Flagship Playable B-Phone 16 Pro Max -->
       <div class="lg:col-span-6 flex justify-center order-1 lg:order-2">
-        <div class="bphone-case">
+        <div id="bphone-device-chassis" class="bphone-case case-hotpink">
           
           <!-- Physical Hardware Buttons -->
           <div class="bphone-btn-vol-up" onclick="triggerBPhoneVolume('up')" title="Volume Up"></div>
           <div class="bphone-btn-vol-down" onclick="triggerBPhoneVolume('down')" title="Volume Down"></div>
           <div class="bphone-btn-power" onclick="toggleBPhonePower()" title="Power / Lock Screen"></div>
 
-          <!-- Phone Screen -->
+          <!-- Phone Screen Container -->
           <div id="bphone-screen-container" class="bphone-screen-inner">
             
+            <!-- Glass Reflection Sheen -->
+            <div class="bphone-glass-sheen"></div>
+
+            <!-- Screen Camera Flash Simulation Overlay -->
+            <div id="bphone-cam-flash"></div>
+
             <!-- Dynamic Island with Interactive Expansion -->
             <div id="bphone-island" class="bphone-island-pill" onclick="toggleDynamicIsland()" title="Tap to expand Dynamic Island!">
               <div id="bphone-island-content" class="w-full flex items-center justify-between px-3">
@@ -447,8 +502,8 @@
                 <div class="text-[11px] font-bold text-[#9b1178] uppercase tracking-wider">Thursday, Barbieland • 28°C ☀️</div>
               </div>
 
-              <!-- Homescreen App Grid (6 Bubbly Apps) -->
-              <div class="grid grid-cols-3 gap-y-5 gap-x-3 my-auto pt-3">
+              <!-- Homescreen App Grid (7 Bubbly Apps) -->
+              <div class="grid grid-cols-3 gap-y-4 gap-x-3 my-auto pt-2">
                 
                 <!-- App 1: Ken Chat -->
                 <div onclick="openBPhoneApp('chat')" class="flex flex-col items-center group cursor-pointer">
@@ -459,7 +514,7 @@
                   <span class="bphone-app-label">Ken Chat</span>
                 </div>
 
-                <!-- App 2: Music -->
+                <!-- App 2: B-Music -->
                 <div onclick="openBPhoneApp('music')" class="flex flex-col items-center group cursor-pointer">
                   <div class="bphone-app-icon bg-gradient-to-tr from-[#ff007f] to-[#ff80bf] text-white">
                     🎵
@@ -491,7 +546,15 @@
                   <span class="bphone-app-label">LeetCode</span>
                 </div>
 
-                <!-- App 6: Wallpapers -->
+                <!-- App 6: Soundboard -->
+                <div onclick="openBPhoneApp('soundboard')" class="flex flex-col items-center group cursor-pointer">
+                  <div class="bphone-app-icon bg-gradient-to-tr from-[#f43f5e] to-[#fb7185] text-white">
+                    🔊
+                  </div>
+                  <span class="bphone-app-label">Sounds</span>
+                </div>
+
+                <!-- App 7: Wallpapers -->
                 <div onclick="openBPhoneApp('wallpaper')" class="flex flex-col items-center group cursor-pointer">
                   <div class="bphone-app-icon bg-gradient-to-tr from-[#ec4899] to-[#f43f5e] text-white">
                     🎨
@@ -502,16 +565,16 @@
               </div>
 
               <!-- Bottom Persistent App Dock -->
-              <div class="bg-white/80 backdrop-blur-md rounded-2xl p-2.5 flex items-center justify-around shadow-md border border-white/90">
-                <button onclick="openBPhoneApp('chat')" class="text-2xl hover:scale-110 transition-transform">💬</button>
-                <button onclick="openBPhoneApp('music')" class="text-2xl hover:scale-110 transition-transform">🎵</button>
-                <button onclick="openBPhoneApp('camera')" class="text-2xl hover:scale-110 transition-transform">📸</button>
-                <button onclick="openBPhoneApp('game')" class="text-2xl hover:scale-110 transition-transform">🎮</button>
+              <div class="bg-white/85 backdrop-blur-md rounded-2xl p-2 flex items-center justify-around shadow-md border border-white/90">
+                <button onclick="openBPhoneApp('chat')" class="text-xl hover:scale-110 transition-transform" title="Chat">💬</button>
+                <button onclick="openBPhoneApp('music')" class="text-xl hover:scale-110 transition-transform" title="Music">🎵</button>
+                <button onclick="openBPhoneApp('camera')" class="text-xl hover:scale-110 transition-transform" title="Camera">📸</button>
+                <button onclick="openBPhoneApp('game')" class="text-xl hover:scale-110 transition-transform" title="Games">🎮</button>
               </div>
 
             </div>
 
-            <!-- ==================== VIEW 2: KEN CHAT APP ==================== -->
+            <!-- ==================== VIEW 2: KEN CHAT APP (INTERACTIVE TEXTING) ==================== -->
             <div id="bphone-app-chat" class="bphone-app-view hidden flex-1 p-3 overflow-y-auto flex flex-col justify-between bg-white/95">
               <div>
                 <!-- App Header -->
@@ -523,11 +586,11 @@
                     <div class="font-bold text-xs text-[#3b0d27]">Ken (Tech Lead)</div>
                     <div class="text-[9px] text-[#ff007f] font-semibold">Online in Barbieland 🏄‍♂️</div>
                   </div>
-                  <div class="w-6"></div>
+                  <button onclick="clearKenChat()" class="text-[10px] text-stone-400 hover:text-red-500 font-bold" title="Clear Chat">Clear</button>
                 </div>
 
                 <!-- Chat Stream -->
-                <div id="bphone-chat-messages" class="space-y-2 text-[11px] max-h-[290px] overflow-y-auto pr-1">
+                <div id="bphone-chat-messages" class="space-y-2 text-[11px] max-h-[220px] overflow-y-auto pr-1">
                   <div class="bg-stone-100 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm">
                     <strong>Ken:</strong> Hey Jhalak Barbie! Did you solve that 400th LeetCode tree problem? 🌴
                   </div>
@@ -538,30 +601,43 @@
                     <strong>Ken:</strong> You're literally the smartest Software Engineer in Barbieland! What are you building next? 💖
                   </div>
                 </div>
+
+                <!-- Typing indicator -->
+                <div id="ken-typing-bubble" class="hidden text-[10px] text-[#8c1c5a] font-semibold mt-1 px-2 flex items-center gap-1">
+                  <span>Ken is typing</span>
+                  <span class="ken-typing-dots"><span></span><span></span><span></span></span>
+                </div>
               </div>
 
-              <!-- Quick Replies -->
-              <div class="pt-2 border-t border-pink-200">
-                <div class="text-[9px] font-bold text-[#9b1178] uppercase mb-1.5">Tap a quick reply to Ken:</div>
+              <!-- Quick Replies & Custom Input Form -->
+              <div class="pt-2 border-t border-pink-200 space-y-2">
                 <div class="flex flex-wrap gap-1">
-                  <button onclick="sendKenChat('gemini')" class="bphone-quick-reply">
-                    💅 Gemini AI is ready
+                  <button onclick="sendKenChat('gemini')" class="bphone-quick-reply text-[9px] py-1 px-2 rounded-full bg-pink-100 text-[#8c1c5a] font-bold hover:bg-[#ff007f] hover:text-white transition-colors">
+                    💅 Jhalak's tech stack?
                   </button>
-                  <button onclick="sendKenChat('beach')" class="bphone-quick-reply">
+                  <button onclick="sendKenChat('beach')" class="bphone-quick-reply text-[9px] py-1 px-2 rounded-full bg-pink-100 text-[#8c1c5a] font-bold hover:bg-[#ff007f] hover:text-white transition-colors">
                     ☕ Ken, go do beach
                   </button>
-                  <button onclick="sendKenChat('leetcode')" class="bphone-quick-reply">
-                    ⚡ 400+ LeetCode solved!
+                  <button onclick="sendKenChat('leetcode')" class="bphone-quick-reply text-[9px] py-1 px-2 rounded-full bg-pink-100 text-[#8c1c5a] font-bold hover:bg-[#ff007f] hover:text-white transition-colors">
+                    ⚡ 400+ LeetCode secrets?
                   </button>
                 </div>
+
+                <!-- Actual Interactive Text Input Form -->
+                <form id="bphone-custom-chat-form" onsubmit="event.preventDefault(); submitKenCustomMessage();" class="flex items-center gap-1.5">
+                  <input id="bphone-custom-chat-input" type="text" placeholder="Type anything to Ken..." autocomplete="off" class="text-[11px] bg-white rounded-full px-3 py-1.5 border border-pink-300 flex-1 outline-none text-[#3b0d27] focus:border-[#ff007f]">
+                  <button type="submit" class="w-7 h-7 rounded-full bg-[#ff007f] text-white flex items-center justify-center text-xs hover:scale-105 active:scale-95 transition-transform shadow-sm">
+                    ↑
+                  </button>
+                </form>
               </div>
             </div>
 
-            <!-- ==================== VIEW 3: B-MUSIC APP ==================== -->
+            <!-- ==================== VIEW 3: B-MUSIC APP (WORKING AUDIO SYNTH) ==================== -->
             <div id="bphone-app-music" class="bphone-app-view hidden flex-1 p-4 flex flex-col justify-between text-center bg-gradient-to-b from-[#fff0f7] to-[#ffd6eb]">
               <div class="flex items-center justify-between pb-2 border-b border-pink-200 text-xs">
                 <button onclick="closeBPhoneApp()" class="text-[#ff007f] font-bold">‹ Home</button>
-                <span class="font-bold text-[#3b0d27]">Now Playing</span>
+                <span class="font-bold text-[#3b0d27]">Barbie Music</span>
                 <span class="text-[#ff007f]">💖</span>
               </div>
 
@@ -573,31 +649,38 @@
                   </div>
                 </div>
 
-                <div class="mt-4">
-                  <div class="font-display font-extrabold text-base text-[#3b0d27]">Dance The Night</div>
-                  <div class="text-xs text-[#ff007f] font-semibold">Dua Lipa • Barbie The Album</div>
+                <div class="mt-3">
+                  <div id="bphone-music-title" class="font-display font-extrabold text-sm text-[#3b0d27]">Dance The Night</div>
+                  <div id="bphone-music-artist" class="text-[10px] text-[#ff007f] font-semibold">Dua Lipa • Barbie The Album</div>
                 </div>
 
                 <!-- Animated Soundwave Bars -->
-                <div class="sound-bars my-3 justify-center">
+                <div id="bphone-music-bars" class="sound-bars my-2 justify-center">
                   <span class="sound-bar"></span>
                   <span class="sound-bar"></span>
                   <span class="sound-bar"></span>
                   <span class="sound-bar"></span>
                   <span class="sound-bar"></span>
+                </div>
+
+                <!-- Track selector buttons -->
+                <div class="flex items-center justify-center gap-1.5 my-2">
+                  <button onclick="selectBarbieTrack(0)" class="text-[9px] font-bold py-1 px-2.5 rounded-full bg-white text-[#ff007f] border border-pink-300 shadow-sm hover:scale-105">Track 1</button>
+                  <button onclick="selectBarbieTrack(1)" class="text-[9px] font-bold py-1 px-2.5 rounded-full bg-white text-[#ff007f] border border-pink-300 shadow-sm hover:scale-105">Track 2</button>
+                  <button onclick="selectBarbieTrack(2)" class="text-[9px] font-bold py-1 px-2.5 rounded-full bg-white text-[#ff007f] border border-pink-300 shadow-sm hover:scale-105">Track 3</button>
                 </div>
               </div>
 
               <!-- Controls -->
               <div>
-                <button id="bphone-play-btn" onclick="toggleBarbieMusic()" class="btn-barbie-primary w-full !py-3 text-xs shadow-md">
+                <button id="bphone-play-btn" onclick="toggleBarbieMusic()" class="btn-barbie-primary w-full !py-2.5 text-xs shadow-md">
                   <i class="fa-solid fa-play"></i>
                   <span>Play Barbie Synth Track</span>
                 </button>
               </div>
             </div>
 
-            <!-- ==================== VIEW 4: GLAM CAM APP ==================== -->
+            <!-- ==================== VIEW 4: GLAM CAM APP (WITH WATERMARK STICKERS & FLASH) ==================== -->
             <div id="bphone-app-camera" class="bphone-app-view hidden flex-1 relative bg-black flex flex-col justify-between p-3 text-white">
               <div class="flex items-center justify-between text-[10px] text-pink-300 font-bold z-10">
                 <button onclick="closeBPhoneApp()" class="text-white bg-white/20 px-2 py-0.5 rounded-full">‹ Home</button>
@@ -605,44 +688,107 @@
                 <span>[ HDR ]</span>
               </div>
 
-              <!-- Viewfinder Frame -->
-              <div class="my-auto text-center border-2 border-dashed border-pink-400/80 rounded-2xl p-6 bg-pink-900/20 backdrop-blur-sm relative">
-                <div class="text-4xl mb-2 animate-bounce">📸</div>
-                <div class="font-barbie text-xl text-[#ff007f]">Barbie Glam Cam</div>
-                <p class="text-[10px] text-pink-200 mt-1">Tap the shutter button below to trigger the real camera flash & click sound!</p>
+              <!-- Viewfinder Frame with Sticker Overlay -->
+              <div class="my-auto text-center border-2 border-dashed border-pink-400/80 rounded-2xl p-4 bg-pink-900/20 backdrop-blur-sm relative overflow-hidden">
+                <div class="w-24 h-24 rounded-full mx-auto overflow-hidden border-2 border-pink-300 shadow mb-2 bg-pink-100">
+                  <img src="assets/jhalak-selfie.png" alt="Avatar" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Dynamic Sticker Stamp -->
+                <div id="bphone-cam-sticker" class="inline-block bg-[#ff007f] text-white text-[10px] font-bold py-1 px-3 rounded-full shadow-md animate-pulse">
+                  👑 Software Engineer Barbie
+                </div>
+                
+                <p class="text-[9px] text-pink-200 mt-2">Tap sticker below to change watermark, then snap!</p>
+                <div class="flex items-center justify-center gap-1 mt-1.5">
+                  <button onclick="setCamSticker('👑 Software Engineer Barbie')" class="text-[8px] bg-white/20 px-2 py-0.5 rounded-full">👑 Engineer</button>
+                  <button onclick="setCamSticker('⚡ 400+ LeetCode Club')" class="text-[8px] bg-white/20 px-2 py-0.5 rounded-full">⚡ DSA</button>
+                  <button onclick="setCamSticker('🌸 Dreamhouse Architect')" class="text-[8px] bg-white/20 px-2 py-0.5 rounded-full">🌸 Architect</button>
+                </div>
               </div>
 
               <div class="z-10 text-center pb-2">
-                <button onclick="snapMirrorSelfie()" class="w-14 h-14 rounded-full border-4 border-white bg-[#ff007f] shadow-lg mx-auto active:scale-90 transition-transform flex items-center justify-center text-white text-lg">
+                <button onclick="snapBPhoneShutter()" class="w-13 h-13 rounded-full border-4 border-white bg-[#ff007f] shadow-lg mx-auto active:scale-90 transition-transform flex items-center justify-center text-white text-lg p-3">
                   📸
                 </button>
                 <div class="text-[9px] text-white/90 mt-1 font-bold tracking-wider">TAP SHUTTER</div>
               </div>
             </div>
 
-            <!-- ==================== VIEW 5: BUG SMASHER MINI-GAME ==================== -->
+            <!-- ==================== VIEW 5: BUG SMASHER 2.0 (ARCADE MINI-GAME) ==================== -->
             <div id="bphone-app-game" class="bphone-app-view hidden flex-1 p-3 flex flex-col justify-between bg-gradient-to-b from-[#ecfdf5] to-[#d1fae5]">
               <div class="flex items-center justify-between pb-2 border-b border-emerald-300 text-xs">
                 <button onclick="closeBPhoneApp()" class="text-emerald-700 font-bold">‹ Home</button>
-                <span class="font-bold text-emerald-800">Bug Smasher Mini-Game</span>
-                <span class="bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold text-[10px]" id="bphone-bug-score">0</span>
+                <span class="font-bold text-emerald-800">Bug Smasher Arcade</span>
+                <span class="bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold text-[10px]" id="bphone-bug-score">0 pts</span>
               </div>
 
-              <div class="text-center my-1">
-                <div class="text-[11px] font-bold text-emerald-800">Tap bugs to debug Jhalak's code! 🐛</div>
+              <div class="flex items-center justify-between text-[10px] font-bold text-emerald-800 px-1 my-1">
+                <span>Combo: <span id="bphone-bug-combo" class="text-[#ff007f]">1x</span> 🔥</span>
+                <span id="bphone-bug-rank" class="text-emerald-700">Rank: Junior Debugger</span>
               </div>
 
               <!-- Interactive Bug Grid -->
-              <div id="bphone-bug-grid" class="bphone-game-grid flex items-center justify-center">
+              <div id="bphone-bug-grid" class="bphone-game-grid flex items-center justify-center relative">
                 <!-- Bugs dynamically spawn here -->
               </div>
 
-              <button onclick="spawnNextBug()" class="w-full py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow hover:bg-emerald-700">
-                ⚡ Spawn More Bugs
-              </button>
+              <div class="flex gap-2">
+                <button onclick="spawnNextBug()" class="flex-1 py-2 bg-emerald-600 text-white rounded-xl text-xs font-bold shadow hover:bg-emerald-700">
+                  ⚡ Spawn Bugs
+                </button>
+                <button onclick="resetBugGame()" class="py-2 px-3 bg-white text-emerald-700 border border-emerald-400 rounded-xl text-xs font-bold shadow">
+                  Reset
+                </button>
+              </div>
             </div>
 
-            <!-- ==================== VIEW 6: LEETCODE 400+ APP ==================== -->
+            <!-- ==================== VIEW 6: BARBIE SOUNDBOARD APP ==================== -->
+            <div id="bphone-app-soundboard" class="bphone-app-view hidden flex-1 p-3 flex flex-col justify-between bg-gradient-to-b from-[#fff0f7] to-[#ffe4f3]">
+              <div class="flex items-center justify-between pb-2 border-b border-pink-200 text-xs">
+                <button onclick="closeBPhoneApp()" class="text-[#ff007f] font-bold">‹ Home</button>
+                <span class="font-bold text-[#3b0d27]">Barbie Soundboard 🔊</span>
+                <span class="text-[#ff007f]">✨</span>
+              </div>
+
+              <div class="text-[10px] text-[#8c1c5a] text-center my-1 font-semibold">
+                Tap any sound pad to play real audio effects!
+              </div>
+
+              <!-- Sound Pads Grid -->
+              <div class="grid grid-cols-2 gap-2 my-auto">
+                <button onclick="playBarbieSoundFX('hibarbie')" class="bphone-sound-pad">
+                  <span class="text-xl">🎀</span>
+                  <span>Hi Barbie!</span>
+                </button>
+                <button onclick="playBarbieSoundFX('hiken')" class="bphone-sound-pad">
+                  <span class="text-xl">🏄‍♂️</span>
+                  <span>Hi Ken!</span>
+                </button>
+                <button onclick="playBarbieSoundFX('dsa')" class="bphone-sound-pad">
+                  <span class="text-xl">⚡</span>
+                  <span>400+ DSA</span>
+                </button>
+                <button onclick="playBarbieSoundFX('gitpush')" class="bphone-sound-pad">
+                  <span class="text-xl">💻</span>
+                  <span>Git Push</span>
+                </button>
+                <button onclick="playBarbieSoundFX('confetti')" class="bphone-sound-pad">
+                  <span class="text-xl">🎉</span>
+                  <span>Confetti</span>
+                </button>
+                <button onclick="playBarbieSoundFX('javasip')" class="bphone-sound-pad">
+                  <span class="text-xl">☕</span>
+                  <span>Java Coffee</span>
+                </button>
+              </div>
+
+              <div class="text-center text-[9px] text-[#9b1178] font-bold">
+                Synthesized live in Web Audio API 💅
+              </div>
+            </div>
+
+            <!-- ==================== VIEW 7: LEETCODE 400+ APP ==================== -->
             <div id="bphone-app-leetcode" class="bphone-app-view hidden flex-1 p-3 flex flex-col justify-between bg-[#190220] text-pink-200 text-xs">
               <div class="flex items-center justify-between pb-2 border-b border-pink-800">
                 <button onclick="closeBPhoneApp()" class="text-pink-400 font-bold">‹ Home</button>
@@ -673,7 +819,7 @@
               </a>
             </div>
 
-            <!-- ==================== VIEW 7: WALLPAPERS APP ==================== -->
+            <!-- ==================== VIEW 8: WALLPAPERS STUDIO ==================== -->
             <div id="bphone-app-wallpaper" class="bphone-app-view hidden flex-1 p-3 flex flex-col justify-between bg-white text-xs">
               <div class="flex items-center justify-between pb-2 border-b border-pink-200">
                 <button onclick="closeBPhoneApp()" class="text-[#ff007f] font-bold">‹ Home</button>
@@ -705,28 +851,74 @@
               </button>
             </div>
 
+            <!-- ==================== VIEW 9: REALISTIC BARBIE LOCK SCREEN ==================== -->
+            <div id="bphone-app-lock" class="bphone-app-view hidden flex-1 p-4 flex flex-col justify-between text-center bphone-lockscreen">
+              <div class="pt-4">
+                <div class="text-xs text-pink-300 font-bold mb-1">🔒 Barbie Lock Screen</div>
+                <div class="font-display font-black text-4xl text-white bphone-live-clock">11:11 PM</div>
+                <div class="text-xs text-pink-200 mt-1">Thursday, October 29</div>
+              </div>
+
+              <!-- Simulated push notifications -->
+              <div class="space-y-2 text-left my-auto">
+                <div class="p-2.5 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 text-white text-[11px] shadow">
+                  <div class="flex items-center justify-between text-[9px] text-pink-300 font-bold mb-0.5">
+                    <span>💬 MESSAGES</span>
+                    <span>now</span>
+                  </div>
+                  <div><strong>Ken:</strong> Can you help me invert a binary tree? 🥺🌴</div>
+                </div>
+
+                <div class="p-2.5 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 text-white text-[11px] shadow">
+                  <div class="flex items-center justify-between text-[9px] text-emerald-300 font-bold mb-0.5">
+                    <span>🚀 GITHUB BARBIE</span>
+                    <span>2m ago</span>
+                  </div>
+                  <div>PR #400: LeetCode Solutions merged with 0 conflicts! ✨</div>
+                </div>
+              </div>
+
+              <div class="pb-2">
+                <button onclick="unlockBPhoneScreen()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md text-white font-bold text-xs hover:bg-[#ff007f] transition-colors border border-white/30">
+                  <span>💖</span> <span>Tap to Unlock</span>
+                </button>
+              </div>
+            </div>
+
             <!-- Bottom Home Gesture Bar (Always clickable to return home) -->
-            <div class="bphone-home-bar-btn" onclick="closeBPhoneApp()" title="Tap to return to Homescreen"></div>
+            <div id="bphone-home-bar" class="bphone-home-bar-btn" onclick="closeBPhoneApp()" title="Tap to return to Homescreen"></div>
 
           </div>
         </div>
       </div>
 
-      <!-- Right Side Interactive Launchers -->
+      <!-- Right Column: Hotline Call & Arcade Leaderboard -->
       <div class="lg:col-span-3 space-y-4 order-3 text-center lg:text-left">
         
-        <div onclick="openBPhoneApp('game')" class="barbie-card p-4 cursor-pointer hover:border-[#ff007f] transition-all group">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">🎮</div>
-          <h4 class="font-display font-bold text-sm text-[#3b0d27]">Bug Smasher Mini-Game</h4>
-          <p class="text-[11px] text-[#8c1c5a] mt-0.5">Squash software bugs on screen to level up your score!</p>
-          <span class="inline-block mt-2 text-[10px] font-bold text-[#ff007f] group-hover:underline">Play Game →</span>
+        <!-- Hotline Call Simulator -->
+        <div class="barbie-card p-4 transition-all">
+          <div class="text-xl mb-1">📞</div>
+          <h4 class="font-display font-bold text-sm text-[#3b0d27]">VIP Barbie Hotline</h4>
+          <p class="text-[11px] text-[#8c1c5a] mt-0.5">Simulate an incoming FaceTime call from Barbie!</p>
+          <button onclick="ringBarbieHotline()" class="btn-barbie-primary w-full !py-2 !text-xs mt-3 flex items-center justify-center gap-1.5">
+            <span>💖</span>
+            <span>Ring Barbie Hotline</span>
+          </button>
         </div>
 
-        <div onclick="openBPhoneApp('camera')" class="barbie-card p-4 cursor-pointer hover:border-[#ff007f] transition-all group">
-          <div class="text-2xl mb-1 group-hover:scale-110 transition-transform">📸</div>
-          <h4 class="font-display font-bold text-sm text-[#3b0d27]">Glam Cam Shutter</h4>
-          <p class="text-[11px] text-[#8c1c5a] mt-0.5">Screen flash & mechanical camera shutter simulation.</p>
-          <span class="inline-block mt-2 text-[10px] font-bold text-[#ff007f] group-hover:underline">Open Camera →</span>
+        <!-- Bug Smasher Arcade Leaderboard -->
+        <div class="barbie-card p-4 transition-all">
+          <div class="text-xl mb-1">🏆</div>
+          <h4 class="font-display font-bold text-sm text-[#3b0d27]">Bug Smasher Arcade</h4>
+          <p class="text-[11px] text-[#8c1c5a] mt-0.5">Whack bugs inside the B-Phone screen to level up!</p>
+          <div class="p-2.5 rounded-xl bg-pink-50 border border-pink-200 my-2 text-center">
+            <div class="text-[10px] text-[#8c1c5a] uppercase font-bold">Personal High Score</div>
+            <div class="text-xl font-display font-black text-[#ff007f]" id="side-high-score">500 pts</div>
+          </div>
+          <button onclick="openBPhoneApp('game')" class="btn-barbie-secondary w-full !py-2 !text-xs flex items-center justify-center gap-1.5">
+            <span>🎮</span>
+            <span>Launch Game in Phone</span>
+          </button>
         </div>
 
       </div>
@@ -1217,25 +1409,35 @@
         </button>
       </div>
 
-      <!-- Card 2: Location & Official CV -->
+      <!-- Card 2: Location & Availability HQ -->
       <div class="barbie-card p-6 flex flex-col justify-between">
         <div>
           <div class="flex items-center gap-3 mb-4">
             <span class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ffd700] text-white flex items-center justify-center text-xl shadow-md border-2 border-white">
-              <i class="fa-solid fa-file-pdf"></i>
+              <i class="fa-solid fa-location-dot"></i>
             </span>
             <div>
-              <div class="text-[10px] font-bold text-[#c71585] uppercase tracking-wider">Official Resume</div>
-              <h3 class="font-display font-bold text-base text-[#3b0d27]">Resume / CV</h3>
+              <div class="text-[10px] font-bold text-[#c71585] uppercase tracking-wider">Barbieland HQ</div>
+              <h3 class="font-display font-bold text-base text-[#3b0d27]">Location & Status</h3>
             </div>
           </div>
-          <p class="text-xs text-[#691845] mb-4 font-semibold">
-            📍 Greater Noida, UP, India <br>
-            <span class="text-[11px] text-[#9b1178] font-normal">Open to Remote & Global Roles</span>
-          </p>
+          <div class="space-y-2 text-xs text-[#691845] mb-4 font-semibold">
+            <div class="flex items-center gap-2">
+              <span class="text-[#ff007f] text-sm">📍</span>
+              <span>Greater Noida, UP, India</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Open to Full-Time & Remote Roles</span>
+            </div>
+            <div class="flex items-center gap-2 text-[11px] text-[#9b1178]">
+              <span>⚡</span>
+              <span>Java • React • AI Agent Systems</span>
+            </div>
+          </div>
         </div>
-        <a href="Jhalak_Saini_CV.pdf" download="Jhalak_Saini_CV.pdf" class="btn-barbie-primary w-full !py-2.5 !text-xs text-center" onclick="triggerBarbieConfetti(0.5, 0.5)">
-          <i class="fa-solid fa-file-arrow-down"></i> <span>Download Barbie CV (PDF)</span>
+        <a href="mailto:sainijhalak015@gmail.com?subject=Hello%20Jhalak!%20Connecting%20from%20Barbieland" class="btn-barbie-primary w-full !py-2.5 !text-xs text-center" onclick="playFanfareSound(); triggerBarbieConfetti(0.5, 0.5)">
+          <i class="fa-solid fa-paper-plane"></i> <span>Say Hello in Barbieland</span>
         </a>
       </div>
 
@@ -1287,7 +1489,7 @@
       <div class="pt-4 flex items-center justify-center gap-6 text-xs text-[#9b1178] font-bold">
         <a href="#hero" class="hover:text-[#ff007f] transition-colors">Back to Top ↑</a>
         <span>•</span>
-        <a href="Jhalak_Saini_CV.pdf" download="Jhalak_Saini_CV.pdf" class="hover:text-[#ff007f] transition-colors">Download CV</a>
+        <a href="#projects" class="hover:text-[#ff007f] transition-colors">Dream Projects</a>
         <span>•</span>
         <a href="https://linkedin.com/in/sainijhalak" target="_blank" class="hover:text-[#ff007f] transition-colors">LinkedIn</a>
         <span>•</span>
@@ -1302,109 +1504,7 @@
   </footer>
 
   
-  <!-- ==================== B-PHONE MODAL (WORKING BARBIE SMARTPHONE) ==================== -->
-  <div id="b-phone-modal" onclick="if(event.target === this) closeBPhone()">
-    <div class="b-phone-chassis">
-      
-      <!-- B-Phone Screen -->
-      <div class="b-phone-screen">
-        
-        <!-- Dynamic Island / Top Notch -->
-        <div class="b-phone-notch">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span>11:11 💖 B-OS</span>
-        </div>
 
-        <!-- App Screen 1: Messages (Active by default) -->
-        <div id="bphone-tab-messages" class="bphone-screen-tab flex-1 p-3 overflow-y-auto flex flex-col justify-between">
-          <div>
-            <div class="text-center pb-2 border-b border-pink-200 mb-2">
-              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#ff007f] to-[#ffd700] mx-auto text-white flex items-center justify-center text-sm font-bold shadow">
-                K
-              </div>
-              <div class="text-[11px] font-bold text-[#3b0d27] mt-0.5">Ken (Tech Lead)</div>
-              <div class="text-[9px] text-[#ff007f] font-semibold">Active in Barbieland</div>
-            </div>
-
-            <!-- Chat bubbles -->
-            <div class="space-y-2 text-[11px]">
-              <div class="bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%]">
-                Hey Jhalak Barbie! Did you solve that 400th LeetCode tree problem? 🌴
-              </div>
-              <div class="bg-[#ff007f] text-white p-2.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto shadow-sm">
-                Already pushed! O(N) runtime, 8.7 CGPA efficiency! 💅⚡
-              </div>
-              <div class="bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%]">
-                Also saw your Vayalum AI farming bot with Gemini! Super proud of you! 💖
-              </div>
-              <div class="bg-[#ff007f] text-white p-2.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto shadow-sm">
-                Every day is the best day in tech! ✨
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-2 border-t border-pink-200 flex items-center gap-1.5">
-            <input type="text" placeholder="iMessage..." readonly value="Ready to code! 💖" class="text-[11px] bg-white rounded-full px-3 py-1.5 border border-pink-300 flex-1 outline-none text-[#3b0d27]">
-            <button onclick="playFanfareSound(); showBarbieToast('Message sent to Ken! 💌', '💖');" class="w-7 h-7 rounded-full bg-[#ff007f] text-white flex items-center justify-center text-xs">
-              ↑
-            </button>
-          </div>
-        </div>
-
-        <!-- App Screen 2: Camera Viewfinder -->
-        <div id="bphone-tab-camera" class="bphone-screen-tab hidden flex-1 relative bg-black flex flex-col justify-between p-3 text-white">
-          <div class="flex items-center justify-between text-[10px] text-pink-300 font-bold z-10">
-            <span>[ 0.5x • 1x • 3x ]</span>
-            <span class="text-red-500 animate-pulse">● REC 4K 60FPS</span>
-          </div>
-
-          <div class="absolute inset-0 flex items-center justify-center opacity-85">
-            <img src="assets/jhalak-barbie-selfie.png" alt="Camera View" class="w-full h-full object-cover">
-          </div>
-
-          <div class="z-10 text-center pb-2">
-            <button onclick="snapMirrorSelfie()" class="w-12 h-12 rounded-full border-4 border-white bg-[#ff007f] shadow-lg mx-auto active:scale-95 transition-transform flex items-center justify-center text-white text-base">
-              📸
-            </button>
-          </div>
-        </div>
-
-        <!-- App Screen 3: Music (Barbie Tunes) -->
-        <div id="bphone-tab-music" class="bphone-screen-tab hidden flex-1 p-4 flex flex-col items-center justify-center text-center">
-          <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#ff007f] to-[#ff69b4] text-white flex items-center justify-center text-4xl shadow-lg border-2 border-white mb-3">
-            🎵
-          </div>
-          <div class="font-display font-bold text-sm text-[#3b0d27]">Dance The Night</div>
-          <div class="text-[11px] text-[#ff007f] font-semibold">Barbie Official Soundtrack</div>
-          <button onclick="playBarbieBPhoneTune()" class="mt-4 btn-barbie-primary !text-xs !py-2 !px-4">
-            <i class="fa-solid fa-play"></i> <span>Play Barbie Tune</span>
-          </button>
-        </div>
-
-        <!-- B-Phone Bottom Dock Navigation -->
-        <div class="bg-white/95 border-t border-pink-200 py-2 px-3 flex items-center justify-around text-xs">
-          <button id="bphone-nav-messages" onclick="switchBPhoneApp('messages')" class="bphone-nav-btn text-[#ff007f] font-bold flex flex-col items-center">
-            <i class="fa-solid fa-comment-dots text-base"></i>
-            <span class="text-[9px] mt-0.5">Chat</span>
-          </button>
-          <button id="bphone-nav-camera" onclick="switchBPhoneApp('camera')" class="bphone-nav-btn text-stone-400 flex flex-col items-center">
-            <i class="fa-solid fa-camera text-base"></i>
-            <span class="text-[9px] mt-0.5">Camera</span>
-          </button>
-          <button id="bphone-nav-music" onclick="switchBPhoneApp('music')" class="bphone-nav-btn text-stone-400 flex flex-col items-center">
-            <i class="fa-solid fa-music text-base"></i>
-            <span class="text-[9px] mt-0.5">Music</span>
-          </button>
-          <button onclick="closeBPhone()" class="text-rose-500 flex flex-col items-center">
-            <i class="fa-solid fa-circle-xmark text-base"></i>
-            <span class="text-[9px] mt-0.5">Exit</span>
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
 
 
   <!-- Custom Barbie Engine Script -->

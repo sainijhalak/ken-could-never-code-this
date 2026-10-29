@@ -615,47 +615,137 @@ function updateBPhoneClock() {
 setInterval(updateBPhoneClock, 10000);
 updateBPhoneClock();
 
+// Mobile Navigation Link Closer
+function closeMobileNav() {
+  const navContainer = document.querySelector('.nav-links-container');
+  if (navContainer) {
+    navContainer.classList.remove('open');
+  }
+}
+
 // --- 17. Interactive Chat with Ken in B-Phone ---
 const kenDialogues = {
   'gemini': {
-    user: 'Yes! Multimodal Gemini API is connected 💅',
-    ken: 'OMG Jhalak you are a genius! Now the crops in Barbieland will never get sick! 🌱💖'
+    user: 'What is Jhalak’s engineering tech stack? 💅',
+    ken: 'Jhalak codes in robust Java, builds reactive UIs in React.js, and integrates cutting-edge Gemini LLM agents! She’s basically a tech superhero! 👑'
   },
   'beach': {
-    user: 'Ken, please go do beach. I am coding in Java ☕',
-    ken: 'My job is just beach anyway! Let me know if you need any cheerleading while you solve DSA! 🏄‍♂️✨'
+    user: 'Ken, please go do beach. Jhalak is engineering ☕',
+    ken: 'My job is just beach anyway! Let me know if you need any cheerleading while Jhalak solves binary tree algorithms! 🏄‍♂️✨'
   },
   'leetcode': {
-    user: 'Solved 400+ LeetCode problems today! ⚡',
-    ken: '400+?! I tried doing Two Sum and my rollerblade fell off! You are literally unstoppable! 👑💅'
+    user: 'How did Jhalak solve 400+ LeetCode problems? ⚡',
+    ken: '400+?! I tried doing Two Sum and my rollerblade fell off! Jhalak practices every single day with an 8.7 CGPA work ethic! 🏆'
   }
 };
+
+const kenFallbackQuotes = [
+  "In Barbieland, every merge conflict resolves itself without a scratch! 💅",
+  "I'm just Ken, but I know clean code when I see Jhalak's GitHub repo! 💖",
+  "Did somebody say Mojo Dojo? Not on Jhalak's watch! Only clean MVC architectures here! 🙅‍♂️",
+  "Every day is the best day in tech when Jhalak is on the engineering team! ✨",
+  "Compiling... Success! No bugs detected in Barbieland! 🚀"
+];
 
 function sendKenChat(key) {
   const data = kenDialogues[key];
   if (!data) return;
 
   playSparkleSound();
+  appendUserMessage(data.user);
+
+  // Show typing indicator
+  showKenTyping(true);
+
+  setTimeout(() => {
+    showKenTyping(false);
+    playFanfareSound();
+    appendKenMessage(data.ken);
+    showBarbieToast('New message from Ken! 💬', '💖');
+  }, 650);
+}
+
+function submitKenCustomMessage() {
+  const input = document.getElementById('bphone-custom-chat-input');
+  if (!input) return;
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  input.value = '';
+  playSparkleSound();
+  appendUserMessage(msg);
+
+  showKenTyping(true);
+
+  // Intelligent Contextual Barbie/Ken Responses
+  const lower = msg.toLowerCase();
+  let kenReply = '';
+
+  if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey')) {
+    kenReply = "Hi Barbie! Are you ready to build something extraordinary in tech today? 💖";
+  } else if (lower.includes('ken') || lower.includes('beach')) {
+    kenReply = "My job is literally just beach! But I love cheering on Jhalak while she writes Java and React! 🏄‍♂️✨";
+  } else if (lower.includes('leetcode') || lower.includes('dsa') || lower.includes('algorithm')) {
+    kenReply = "400+ DSA problems solved! Jhalak has mastered Binary Trees, Graphs, and Dynamic Programming! ⚡👑";
+  } else if (lower.includes('java') || lower.includes('react') || lower.includes('python')) {
+    kenReply = "Jhalak's Java backend and React frontend are faster than my rollerblades! 💅🚀";
+  } else if (lower.includes('mojo') || lower.includes('dojo') || lower.includes('horse')) {
+    kenReply = "Horses are too confusing anyway! Jhalak taught me that automated n8n workflows are much cooler! 🦄";
+  } else if (lower.includes('hire') || lower.includes('job') || lower.includes('interview')) {
+    kenReply = "OMG yes! Hire Jhalak immediately! She is an 8.7 CGPA Computer Science engineer with top-tier skills! 💌✨";
+  } else if (lower.includes('vayalum') || lower.includes('ai') || lower.includes('gemini')) {
+    kenReply = "Her Vayalum farming bot uses Gemini multimodal AI to detect crop diseases! Real engineering impact! 🌱🤖";
+  } else {
+    kenReply = kenFallbackQuotes[Math.floor(Math.random() * kenFallbackQuotes.length)];
+  }
+
+  setTimeout(() => {
+    showKenTyping(false);
+    playFanfareSound();
+    appendKenMessage(kenReply);
+    showBarbieToast('Ken replied! 💬', '💖');
+  }, 700);
+}
+
+function showKenTyping(show) {
+  const bubble = document.getElementById('ken-typing-bubble');
+  if (bubble) {
+    if (show) bubble.classList.remove('hidden');
+    else bubble.classList.add('hidden');
+  }
+}
+
+function appendUserMessage(text) {
   const chatContainer = document.getElementById('bphone-chat-messages');
   if (!chatContainer) return;
-
-  // Add User Bubble
   const userDiv = document.createElement('div');
   userDiv.className = 'bg-[#ff007f] text-white p-2.5 rounded-2xl rounded-tr-sm max-w-[85%] ml-auto shadow-sm text-[11px] animate-bounce';
-  userDiv.textContent = data.user;
+  userDiv.textContent = text;
   chatContainer.appendChild(userDiv);
   chatContainer.scrollTop = chatContainer.scrollHeight;
+}
 
-  // Simulate Ken Typing
-  setTimeout(() => {
-    playFanfareSound();
-    const kenDiv = document.createElement('div');
-    kenDiv.className = 'bg-stone-200 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm text-[11px]';
-    kenDiv.innerHTML = `<strong>Ken:</strong> ${data.ken}`;
-    chatContainer.appendChild(kenDiv);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-    showBarbieToast('New message from Ken! 💬', '💖');
-  }, 700);
+function appendKenMessage(text) {
+  const chatContainer = document.getElementById('bphone-chat-messages');
+  if (!chatContainer) return;
+  const kenDiv = document.createElement('div');
+  kenDiv.className = 'bg-stone-100 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm text-[11px]';
+  kenDiv.innerHTML = `<strong>Ken:</strong> ${text}`;
+  chatContainer.appendChild(kenDiv);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function clearKenChat() {
+  playSparkleSound();
+  const chatContainer = document.getElementById('bphone-chat-messages');
+  if (chatContainer) {
+    chatContainer.innerHTML = `
+      <div class="bg-stone-100 text-[#3b0d27] p-2.5 rounded-2xl rounded-tl-sm max-w-[85%] shadow-sm text-[11px]">
+        <strong>Ken:</strong> Chat cleared! Ask me anything about Jhalak's projects, LeetCode, or Barbieland! 💖
+      </div>
+    `;
+  }
+  showBarbieToast('Chat reset ✨', '💬');
 }
 
 // --- 18. Interactive Barbie Job Offer Builder ---
@@ -739,8 +829,52 @@ function nextBarbieQuote() {
 let bphoneMusicPlaying = false;
 let currentBPhoneApp = 'home';
 let bugGameScore = 0;
-let bugGameTimer = null;
-let bphoneScreenOn = true;
+let bugCombo = 1;
+let lastBugHitTime = 0;
+let currentTrackIdx = 0;
+let bphoneScreenLocked = false;
+
+const barbiePlaylist = [
+  {
+    title: "Dance The Night",
+    artist: "Dua Lipa • Barbie The Album",
+    notes: [
+      { f: 659.25, d: 0.18 }, // E5
+      { f: 523.25, d: 0.18 }, // C5
+      { f: 659.25, d: 0.18 }, // E5
+      { f: 783.99, d: 0.32 }, // G5
+      { f: 659.25, d: 0.18 }, // E5
+      { f: 523.25, d: 0.18 }, // C5
+      { f: 440.00, d: 0.36 }  // A4
+    ]
+  },
+  {
+    title: "Barbie Girl (Synth)",
+    artist: "Aqua • Iconic Anthem",
+    notes: [
+      { f: 830.61, d: 0.22 }, // G#5
+      { f: 659.25, d: 0.22 }, // E5
+      { f: 830.61, d: 0.22 }, // G#5
+      { f: 1108.73, d: 0.35 },// C#6
+      { f: 880.00, d: 0.22 }, // A5
+      { f: 739.99, d: 0.22 }, // F#5
+      { f: 659.25, d: 0.40 }  // E5
+    ]
+  },
+  {
+    title: "Pink Dreamhouse Beats",
+    artist: "Lizzo • Dreamhouse Mix",
+    notes: [
+      { f: 523.25, d: 0.2 }, // C5
+      { f: 587.33, d: 0.2 }, // D5
+      { f: 659.25, d: 0.2 }, // E5
+      { f: 783.99, d: 0.25 },// G5
+      { f: 880.00, d: 0.25 },// A5
+      { f: 783.99, d: 0.2 }, // G5
+      { f: 523.25, d: 0.35 } // C5
+    ]
+  }
+];
 
 // 1. Launch App from Homescreen
 function openBPhoneApp(appName) {
@@ -773,24 +907,20 @@ function openBPhoneApp(appName) {
     startBugGame();
   }
 
-  showBarbieToast(`Launched ${appName.toUpperCase()} App ✨`, '📱');
+  showBarbieToast(`Opened ${appName.toUpperCase()} App ✨`, '📱');
 }
 
-// 2. Return to Homescreen (Swipe up Home Bar)
+// 2. Return to Homescreen (Home Gesture Bar)
 function closeBPhoneApp() {
   playSparkleSound();
   currentBPhoneApp = 'home';
 
-  // Hide all app views
   document.querySelectorAll('.bphone-app-view').forEach(app => {
     app.classList.add('hidden');
   });
 
-  // Show homescreen
   const homescreen = document.getElementById('bphone-homescreen');
   if (homescreen) homescreen.classList.remove('hidden');
-
-  if (bugGameTimer) clearInterval(bugGameTimer);
 }
 
 // 3. Dynamic Island Expand / Collapse
@@ -801,12 +931,13 @@ function toggleDynamicIsland() {
     island.classList.toggle('expanded');
     const content = document.getElementById('bphone-island-content');
     if (island.classList.contains('expanded')) {
+      const curTrack = barbiePlaylist[currentTrackIdx];
       if (content) content.innerHTML = `
         <div class="flex items-center gap-2 text-left">
           <span class="text-base">🎵</span>
           <div>
-            <div class="text-[10px] font-bold text-white leading-tight">Dance The Night</div>
-            <div class="text-[8px] text-pink-300">Barbie Album • Playing</div>
+            <div class="text-[10px] font-bold text-white leading-tight">${curTrack.title}</div>
+            <div class="text-[8px] text-pink-300">${curTrack.artist}</div>
           </div>
         </div>
         <div class="sound-bars !h-3">
@@ -838,32 +969,59 @@ function triggerBPhoneVolume(dir) {
   showBarbieToast(`Volume ${dir.toUpperCase()} 🔊`, '🎶');
 }
 
-// 5. Power Button (Screen Sleep / Wake)
+// 5. Power Button (Screen Sleep / Wake / Lock)
 function toggleBPhonePower() {
-  bphoneScreenOn = !bphoneScreenOn;
-  const screen = document.getElementById('bphone-screen-container');
-  if (screen) {
-    if (bphoneScreenOn) {
-      screen.style.filter = 'brightness(1)';
-      playSparkleSound();
-      showBarbieToast('B-Phone Unlocked 💖', '✨');
-    } else {
-      screen.style.filter = 'brightness(0)';
-      showBarbieToast('B-Phone Locked 🔒', '🌙');
-    }
+  bphoneScreenLocked = !bphoneScreenLocked;
+  if (bphoneScreenLocked) {
+    openBPhoneApp('lock');
+    showBarbieToast('B-Phone Locked 🔒', '🌙');
+  } else {
+    unlockBPhoneScreen();
   }
 }
 
-// 6. Bug Smasher Mini-Game Engine
+function unlockBPhoneScreen() {
+  bphoneScreenLocked = false;
+  playFanfareSound();
+  triggerBarbieConfetti(0.5, 0.4);
+  closeBPhoneApp();
+  showBarbieToast('Unlocked via Heart-ID Face Scan! 💖', '✨');
+}
+
+// 6. Bug Smasher Arcade Mini-Game Engine
 function startBugGame() {
-  bugGameScore = 0;
+  if (bugGameScore === 0) {
+    bugCombo = 1;
+  }
   updateBugScore();
   spawnNextBug();
 }
 
+function resetBugGame() {
+  playSparkleSound();
+  bugGameScore = 0;
+  bugCombo = 1;
+  updateBugScore();
+  spawnNextBug();
+  showBarbieToast('Game Reset! Ready to debug 🐛', '🎮');
+}
+
 function updateBugScore() {
   const scoreEl = document.getElementById('bphone-bug-score');
-  if (scoreEl) scoreEl.textContent = bugGameScore;
+  if (scoreEl) scoreEl.textContent = `${bugGameScore} pts`;
+
+  const sideScore = document.getElementById('side-high-score');
+  if (sideScore) sideScore.textContent = `${Math.max(500, bugGameScore)} pts`;
+
+  const comboEl = document.getElementById('bphone-bug-combo');
+  if (comboEl) comboEl.textContent = `${bugCombo}x`;
+
+  const rankEl = document.getElementById('bphone-bug-rank');
+  if (rankEl) {
+    if (bugGameScore >= 1500) rankEl.textContent = "Rank: Dreamhouse Architect 👑";
+    else if (bugGameScore >= 600) rankEl.textContent = "Rank: Senior Glambassador 🌸";
+    else rankEl.textContent = "Rank: Junior Debugger 🐞";
+  }
 }
 
 function spawnNextBug() {
@@ -871,36 +1029,71 @@ function spawnNextBug() {
   if (!grid) return;
   grid.innerHTML = '';
 
-  const bugEmojis = ['🐛', '🪲', '🐞', '🦗'];
+  const bugEmojis = ['🐛', '🪲', '🐞', '🦗', '👾'];
   const bug = document.createElement('div');
   bug.className = 'bphone-bug';
   bug.textContent = bugEmojis[Math.floor(Math.random() * bugEmojis.length)];
 
-  // Random coordinates within grid
-  const maxW = 240;
-  const maxH = 200;
+  const maxW = 220;
+  const maxH = 180;
   bug.style.left = Math.floor(Math.random() * maxW) + 'px';
   bug.style.top = Math.floor(Math.random() * maxH) + 'px';
 
-  bug.onclick = () => {
+  bug.onclick = (e) => {
     playSparkleSound();
-    bugGameScore += 100;
+
+    const now = Date.now();
+    if (now - lastBugHitTime < 1600) {
+      bugCombo = Math.min(5, bugCombo + 1);
+    } else {
+      bugCombo = 1;
+    }
+    lastBugHitTime = now;
+
+    const gained = 100 * bugCombo;
+    bugGameScore += gained;
     updateBugScore();
-    bug.textContent = '✨';
-    bug.style.transform = 'scale(1.8)';
+
+    // Spawn floating particle
+    const burst = document.createElement('div');
+    burst.className = 'bphone-sparkle-burst';
+    burst.textContent = `+${gained} ✨`;
+    burst.style.left = bug.style.left;
+    burst.style.top = bug.style.top;
+    grid.appendChild(burst);
+
+    bug.textContent = '💖';
+    bug.style.transform = 'scale(2)';
+
     setTimeout(() => {
       spawnNextBug();
-      if (bugGameScore >= 500 && bugGameScore % 500 === 0) {
+      if (bugGameScore >= 1000 && bugGameScore % 1000 === 0) {
         triggerBarbieConfetti(0.5, 0.5);
-        showBarbieToast('Senior Developer Level! 500+ Bugs Smashed! 🎉', '👑');
+        playFanfareSound();
+        showBarbieToast(`S-RANK! ${bugGameScore} Bugs Squashed! 🏆`, '👑');
       }
-    }, 250);
+    }, 220);
   };
 
   grid.appendChild(bug);
 }
 
-// 7. B-Phone Wallpaper Switcher
+// 7. B-Phone Case Finish & Wallpaper Switcher
+function setBPhoneCaseColor(color) {
+  playSparkleSound();
+  const chassis = document.getElementById('bphone-device-chassis');
+  if (!chassis) return;
+
+  chassis.className = `bphone-case case-${color}`;
+  const names = {
+    'hotpink': 'Hot Pink Titanium 🌸',
+    'lavender': 'Neon Lavender 💜',
+    'gold': 'Golden Glam 💛',
+    'midnight': 'Cyber Midnight 🖤'
+  };
+  showBarbieToast(`Case: ${names[color] || color}`, '🎨');
+}
+
 function setBPhoneWallpaper(type) {
   playSparkleSound();
   const screen = document.getElementById('bphone-screen-container');
@@ -917,7 +1110,22 @@ function setBPhoneWallpaper(type) {
   showBarbieToast(`Wallpaper: ${type.toUpperCase()} 🎨`, '✨');
 }
 
-// 8. Barbie Music Turntable Toggle
+// 8. Barbie Music Player Engine
+function selectBarbieTrack(idx) {
+  currentTrackIdx = idx % barbiePlaylist.length;
+  const track = barbiePlaylist[currentTrackIdx];
+
+  const titleEl = document.getElementById('bphone-music-title');
+  if (titleEl) titleEl.textContent = track.title;
+  const artistEl = document.getElementById('bphone-music-artist');
+  if (artistEl) artistEl.textContent = track.artist;
+
+  playSparkleSound();
+  if (bphoneMusicPlaying) {
+    playBarbieSynthTune(currentTrackIdx);
+  }
+}
+
 function toggleBarbieMusic() {
   const vinyl = document.getElementById('bphone-vinyl-disk');
   const btn = document.getElementById('bphone-play-btn');
@@ -926,10 +1134,180 @@ function toggleBarbieMusic() {
   if (bphoneMusicPlaying) {
     if (vinyl) vinyl.classList.add('spinning');
     if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pause Track</span>';
-    playBarbieBPhoneTune();
+    playBarbieSynthTune(currentTrackIdx);
   } else {
     if (vinyl) vinyl.classList.remove('spinning');
-    if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Play Track</span>';
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Play Barbie Synth Track</span>';
     showBarbieToast('Music Paused ⏸️', '🎵');
   }
+}
+
+function playBarbieSynthTune(idx) {
+  if (!soundEnabled) return;
+  try {
+    initAudio();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    const track = barbiePlaylist[idx] || barbiePlaylist[0];
+    let offset = 0;
+
+    track.notes.forEach(note => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(note.f, audioCtx.currentTime + offset);
+
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime + offset);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + offset + note.d);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(audioCtx.currentTime + offset);
+      osc.stop(audioCtx.currentTime + offset + note.d + 0.05);
+
+      offset += note.d * 1.08;
+    });
+
+    showBarbieToast(`🎵 Now Playing: ${track.title}`, "💖");
+  } catch(e) {}
+}
+
+// 9. Camera Shutter & Watermark Stickers
+function setCamSticker(text) {
+  playSparkleSound();
+  const sticker = document.getElementById('bphone-cam-sticker');
+  if (sticker) {
+    sticker.textContent = text;
+    sticker.classList.add('animate-bounce');
+    setTimeout(() => { sticker.classList.remove('animate-bounce'); }, 600);
+  }
+  showBarbieToast(`Sticker Stamp: ${text}`, '📸');
+}
+
+function snapBPhoneShutter() {
+  playCameraShutterSound();
+
+  // Blinding white flash overlay
+  const flash = document.getElementById('bphone-cam-flash');
+  if (flash) {
+    flash.classList.add('flash');
+    setTimeout(() => { flash.classList.remove('flash'); }, 120);
+  }
+
+  triggerBarbieConfetti(0.5, 0.4);
+  showBarbieToast('📸 Glam Snapshot captured & saved to B-Photos! 💖', '✨');
+}
+
+// 10. Barbie Soundboard FX Synthesizer
+function playBarbieSoundFX(fxName) {
+  if (!soundEnabled) return;
+  try {
+    initAudio();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    const t = audioCtx.currentTime;
+
+    if (fxName === 'hibarbie') {
+      // Cheerful rising fanfare
+      [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, t + i * 0.1);
+        gain.gain.setValueAtTime(0.25, t + i * 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.1 + 0.15);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t + i * 0.1);
+        osc.stop(t + i * 0.1 + 0.18);
+      });
+      showBarbieToast("🎀 Hi Barbie!", "💖");
+    } else if (fxName === 'hiken') {
+      // Playful two-tone whistle
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(783.99, t);
+      osc.frequency.exponentialRampToValueAtTime(659.25, t + 0.25);
+      gain.gain.setValueAtTime(0.3, t);
+      gain.gain.exponentialRampToValueAtTime(0.01, t + 0.3);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.35);
+      showBarbieToast("🏄‍♂️ Hi Ken!", "✨");
+    } else if (fxName === 'dsa') {
+      // 8-bit power-up arpeggio
+      [300, 450, 600, 800, 1100].forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(freq, t + i * 0.05);
+        gain.gain.setValueAtTime(0.15, t + i * 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.05 + 0.08);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t + i * 0.05);
+        osc.stop(t + i * 0.05 + 0.09);
+      });
+      showBarbieToast("⚡ 400+ LeetCode Power Level!", "🏆");
+    } else if (fxName === 'gitpush') {
+      // Clean high tech chime
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(987.77, t);
+      gain.gain.setValueAtTime(0.28, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.45);
+      showBarbieToast("💻 Git Push: origin main deployed! 🚀", "✨");
+    } else if (fxName === 'confetti') {
+      triggerBarbieConfetti(0.5, 0.4);
+      playFanfareSound();
+      showBarbieToast("🎉 Barbie Confetti Party! 💖", "🎀");
+    } else if (fxName === 'javasip') {
+      // Water droplet drop tone
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, t);
+      osc.frequency.exponentialRampToValueAtTime(400, t + 0.12);
+      gain.gain.setValueAtTime(0.3, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + 0.18);
+      showBarbieToast("☕ Fresh Hot Java brewed for coding! 💖", "🌸");
+    }
+  } catch(e) {}
+}
+
+// 11. Hotline Call Simulator
+function ringBarbieHotline() {
+  if (soundEnabled) {
+    try {
+      initAudio();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const t = audioCtx.currentTime;
+      // Ring sequence
+      [800, 800, 950, 950].forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, t + i * 0.18);
+        gain.gain.setValueAtTime(0.2, t + i * 0.18);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.18 + 0.12);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t + i * 0.18);
+        osc.stop(t + i * 0.18 + 0.15);
+      });
+    } catch(e) {}
+  }
+  showBarbieToast("📞 Incoming FaceTime Call: Barbie is on the line! 💖", "🎀");
 }

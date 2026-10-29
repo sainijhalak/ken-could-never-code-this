@@ -477,19 +477,67 @@ a, button {
 
 .nav-link {
   color: #5c183a;
-  font-weight: 600;
-  padding: 8px 16px;
+  font-weight: 700;
+  padding: 8px 14px;
   border-radius: 999px;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1.5px solid rgba(255, 105, 180, 0.3);
+  backdrop-filter: blur(8px);
+  position: relative;
+  letter-spacing: 0.2px;
 }
 
 .nav-link:hover, .nav-link.active {
   color: #ffffff !important;
-  background: var(--barbie-hot);
-  box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #ff007f 0%, #ff1493 100%) !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(255, 0, 127, 0.45);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.nav-link-icon {
+  font-size: 1rem;
+  filter: drop-shadow(0 1px 2px rgba(255, 0, 127, 0.3));
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover .nav-link-icon {
+  transform: scale(1.25) rotate(10deg);
+}
+
+.nav-pill-live {
+  font-size: 8px;
+  font-weight: 800;
+  background: #10b981;
+  color: #ffffff;
+  padding: 1px 5px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  animation: pulseLive 1.5s infinite alternate;
+}
+
+@keyframes pulseLive {
+  0% { transform: scale(1); opacity: 0.85; }
+  100% { transform: scale(1.12); opacity: 1; box-shadow: 0 0 8px #10b981; }
+}
+
+body.theme-dark .nav-link {
+  color: #ffe0f0 !important;
+  background: rgba(45, 0, 48, 0.7) !important;
+  border-color: rgba(255, 0, 127, 0.45) !important;
+}
+
+body.theme-dark .nav-link:hover, body.theme-dark .nav-link.active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ff007f 0%, #a0005a 100%) !important;
+  border-color: #ff69b4 !important;
+  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.6);
 }
 
 /* Skill Chip / Closet Pill */
@@ -1248,5 +1296,131 @@ body.theme-dark .bphone-home-indicator {
 .bphone-home-bar-btn:hover {
   background: #ff007f;
   transform: scaleY(1.4);
+}
+
+/* Glass Reflection Sheen */
+.bphone-glass-sheen {
+  position: absolute;
+  top: -35px;
+  left: -35px;
+  width: 140%;
+  height: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0.12) 35%, transparent 65%);
+  transform: rotate(-24deg);
+  pointer-events: none;
+  z-index: 25;
+  border-radius: 40px;
+}
+
+/* Case Color Themes */
+.bphone-case.case-hotpink {
+  background: linear-gradient(145deg, #3d002a 0%, #ff007f 25%, #ff69b4 55%, #7a004f 100%) !important;
+}
+
+.bphone-case.case-lavender {
+  background: linear-gradient(145deg, #1e003d 0%, #a855f7 30%, #d946ef 60%, #4a0072 100%) !important;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 35px rgba(168, 85, 247, 0.45) !important;
+}
+
+.bphone-case.case-gold {
+  background: linear-gradient(145deg, #3d2600 0%, #f59e0b 35%, #fde047 60%, #805b00 100%) !important;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 35px rgba(245, 158, 11, 0.45) !important;
+}
+
+.bphone-case.case-midnight {
+  background: linear-gradient(145deg, #050008 0%, #22002d 40%, #ff007f 80%, #0d0014 100%) !important;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.7), 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 35px rgba(255, 0, 127, 0.45) !important;
+}
+
+/* Typing Dots Animation */
+.ken-typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 4px;
+}
+
+.ken-typing-dots span {
+  width: 5px;
+  height: 5px;
+  background: #ff007f;
+  border-radius: 50%;
+  animation: kenTypingBounce 0.8s infinite alternate ease-in-out;
+}
+
+.ken-typing-dots span:nth-child(2) { animation-delay: 0.18s; }
+.ken-typing-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes kenTypingBounce {
+  0% { transform: translateY(0); opacity: 0.4; }
+  100% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Soundboard App Pads */
+.bphone-sound-pad {
+  padding: 12px 6px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #ffb6db;
+  box-shadow: 0 4px 10px rgba(255, 0, 127, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 700;
+  font-size: 10px;
+  color: #4a0d2a;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bphone-sound-pad:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 8px 18px rgba(255, 0, 127, 0.3);
+  border-color: #ff007f;
+}
+
+.bphone-sound-pad:active {
+  transform: scale(0.92);
+}
+
+/* Mini Game Sparkle Burst */
+.bphone-sparkle-burst {
+  position: absolute;
+  font-size: 18px;
+  font-weight: 800;
+  color: #ff007f;
+  pointer-events: none;
+  animation: sparkleFloat 0.6s forwards ease-out;
+  z-index: 35;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes sparkleFloat {
+  0% { transform: scale(0.5) translateY(0); opacity: 1; }
+  100% { transform: scale(1.6) translateY(-25px); opacity: 0; }
+}
+
+/* Camera Flash Simulation */
+#bphone-cam-flash {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.08s ease-out;
+  border-radius: 40px;
+}
+
+#bphone-cam-flash.flash {
+  opacity: 0.95;
+}
+
+/* Lock Screen */
+.bphone-lockscreen {
+  background: radial-gradient(circle at top, #3b0028 0%, #1a0022 55%, #050007 100%);
+  color: #ffffff;
 }
 
