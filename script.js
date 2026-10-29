@@ -731,3 +731,205 @@ function nextBarbieQuote() {
     el.textContent = `"${barbieQuotes[quoteIdx]}"`;
   }
 }
+
+// ==========================================================================
+// B-PHONE 16 PRO MAX INTERACTIVE OS ENGINE
+// ==========================================================================
+
+let bphoneMusicPlaying = false;
+let currentBPhoneApp = 'home';
+let bugGameScore = 0;
+let bugGameTimer = null;
+let bphoneScreenOn = true;
+
+// 1. Launch App from Homescreen
+function openBPhoneApp(appName) {
+  playSparkleSound();
+  currentBPhoneApp = appName;
+
+  // Hide Homescreen
+  const homescreen = document.getElementById('bphone-homescreen');
+  if (homescreen) homescreen.classList.add('hidden');
+
+  // Hide all other apps
+  document.querySelectorAll('.bphone-app-view').forEach(app => {
+    app.classList.add('hidden');
+  });
+
+  // Show target app
+  const targetApp = document.getElementById('bphone-app-' + appName);
+  if (targetApp) {
+    targetApp.classList.remove('hidden');
+  }
+
+  // If opening music app and music is playing, spin vinyl
+  if (appName === 'music') {
+    const vinyl = document.getElementById('bphone-vinyl-disk');
+    if (vinyl && bphoneMusicPlaying) vinyl.classList.add('spinning');
+  }
+
+  // If opening bug game, start spawner
+  if (appName === 'game') {
+    startBugGame();
+  }
+
+  showBarbieToast(`Launched ${appName.toUpperCase()} App ✨`, '📱');
+}
+
+// 2. Return to Homescreen (Swipe up Home Bar)
+function closeBPhoneApp() {
+  playSparkleSound();
+  currentBPhoneApp = 'home';
+
+  // Hide all app views
+  document.querySelectorAll('.bphone-app-view').forEach(app => {
+    app.classList.add('hidden');
+  });
+
+  // Show homescreen
+  const homescreen = document.getElementById('bphone-homescreen');
+  if (homescreen) homescreen.classList.remove('hidden');
+
+  if (bugGameTimer) clearInterval(bugGameTimer);
+}
+
+// 3. Dynamic Island Expand / Collapse
+function toggleDynamicIsland() {
+  playSparkleSound();
+  const island = document.getElementById('bphone-island');
+  if (island) {
+    island.classList.toggle('expanded');
+    const content = document.getElementById('bphone-island-content');
+    if (island.classList.contains('expanded')) {
+      if (content) content.innerHTML = `
+        <div class="flex items-center gap-2 text-left">
+          <span class="text-base">🎵</span>
+          <div>
+            <div class="text-[10px] font-bold text-white leading-tight">Dance The Night</div>
+            <div class="text-[8px] text-pink-300">Barbie Album • Playing</div>
+          </div>
+        </div>
+        <div class="sound-bars !h-3">
+          <span class="sound-bar !w-1"></span>
+          <span class="sound-bar !w-1"></span>
+          <span class="sound-bar !w-1"></span>
+        </div>
+      `;
+    } else {
+      if (content) content.innerHTML = `
+        <span class="bphone-live-clock font-bold text-white text-[10px]">11:11 PM</span>
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="text-pink-300 font-bold text-[10px]">100% 💖</span>
+      `;
+      updateBPhoneClock();
+    }
+  }
+}
+
+// 4. Volume Buttons Click
+function triggerBPhoneVolume(dir) {
+  playSparkleSound();
+  const hud = document.getElementById('bphone-vol-hud');
+  if (hud) {
+    hud.classList.remove('hidden');
+    clearTimeout(window.volTimer);
+    window.volTimer = setTimeout(() => { hud.classList.add('hidden'); }, 1500);
+  }
+  showBarbieToast(`Volume ${dir.toUpperCase()} 🔊`, '🎶');
+}
+
+// 5. Power Button (Screen Sleep / Wake)
+function toggleBPhonePower() {
+  bphoneScreenOn = !bphoneScreenOn;
+  const screen = document.getElementById('bphone-screen-container');
+  if (screen) {
+    if (bphoneScreenOn) {
+      screen.style.filter = 'brightness(1)';
+      playSparkleSound();
+      showBarbieToast('B-Phone Unlocked 💖', '✨');
+    } else {
+      screen.style.filter = 'brightness(0)';
+      showBarbieToast('B-Phone Locked 🔒', '🌙');
+    }
+  }
+}
+
+// 6. Bug Smasher Mini-Game Engine
+function startBugGame() {
+  bugGameScore = 0;
+  updateBugScore();
+  spawnNextBug();
+}
+
+function updateBugScore() {
+  const scoreEl = document.getElementById('bphone-bug-score');
+  if (scoreEl) scoreEl.textContent = bugGameScore;
+}
+
+function spawnNextBug() {
+  const grid = document.getElementById('bphone-bug-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const bugEmojis = ['🐛', '🪲', '🐞', '🦗'];
+  const bug = document.createElement('div');
+  bug.className = 'bphone-bug';
+  bug.textContent = bugEmojis[Math.floor(Math.random() * bugEmojis.length)];
+
+  // Random coordinates within grid
+  const maxW = 240;
+  const maxH = 200;
+  bug.style.left = Math.floor(Math.random() * maxW) + 'px';
+  bug.style.top = Math.floor(Math.random() * maxH) + 'px';
+
+  bug.onclick = () => {
+    playSparkleSound();
+    bugGameScore += 100;
+    updateBugScore();
+    bug.textContent = '✨';
+    bug.style.transform = 'scale(1.8)';
+    setTimeout(() => {
+      spawnNextBug();
+      if (bugGameScore >= 500 && bugGameScore % 500 === 0) {
+        triggerBarbieConfetti(0.5, 0.5);
+        showBarbieToast('Senior Developer Level! 500+ Bugs Smashed! 🎉', '👑');
+      }
+    }, 250);
+  };
+
+  grid.appendChild(bug);
+}
+
+// 7. B-Phone Wallpaper Switcher
+function setBPhoneWallpaper(type) {
+  playSparkleSound();
+  const screen = document.getElementById('bphone-screen-container');
+  if (!screen) return;
+
+  const wallpapers = {
+    'dreamhouse': 'radial-gradient(circle at top, #ffe4f3 0%, #ffc2df 50%, #ffa8d2 100%)',
+    'cyber': 'radial-gradient(circle at top, #2b0230 0%, #15001c 60%, #08000b 100%)',
+    'sunset': 'radial-gradient(circle at top, #ffedd5 0%, #fed7aa 40%, #f472b6 100%)',
+    'glitter': 'radial-gradient(circle at top, #fff0f7 0%, #ffd6eb 45%, #ffb3d9 100%)'
+  };
+
+  screen.style.background = wallpapers[type] || wallpapers['dreamhouse'];
+  showBarbieToast(`Wallpaper: ${type.toUpperCase()} 🎨`, '✨');
+}
+
+// 8. Barbie Music Turntable Toggle
+function toggleBarbieMusic() {
+  const vinyl = document.getElementById('bphone-vinyl-disk');
+  const btn = document.getElementById('bphone-play-btn');
+
+  bphoneMusicPlaying = !bphoneMusicPlaying;
+  if (bphoneMusicPlaying) {
+    if (vinyl) vinyl.classList.add('spinning');
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pause Track</span>';
+    playBarbieBPhoneTune();
+  } else {
+    if (vinyl) vinyl.classList.remove('spinning');
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Play Track</span>';
+    showBarbieToast('Music Paused ⏸️', '🎵');
+  }
+}
