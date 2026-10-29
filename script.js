@@ -490,42 +490,18 @@ function setSelfieFilter(filterName) {
   showBarbieToast(`Filter: ${names[filterName] || filterName}`, '🎨');
 }
 
-// --- 14. Barbie Smartphone (B-Phone 16 Pro) Modal & Apps ---
+// --- 14. Barbie Smartphone (B-Phone 16 Pro) Navigation ---
 function openBPhone() {
   playSparkleSound();
-  const modal = document.getElementById('b-phone-modal');
-  if (modal) {
-    modal.classList.add('active');
+  const phoneSection = document.getElementById('b-phone');
+  if (phoneSection) {
+    phoneSection.scrollIntoView({ behavior: 'smooth' });
   }
 }
 
 function closeBPhone() {
-  const modal = document.getElementById('b-phone-modal');
-  if (modal) {
-    modal.classList.remove('active');
-    playSparkleSound();
-  }
-}
-
-function switchBPhoneApp(appName) {
+  // Legacy stub for smooth scrolling if called
   playSparkleSound();
-  document.querySelectorAll('.bphone-screen-tab').forEach(tab => {
-    tab.classList.add('hidden');
-  });
-  const target = document.getElementById('bphone-tab-' + appName);
-  if (target) {
-    target.classList.remove('hidden');
-  }
-
-  document.querySelectorAll('.bphone-nav-btn').forEach(btn => {
-    btn.classList.remove('text-[#ff007f]', 'font-bold');
-    btn.classList.add('text-stone-400');
-  });
-  const activeBtn = document.getElementById('bphone-nav-' + appName);
-  if (activeBtn) {
-    activeBtn.classList.remove('text-stone-400');
-    activeBtn.classList.add('text-[#ff007f]', 'font-bold');
-  }
 }
 
 // Plays Barbie 8-bit Synth Tune inside the B-Phone
