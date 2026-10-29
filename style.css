@@ -942,3 +942,110 @@ a, button {
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   }
 }
+
+/* ==========================================================================
+   FLAGSHIP B-PHONE 16 PRO (Standalone Presentable UI)
+   ========================================================================== */
+.bphone-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.bphone-device {
+  width: 350px;
+  max-width: 92vw;
+  height: 660px;
+  background: linear-gradient(145deg, #2a0022 0%, #ff1493 30%, #e0218a 60%, #4a0033 100%);
+  border-radius: 50px;
+  padding: 11px;
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.45),
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 0 40px rgba(255, 20, 147, 0.4);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bphone-device:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 35px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 3px #ffffff,
+    0 0 50px rgba(255, 0, 127, 0.6);
+}
+
+/* Side Buttons (Volume & Power) */
+.bphone-device::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 110px;
+  width: 4px;
+  height: 50px;
+  background: #ff007f;
+  border-radius: 4px 0 0 4px;
+  box-shadow: 0 70px 0 #ff007f;
+}
+
+.bphone-device::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 130px;
+  width: 4px;
+  height: 65px;
+  background: #ff007f;
+  border-radius: 0 4px 4px 0;
+}
+
+.bphone-device-screen {
+  background: #fff0f7;
+  border-radius: 40px;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #140019;
+}
+
+/* Dynamic Island Notch */
+.bphone-island {
+  width: 120px;
+  height: 26px;
+  background: #000000;
+  border-radius: 999px;
+  margin: 8px auto 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ff69b4;
+  font-size: 10px;
+  font-weight: 700;
+  z-index: 10;
+  transition: width 0.3s ease;
+}
+
+/* Home Indicator Bar */
+.bphone-home-indicator {
+  width: 125px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 999px;
+  margin: 6px auto 4px auto;
+}
+
+body.theme-dark .bphone-device-screen {
+  background: #190220;
+}
+
+body.theme-dark .bphone-home-indicator {
+  background: rgba(255, 255, 255, 0.4);
+}
+
